@@ -1,4 +1,4 @@
-GPIO Com Port Demo Quickstart Guide
+GPIO Simple Demo Quickstart Guide
 =========================================
 
 .. toctree::
