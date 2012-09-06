@@ -108,6 +108,7 @@ void application()
 				p_PORT_BUT_1:> button1;
 				if(button1 == BUTTON_PRESS_VALUE)
 				{
+					printstrln("Button 1 Pressed");
 					p_led<:(led_value);
 					led_value=led_value<<1;
 					if(led_value == 16)
