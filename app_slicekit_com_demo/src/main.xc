@@ -8,7 +8,7 @@
 
 #define SK_GPIO_SLOT_STAR
 #define BAUD_RATE 115200
-#define AD7995_0
+//#define AD7995_0 //define this in module_i2c_master
 
 
 #ifdef SK_GPIO_SLOT_STAR
