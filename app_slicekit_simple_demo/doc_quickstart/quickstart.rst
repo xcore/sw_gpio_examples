@@ -1,4 +1,4 @@
-sw_gpio_examples COM demo : Quick Start Guide
+sw_gpio_examples simple demo : Quick Start Guide
 --------------------------------------------------
 
 We use the XA-SK-GPIO GPIO Slice Card together with the I2C software component to communicate with on board ADC. This application showcases some of the software key features and serves as an example on how to use API of I2C. This demo features cycles on baord LEDs by Button press and displays current temperature value on Button press.
