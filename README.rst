@@ -16,7 +16,7 @@ Key Features
 Required Tools
 ==============
 
-11.11.0 and above
+11.11.1 and above
 
 
 Support
@@ -50,7 +50,7 @@ The repository explains about the compatability of slice kit core board with GPI
 Documentation
 =============
 
-Quick starter guilde for the applications are avilable in the applciations seperately.
+Quick starter guilde for the applications are avilable for each application seperately in the applciation "doc_quickstart" folder seperately.
 
 
 Known Issues
@@ -61,8 +61,7 @@ Known Issues
 Support
 =======
 
-  This package is supported by XMOS Ltd. Issues can be raised against the software
-  at:
+  This package is supported by XMOS Ltd. Issues can be raised against the software at:
 
       http://www.xmos.com/support
 

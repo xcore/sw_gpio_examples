@@ -1,12 +1,17 @@
 sw_gpio_examples COM demo : Quick Start Guide
 --------------------------------------------------
 
-We use the XA-SK-GPIO GPIO Slice Card together with the xSOFTip UART software to create a UART , and send data to and from a PC COM port and also xSOFTip I2C software component to communicate with on board ADC. This application showcases some of the software key features and serves as an example on how to use APIs of UART and I2C. This demo features UART data loop back, receives commands from comport, and perform according to the command input.
+We use the XA-SK-GPIO GPIO Slice Card together with the xSOFTip UART software to create a UART , and send data to and from a PC COM port. 
+Also xSOFTip I2C software component to communicate with on board ADC. 
+This application showcases some of the software key features and serves as an example on how to use APIs of UART and I2C. 
+This demo features UART data loop back, receives commands from comport, and perform according to the command input.
 
 Software Configuration
 ++++++++++++++++++++++
 
-The following defines should be made according to the connection of the GPIO slice acard to the core board:
+The following defines should be made according to the connection of the 
+GPIO slice acard to the core board:
+
     * #define SK_GPIO_SLOT_SQUARE  - connect the GPIO slice card to the SLOT SQUARE of core baoard.
     * #define SK_GPIO_SLOT_CIRCLE  - connect the GPIO slice card to the SLOT CIRCLE of core baoard.
     * #define SK_GPIO_SLOT_TRIANGLE  - connect the GPIO slice card to the TRIANGLE of core baoard.
@@ -18,6 +23,7 @@ Build the Application
 +++++++++++++++++++++
 
 The following components are required to build ``app_slicekit_com_demo`` application:
+    
     * sc_i2c:  https://github.com/xcore/sc_i2c.git
     * sc_uart: https://github.com/xcore/sc_uart.git
     * xcommon: https://github.com/xcore/xcommon.git (Optional)
@@ -39,7 +45,8 @@ The following tools should be installed on the host system in order to run this 
       http://www.hw-group.com/products/hercules/index_en.html
     * For MAC users: SecureCRT7.0 
       http://www.vandyke.com/download/securecrt/
-
+   
+   #. Note: Make sure to change the settings of the tool as Windows style line end characters.
 
 Set Up The Hardare
 ++++++++++++++++++

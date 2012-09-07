@@ -1,12 +1,16 @@
 sw_gpio_examples simple demo : Quick Start Guide
 --------------------------------------------------
 
-We use the XA-SK-GPIO GPIO Slice Card together with the I2C software component to communicate with on board ADC. This application showcases some of the software key features and serves as an example on how to use API of I2C. This demo features cycles on baord LEDs by Button press and displays current temperature value on Button press.
+We use the XA-SK-GPIO GPIO Slice Card together with the I2C software component to communicate with on board ADC. 
+This application showcases some of the software key features and serves as an example on how to use API of I2C. 
+This demo features cycles on baord LEDs by Button press and displays current temperature value on Button press.
 
 Software Configuration
 ++++++++++++++++++++++
 
-The following defines should be made according to the connection of the GPIO slice acard to the core board:
+The following defines should be made according to the connection of the 
+GPIO slice acard to the core board:
+    
     * #define SK_GPIO_SLOT_SQUARE  - connect the GPIO slice card to the SLOT SQUARE of core baoard.
     * #define SK_GPIO_SLOT_CIRCLE  - connect the GPIO slice card to the SLOT CIRCLE of core baoard.
     * #define SK_GPIO_SLOT_TRIANGLE  - connect the GPIO slice card to the TRIANGLE of core baoard.
@@ -18,6 +22,7 @@ Build the Application
 +++++++++++++++++++++
 
 The following components are required to build ``app_slicekit_simple_demo`` application:
+    
     * sc_i2c:  https://github.com/xcore/sc_i2c.git
     * xcommon: https://github.com/xcore/xcommon.git (Optional)
 
@@ -39,7 +44,9 @@ Set Up The Hardare
 
    Demonstration Hardware Setup
 
-   #. Connect XA-SK-GPIO Slice Card to the XP-SKC-L2 Slicekit Core board. This Slice Card can be connected to either ``Square``, ``Tringle`` or ``Star`` connector of Slicekit Core board, but for now, use the TRIANGLE slot as shown in the figure above
+   #. Connect XA-SK-GPIO Slice Card to the XP-SKC-L2 Slicekit Core board. 
+      This Slice Card can be connected to either ``Square``, ``Tringle`` or ``Star`` connector of Slicekit Core board, 
+      but for now, use the TRIANGLE slot as shown in the figure above
    #. Connect the XTAG Adapter to Slicekit Core board, Chain connector and connect XTAG-2 to the adapter. 
    #. Connect the XTAG-2 to host PC or Mac USB port.
    #. Switch on the power supply to the Slicekit Core board.
