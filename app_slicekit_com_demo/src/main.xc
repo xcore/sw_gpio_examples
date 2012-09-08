@@ -6,7 +6,7 @@
 #include<i2c.h>
 #include<string.h>
 
-#define SK_GPIO_SLOT_STAR
+#define SK_GPIO_SLOT_SQUARE
 #define BAUD_RATE 115200
 //#define AD7995_0 //define this in module_i2c_master
 
@@ -29,6 +29,7 @@ struct r_i2c i2cOne = {
 
 #ifdef SK_GPIO_SLOT_TRIANGLE
 #define CORE_NUM 0
+#define TYPE 1
 #define BUTTON_PRESS_VALUE 0
 on stdcore[CORE_NUM] : buffered in port:1 p_rx =  PORT_ETH_TXCLK_1;
 on stdcore[CORE_NUM] : out port p_tx = PORT_ETH_RXDV_1;
@@ -45,6 +46,7 @@ struct r_i2c i2cOne = {
 
 #ifdef SK_GPIO_SLOT_CIRCLE
 #define CORE_NUM 1
+#define TYPE 1
 #define BUTTON_PRESS_VALUE 0
 on stdcore[CORE_NUM] : buffered in port:1 p_rx =  PORT_ETH_TXCLK_3;
 on stdcore[CORE_NUM] : out port p_tx = PORT_ETH_RXDV_3;
