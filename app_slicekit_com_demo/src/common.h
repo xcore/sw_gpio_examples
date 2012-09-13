@@ -28,7 +28,7 @@ constants
 /*---------------------------------------------------------------------------
 typedefs
 ---------------------------------------------------------------------------*/
-typedef enum{
+typedef enum {
 SET_LED_1,
 SET_LED_2,
 SET_LED_3,
@@ -64,12 +64,42 @@ int TEMPERATURE_LUT[][2]={
 /*---------------------------------------------------------------------------
 prototypes
 ---------------------------------------------------------------------------*/
-int linear_interpolation(int adc_value);
-int read_adc_value();
-
-void receive(chanend c_receive, chanend c_uartRX);
+/**
+* Polling uart RX and push button switches and send received commands to
+* process_data thread
+* @param	c_uartTX 	Channel to Uart TX Thread
+* @param	c_chanRX 	Channel to Uart RX Thread
+* @param	c_process 	Channel to process data Thread
+* @param	c_end 		Channel to read data from process thread
+*/
 void app_manager(chanend c_uartTX,chanend c_chanRX,chanend c_process, chanend c_end);
+
+/**
+* process received data to see if received data is valid command or not
+* Polling switches to see for button press
+* @param	c_process 	Channel to receive data from app manager Thread
+* @param	c_end 		Channel to communicate to app manager thread
+*/
 void process_data(chanend c_process, chanend c_end);
+
+/**
+* Transmits byte by byte to the UART TX thread for an input string
+* @param	c_uartTX 	Channel to receive data from app Uart TX Thread
+* @param	message 	Buffer to store array of characters
+*/
 void uart_tx_string(chanend c_uartTX,unsigned char message[100]);
+
+/**
+* Calculates temperatue based on linear interpolation
+* @param	adc_value 	int value read from ADC
+* @return	Returns linear interpolated Temperature value
+*/
+int linear_interpolation(int adc_value);
+
+/**
+* Read ADC value using I2C
+* @return	Returns ADC value
+*/
+int read_adc_value();
 
 #endif// _common_h_

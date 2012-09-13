@@ -45,12 +45,12 @@ Firmware Detail
 
 Overview
 --------
-The repository explains about the compatability of slice kit core board with GPIO slice card connected to any othe slots. Demonstrates about the flexibility of IO usage and basic functionality like LEDs, ADC and UART.
+The repository explains about the compatability of slice kit core board with GPIO slice card connected to any slot. Demonstrates about the flexibility of IO usage and basic functionality like LEDs, ADC and UART.
 
 Documentation
 =============
 
-Quick starter guilde for the applications are avilable for each application seperately in the applciation "doc_quickstart" folder seperately.
+Quick starter guilde for the applications are avilable in the application "doc_quickstart" folder.
 
 
 Known Issues
