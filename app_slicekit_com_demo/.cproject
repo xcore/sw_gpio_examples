@@ -231,6 +231,15 @@
                                     <listOptionValue builtIn="false" value='&quot;${workspace_loc:/sc_uart/module_uart_tx}&quot;' />
                                     <listOptionValue builtIn="false" value='&quot;${workspace_loc:/sc_i2c/module_i2c_master/src}&quot;' />
                                     <listOptionValue builtIn="false" value='&quot;${workspace_loc:/sc_i2c/module_i2c_master}&quot;' />
+                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_i2c_master/doc}&quot;' />
+                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_i2c_master/src}&quot;' />
+                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_i2c_master}&quot;' />
+                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_uart_rx/doc}&quot;' />
+                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_uart_rx/src}&quot;' />
+                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_uart_rx}&quot;' />
+                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_uart_tx/doc}&quot;' />
+                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_uart_tx/src}&quot;' />
+                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_uart_tx}&quot;' />
                                 </option>
                                 <inputType id="com.xmos.cdt.xc.compiler.input.1523497402" name="XC Sources" superClass="com.xmos.cdt.xc.compiler.input" />
                                 <option id="gnu.c.compiler.option.include.paths.11111" superClass="gnu.c.compiler.option.include.paths" valueType="includePath">
@@ -244,6 +253,15 @@
                                     <listOptionValue builtIn="false" value='&quot;${workspace_loc:/sc_uart/module_uart_tx}&quot;' />
                                     <listOptionValue builtIn="false" value='&quot;${workspace_loc:/sc_i2c/module_i2c_master/src}&quot;' />
                                     <listOptionValue builtIn="false" value='&quot;${workspace_loc:/sc_i2c/module_i2c_master}&quot;' />
+                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_i2c_master/doc}&quot;' />
+                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_i2c_master/src}&quot;' />
+                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_i2c_master}&quot;' />
+                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_uart_rx/doc}&quot;' />
+                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_uart_rx/src}&quot;' />
+                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_uart_rx}&quot;' />
+                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_uart_tx/doc}&quot;' />
+                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_uart_tx/src}&quot;' />
+                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_uart_tx}&quot;' />
                                 </option>
                             </tool>
                             <tool id="com.xmos.cdt.xc.compiler.base.11111" name="com.xmos.cdt.xc.compiler.base" superClass="com.xmos.cdt.xc.compiler.base">
@@ -258,6 +276,15 @@
                                     <listOptionValue builtIn="false" value='&quot;${workspace_loc:/sc_uart/module_uart_tx}&quot;' />
                                     <listOptionValue builtIn="false" value='&quot;${workspace_loc:/sc_i2c/module_i2c_master/src}&quot;' />
                                     <listOptionValue builtIn="false" value='&quot;${workspace_loc:/sc_i2c/module_i2c_master}&quot;' />
+                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_i2c_master/doc}&quot;' />
+                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_i2c_master/src}&quot;' />
+                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_i2c_master}&quot;' />
+                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_uart_rx/doc}&quot;' />
+                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_uart_rx/src}&quot;' />
+                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_uart_rx}&quot;' />
+                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_uart_tx/doc}&quot;' />
+                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_uart_tx/src}&quot;' />
+                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_uart_tx}&quot;' />
                                 </option>
                                 <option id="com.xmos.c.compiler.option.include.paths.11111" superClass="com.xmos.c.compiler.option.include.paths" valueType="includePath">
                                     <listOptionValue builtIn="false" value='&quot;${XMOS_DOC_PATH}/../target/include&quot;' />
@@ -270,6 +297,15 @@
                                     <listOptionValue builtIn="false" value='&quot;${workspace_loc:/sc_uart/module_uart_tx}&quot;' />
                                     <listOptionValue builtIn="false" value='&quot;${workspace_loc:/sc_i2c/module_i2c_master/src}&quot;' />
                                     <listOptionValue builtIn="false" value='&quot;${workspace_loc:/sc_i2c/module_i2c_master}&quot;' />
+                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_i2c_master/doc}&quot;' />
+                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_i2c_master/src}&quot;' />
+                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_i2c_master}&quot;' />
+                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_uart_rx/doc}&quot;' />
+                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_uart_rx/src}&quot;' />
+                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_uart_rx}&quot;' />
+                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_uart_tx/doc}&quot;' />
+                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_uart_tx/src}&quot;' />
+                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_uart_tx}&quot;' />
                                 </option>
                             </tool>
                             <tool id="com.xmos.cdt.c.compiler.base.11111" name="com.xmos.cdt.c.compiler.base" superClass="com.xmos.cdt.c.compiler.base">
@@ -284,6 +320,15 @@
                                     <listOptionValue builtIn="false" value='&quot;${workspace_loc:/sc_uart/module_uart_tx}&quot;' />
                                     <listOptionValue builtIn="false" value='&quot;${workspace_loc:/sc_i2c/module_i2c_master/src}&quot;' />
                                     <listOptionValue builtIn="false" value='&quot;${workspace_loc:/sc_i2c/module_i2c_master}&quot;' />
+                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_i2c_master/doc}&quot;' />
+                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_i2c_master/src}&quot;' />
+                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_i2c_master}&quot;' />
+                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_uart_rx/doc}&quot;' />
+                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_uart_rx/src}&quot;' />
+                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_uart_rx}&quot;' />
+                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_uart_tx/doc}&quot;' />
+                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_uart_tx/src}&quot;' />
+                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_uart_tx}&quot;' />
                                 </option>
                                 <option id="com.xmos.c.compiler.option.include.paths.11111" superClass="com.xmos.c.compiler.option.include.paths" valueType="includePath">
                                     <listOptionValue builtIn="false" value='&quot;${XMOS_DOC_PATH}/../target/include&quot;' />
@@ -296,6 +341,15 @@
                                     <listOptionValue builtIn="false" value='&quot;${workspace_loc:/sc_uart/module_uart_tx}&quot;' />
                                     <listOptionValue builtIn="false" value='&quot;${workspace_loc:/sc_i2c/module_i2c_master/src}&quot;' />
                                     <listOptionValue builtIn="false" value='&quot;${workspace_loc:/sc_i2c/module_i2c_master}&quot;' />
+                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_i2c_master/doc}&quot;' />
+                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_i2c_master/src}&quot;' />
+                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_i2c_master}&quot;' />
+                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_uart_rx/doc}&quot;' />
+                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_uart_rx/src}&quot;' />
+                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_uart_rx}&quot;' />
+                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_uart_tx/doc}&quot;' />
+                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_uart_tx/src}&quot;' />
+                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_uart_tx}&quot;' />
                                 </option>
                             </tool>
                             <tool id="com.xmos.cdt.cpp.compiler.base.11111" name="com.xmos.cdt.cpp.compiler.base" superClass="com.xmos.cdt.cpp.compiler.base">
@@ -310,6 +364,15 @@
                                     <listOptionValue builtIn="false" value='&quot;${workspace_loc:/sc_uart/module_uart_tx}&quot;' />
                                     <listOptionValue builtIn="false" value='&quot;${workspace_loc:/sc_i2c/module_i2c_master/src}&quot;' />
                                     <listOptionValue builtIn="false" value='&quot;${workspace_loc:/sc_i2c/module_i2c_master}&quot;' />
+                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_i2c_master/doc}&quot;' />
+                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_i2c_master/src}&quot;' />
+                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_i2c_master}&quot;' />
+                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_uart_rx/doc}&quot;' />
+                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_uart_rx/src}&quot;' />
+                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_uart_rx}&quot;' />
+                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_uart_tx/doc}&quot;' />
+                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_uart_tx/src}&quot;' />
+                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_uart_tx}&quot;' />
                                 </option>
                                 <option id="com.xmos.c.compiler.option.include.paths.11111" superClass="com.xmos.c.compiler.option.include.paths" valueType="includePath">
                                     <listOptionValue builtIn="false" value='&quot;${XMOS_DOC_PATH}/../target/include&quot;' />
@@ -322,6 +385,15 @@
                                     <listOptionValue builtIn="false" value='&quot;${workspace_loc:/sc_uart/module_uart_tx}&quot;' />
                                     <listOptionValue builtIn="false" value='&quot;${workspace_loc:/sc_i2c/module_i2c_master/src}&quot;' />
                                     <listOptionValue builtIn="false" value='&quot;${workspace_loc:/sc_i2c/module_i2c_master}&quot;' />
+                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_i2c_master/doc}&quot;' />
+                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_i2c_master/src}&quot;' />
+                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_i2c_master}&quot;' />
+                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_uart_rx/doc}&quot;' />
+                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_uart_rx/src}&quot;' />
+                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_uart_rx}&quot;' />
+                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_uart_tx/doc}&quot;' />
+                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_uart_tx/src}&quot;' />
+                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_uart_tx}&quot;' />
                                 </option>
                             </tool>
                             <tool id="com.xmos.cdt.core.assembler.base.11111" name="com.xmos.cdt.core.assembler.base" superClass="com.xmos.cdt.core.assembler.base">
@@ -336,6 +408,15 @@
                                     <listOptionValue builtIn="false" value='&quot;${workspace_loc:/sc_uart/module_uart_tx}&quot;' />
                                     <listOptionValue builtIn="false" value='&quot;${workspace_loc:/sc_i2c/module_i2c_master/src}&quot;' />
                                     <listOptionValue builtIn="false" value='&quot;${workspace_loc:/sc_i2c/module_i2c_master}&quot;' />
+                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_i2c_master/doc}&quot;' />
+                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_i2c_master/src}&quot;' />
+                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_i2c_master}&quot;' />
+                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_uart_rx/doc}&quot;' />
+                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_uart_rx/src}&quot;' />
+                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_uart_rx}&quot;' />
+                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_uart_tx/doc}&quot;' />
+                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_uart_tx/src}&quot;' />
+                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_uart_tx}&quot;' />
                                 </option>
                                 <option id="com.xmos.c.compiler.option.include.paths.11111" superClass="com.xmos.c.compiler.option.include.paths" valueType="includePath">
                                     <listOptionValue builtIn="false" value='&quot;${XMOS_DOC_PATH}/../target/include&quot;' />
@@ -348,6 +429,15 @@
                                     <listOptionValue builtIn="false" value='&quot;${workspace_loc:/sc_uart/module_uart_tx}&quot;' />
                                     <listOptionValue builtIn="false" value='&quot;${workspace_loc:/sc_i2c/module_i2c_master/src}&quot;' />
                                     <listOptionValue builtIn="false" value='&quot;${workspace_loc:/sc_i2c/module_i2c_master}&quot;' />
+                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_i2c_master/doc}&quot;' />
+                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_i2c_master/src}&quot;' />
+                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_i2c_master}&quot;' />
+                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_uart_rx/doc}&quot;' />
+                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_uart_rx/src}&quot;' />
+                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_uart_rx}&quot;' />
+                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_uart_tx/doc}&quot;' />
+                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_uart_tx/src}&quot;' />
+                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_uart_tx}&quot;' />
                                 </option>
                             </tool>
                         </toolChain>
@@ -583,6 +673,15 @@
                                     <listOptionValue builtIn="false" value='&quot;${workspace_loc:/sc_uart/module_uart_tx}&quot;' />
                                     <listOptionValue builtIn="false" value='&quot;${workspace_loc:/sc_i2c/module_i2c_master/src}&quot;' />
                                     <listOptionValue builtIn="false" value='&quot;${workspace_loc:/sc_i2c/module_i2c_master}&quot;' />
+                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_i2c_master/doc}&quot;' />
+                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_i2c_master/src}&quot;' />
+                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_i2c_master}&quot;' />
+                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_uart_rx/doc}&quot;' />
+                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_uart_rx/src}&quot;' />
+                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_uart_rx}&quot;' />
+                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_uart_tx/doc}&quot;' />
+                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_uart_tx/src}&quot;' />
+                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_uart_tx}&quot;' />
                                 </option>
                                 <inputType id="com.xmos.cdt.xc.compiler.input.823613268" name="XC Sources" superClass="com.xmos.cdt.xc.compiler.input" />
                                 <option id="gnu.c.compiler.option.include.paths.11111" superClass="gnu.c.compiler.option.include.paths" valueType="includePath">
@@ -596,6 +695,15 @@
                                     <listOptionValue builtIn="false" value='&quot;${workspace_loc:/sc_uart/module_uart_tx}&quot;' />
                                     <listOptionValue builtIn="false" value='&quot;${workspace_loc:/sc_i2c/module_i2c_master/src}&quot;' />
                                     <listOptionValue builtIn="false" value='&quot;${workspace_loc:/sc_i2c/module_i2c_master}&quot;' />
+                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_i2c_master/doc}&quot;' />
+                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_i2c_master/src}&quot;' />
+                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_i2c_master}&quot;' />
+                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_uart_rx/doc}&quot;' />
+                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_uart_rx/src}&quot;' />
+                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_uart_rx}&quot;' />
+                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_uart_tx/doc}&quot;' />
+                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_uart_tx/src}&quot;' />
+                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_uart_tx}&quot;' />
                                 </option>
                             </tool>
                             <tool id="com.xmos.cdt.xc.compiler.base.11111" name="com.xmos.cdt.xc.compiler.base" superClass="com.xmos.cdt.xc.compiler.base">
@@ -610,6 +718,15 @@
                                     <listOptionValue builtIn="false" value='&quot;${workspace_loc:/sc_uart/module_uart_tx}&quot;' />
                                     <listOptionValue builtIn="false" value='&quot;${workspace_loc:/sc_i2c/module_i2c_master/src}&quot;' />
                                     <listOptionValue builtIn="false" value='&quot;${workspace_loc:/sc_i2c/module_i2c_master}&quot;' />
+                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_i2c_master/doc}&quot;' />
+                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_i2c_master/src}&quot;' />
+                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_i2c_master}&quot;' />
+                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_uart_rx/doc}&quot;' />
+                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_uart_rx/src}&quot;' />
+                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_uart_rx}&quot;' />
+                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_uart_tx/doc}&quot;' />
+                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_uart_tx/src}&quot;' />
+                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_uart_tx}&quot;' />
                                 </option>
                                 <option id="com.xmos.c.compiler.option.include.paths.11111" superClass="com.xmos.c.compiler.option.include.paths" valueType="includePath">
                                     <listOptionValue builtIn="false" value='&quot;${XMOS_DOC_PATH}/../target/include&quot;' />
@@ -622,6 +739,15 @@
                                     <listOptionValue builtIn="false" value='&quot;${workspace_loc:/sc_uart/module_uart_tx}&quot;' />
                                     <listOptionValue builtIn="false" value='&quot;${workspace_loc:/sc_i2c/module_i2c_master/src}&quot;' />
                                     <listOptionValue builtIn="false" value='&quot;${workspace_loc:/sc_i2c/module_i2c_master}&quot;' />
+                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_i2c_master/doc}&quot;' />
+                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_i2c_master/src}&quot;' />
+                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_i2c_master}&quot;' />
+                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_uart_rx/doc}&quot;' />
+                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_uart_rx/src}&quot;' />
+                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_uart_rx}&quot;' />
+                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_uart_tx/doc}&quot;' />
+                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_uart_tx/src}&quot;' />
+                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_uart_tx}&quot;' />
                                 </option>
                             </tool>
                             <tool id="com.xmos.cdt.c.compiler.base.11111" name="com.xmos.cdt.c.compiler.base" superClass="com.xmos.cdt.c.compiler.base">
@@ -636,6 +762,15 @@
                                     <listOptionValue builtIn="false" value='&quot;${workspace_loc:/sc_uart/module_uart_tx}&quot;' />
                                     <listOptionValue builtIn="false" value='&quot;${workspace_loc:/sc_i2c/module_i2c_master/src}&quot;' />
                                     <listOptionValue builtIn="false" value='&quot;${workspace_loc:/sc_i2c/module_i2c_master}&quot;' />
+                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_i2c_master/doc}&quot;' />
+                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_i2c_master/src}&quot;' />
+                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_i2c_master}&quot;' />
+                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_uart_rx/doc}&quot;' />
+                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_uart_rx/src}&quot;' />
+                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_uart_rx}&quot;' />
+                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_uart_tx/doc}&quot;' />
+                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_uart_tx/src}&quot;' />
+                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_uart_tx}&quot;' />
                                 </option>
                                 <option id="com.xmos.c.compiler.option.include.paths.11111" superClass="com.xmos.c.compiler.option.include.paths" valueType="includePath">
                                     <listOptionValue builtIn="false" value='&quot;${XMOS_DOC_PATH}/../target/include&quot;' />
@@ -648,6 +783,15 @@
                                     <listOptionValue builtIn="false" value='&quot;${workspace_loc:/sc_uart/module_uart_tx}&quot;' />
                                     <listOptionValue builtIn="false" value='&quot;${workspace_loc:/sc_i2c/module_i2c_master/src}&quot;' />
                                     <listOptionValue builtIn="false" value='&quot;${workspace_loc:/sc_i2c/module_i2c_master}&quot;' />
+                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_i2c_master/doc}&quot;' />
+                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_i2c_master/src}&quot;' />
+                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_i2c_master}&quot;' />
+                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_uart_rx/doc}&quot;' />
+                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_uart_rx/src}&quot;' />
+                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_uart_rx}&quot;' />
+                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_uart_tx/doc}&quot;' />
+                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_uart_tx/src}&quot;' />
+                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_uart_tx}&quot;' />
                                 </option>
                             </tool>
                             <tool id="com.xmos.cdt.cpp.compiler.base.11111" name="com.xmos.cdt.cpp.compiler.base" superClass="com.xmos.cdt.cpp.compiler.base">
@@ -662,6 +806,15 @@
                                     <listOptionValue builtIn="false" value='&quot;${workspace_loc:/sc_uart/module_uart_tx}&quot;' />
                                     <listOptionValue builtIn="false" value='&quot;${workspace_loc:/sc_i2c/module_i2c_master/src}&quot;' />
                                     <listOptionValue builtIn="false" value='&quot;${workspace_loc:/sc_i2c/module_i2c_master}&quot;' />
+                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_i2c_master/doc}&quot;' />
+                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_i2c_master/src}&quot;' />
+                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_i2c_master}&quot;' />
+                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_uart_rx/doc}&quot;' />
+                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_uart_rx/src}&quot;' />
+                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_uart_rx}&quot;' />
+                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_uart_tx/doc}&quot;' />
+                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_uart_tx/src}&quot;' />
+                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_uart_tx}&quot;' />
                                 </option>
                                 <option id="com.xmos.c.compiler.option.include.paths.11111" superClass="com.xmos.c.compiler.option.include.paths" valueType="includePath">
                                     <listOptionValue builtIn="false" value='&quot;${XMOS_DOC_PATH}/../target/include&quot;' />
@@ -674,6 +827,15 @@
                                     <listOptionValue builtIn="false" value='&quot;${workspace_loc:/sc_uart/module_uart_tx}&quot;' />
                                     <listOptionValue builtIn="false" value='&quot;${workspace_loc:/sc_i2c/module_i2c_master/src}&quot;' />
                                     <listOptionValue builtIn="false" value='&quot;${workspace_loc:/sc_i2c/module_i2c_master}&quot;' />
+                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_i2c_master/doc}&quot;' />
+                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_i2c_master/src}&quot;' />
+                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_i2c_master}&quot;' />
+                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_uart_rx/doc}&quot;' />
+                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_uart_rx/src}&quot;' />
+                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_uart_rx}&quot;' />
+                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_uart_tx/doc}&quot;' />
+                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_uart_tx/src}&quot;' />
+                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_uart_tx}&quot;' />
                                 </option>
                             </tool>
                             <tool id="com.xmos.cdt.core.assembler.base.11111" name="com.xmos.cdt.core.assembler.base" superClass="com.xmos.cdt.core.assembler.base">
@@ -688,6 +850,15 @@
                                     <listOptionValue builtIn="false" value='&quot;${workspace_loc:/sc_uart/module_uart_tx}&quot;' />
                                     <listOptionValue builtIn="false" value='&quot;${workspace_loc:/sc_i2c/module_i2c_master/src}&quot;' />
                                     <listOptionValue builtIn="false" value='&quot;${workspace_loc:/sc_i2c/module_i2c_master}&quot;' />
+                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_i2c_master/doc}&quot;' />
+                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_i2c_master/src}&quot;' />
+                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_i2c_master}&quot;' />
+                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_uart_rx/doc}&quot;' />
+                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_uart_rx/src}&quot;' />
+                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_uart_rx}&quot;' />
+                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_uart_tx/doc}&quot;' />
+                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_uart_tx/src}&quot;' />
+                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_uart_tx}&quot;' />
                                 </option>
                                 <option id="com.xmos.c.compiler.option.include.paths.11111" superClass="com.xmos.c.compiler.option.include.paths" valueType="includePath">
                                     <listOptionValue builtIn="false" value='&quot;${XMOS_DOC_PATH}/../target/include&quot;' />
@@ -700,6 +871,15 @@
                                     <listOptionValue builtIn="false" value='&quot;${workspace_loc:/sc_uart/module_uart_tx}&quot;' />
                                     <listOptionValue builtIn="false" value='&quot;${workspace_loc:/sc_i2c/module_i2c_master/src}&quot;' />
                                     <listOptionValue builtIn="false" value='&quot;${workspace_loc:/sc_i2c/module_i2c_master}&quot;' />
+                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_i2c_master/doc}&quot;' />
+                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_i2c_master/src}&quot;' />
+                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_i2c_master}&quot;' />
+                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_uart_rx/doc}&quot;' />
+                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_uart_rx/src}&quot;' />
+                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_uart_rx}&quot;' />
+                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_uart_tx/doc}&quot;' />
+                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_uart_tx/src}&quot;' />
+                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_uart_tx}&quot;' />
                                 </option>
                             </tool>
                         </toolChain>

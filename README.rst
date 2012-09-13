@@ -8,10 +8,10 @@ GPIO Demo Software for Slice Kit Core Board
 Key Features
 ============
 
- * Demonstrates UART communication using COM PORT.
+ * Demonstrates UART communication using Serial PORT.
  * Switch on board LEDs ON by Button Press.
  * Demonstrates I2C application with on board ADC.
- * Displays Temperature on comport or on Console based on application.
+ * Displays Temperature on Serial port or on Console based on application.
  
 Required Tools
 ==============

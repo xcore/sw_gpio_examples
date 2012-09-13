@@ -1,3 +1,22 @@
+// Copyright (c) 2011, XMOS Ltd., All rights reserved
+// This software is freely distributable under a derivative of the
+// University of Illinois/NCSA Open Source License posted in
+// LICENSE.txt and at <http://github.xcore.com/>
+
+/*===========================================================================
+ Filename: main.xc
+ Project : app_slicekit_com_demo
+ Author : XMOS Ltd
+ Version : 1v0
+ Purpose : This file implements demostration of comport, LED's
+  	  	   and ADC using GPIO slice
+ -----------------------------------------------------------------------------
+
+ ===========================================================================*/
+
+/*---------------------------------------------------------------------------
+ include files
+ ---------------------------------------------------------------------------*/
 #include <xs1.h>
 #include <platform.h>
 #include "uart_rx.h"
@@ -5,13 +24,16 @@
 #include <print.h>
 #include<i2c.h>
 #include<string.h>
+#include<common.h>
 
-#define SK_GPIO_SLOT_SQUARE
-#define BAUD_RATE 115200
+#define SK_GPIO_SLOT_SQUARE 1
+
 //#define AD7995_0 //define this in module_i2c_master
 
-
-#ifdef SK_GPIO_SLOT_STAR
+/*---------------------------------------------------------------------------
+ ports and clocks
+ ---------------------------------------------------------------------------*/
+#if SK_GPIO_SLOT_STAR
 #define CORE_NUM 0
 #define TYPE 0
 #define BUTTON_PRESS_VALUE 14
@@ -27,7 +49,7 @@ struct r_i2c i2cOne = {
  };
 #endif
 
-#ifdef SK_GPIO_SLOT_TRIANGLE
+#if SK_GPIO_SLOT_TRIANGLE
 #define CORE_NUM 0
 #define TYPE 1
 #define BUTTON_PRESS_VALUE 0
@@ -44,7 +66,7 @@ struct r_i2c i2cOne = {
  };
 #endif
 
-#ifdef SK_GPIO_SLOT_CIRCLE
+#if SK_GPIO_SLOT_CIRCLE
 #define CORE_NUM 1
 #define TYPE 1
 #define BUTTON_PRESS_VALUE 0
@@ -61,7 +83,7 @@ struct r_i2c i2cOne = {
  };
 #endif
 
-#ifdef SK_GPIO_SLOT_SQUARE
+#if SK_GPIO_SLOT_SQUARE
 #define CORE_NUM 1
 #define TYPE 0
 #define BUTTON_PRESS_VALUE 14
@@ -76,34 +98,36 @@ struct r_i2c i2cOne = {
  };
 #endif
 
-typedef enum{
-SET_LED_1,
-SET_LED_2,
-SET_LED_3,
-SET_LED_4,
-CLEAR_LED_1,
-CLEAR_LED_2,
-CLEAR_LED_3,
-CLEAR_LED_4,
-SET_ALL,
-CLEAR_ALL,
-CHK_BUTTONS,
-EXIT,
-HELP,
-READ_ADC,
-BUTTON_PRESSED,
-BUTTON_1,
-BUTTON_2,
-INVALID
-};
+/*---------------------------------------------------------------------------
+ typedefs
+ ---------------------------------------------------------------------------*/
 
-int linear_interpolation(int adc_value);
+/*---------------------------------------------------------------------------
+ global variables
+ ---------------------------------------------------------------------------*/
+#define ARRAY_SIZE(x) (sizeof(x)/sizeof(x[0]))
+unsigned char tx_buffer[64];
+unsigned char rx_buffer[64];
+#pragma unsafe arrays
+/*---------------------------------------------------------------------------
+ static variables
+ ---------------------------------------------------------------------------*/
 
-int TEMPERATURE_LUT[][2]={
-		{-10,845},{-5,808},{0,765},{5,718},{10,668},{15,614},{20,559},{25,504},
-		{30,450},{35,399},{40,352},{45,308},{50,269},{55,233},{60,202}
-};
+/*---------------------------------------------------------------------------
+ implementation
+ ---------------------------------------------------------------------------*/
 
+/** =========================================================================
+ * init
+ *
+ * Disables SPI flash when connected to SLOT STAR as Flash pins
+ * are multiplexed with UART pins
+ *
+ * \param None
+ *
+ * \return None
+ *
+ **/
 void init()
 {
 	char data;
@@ -114,22 +138,17 @@ void init()
 #endif
 }
 
+
 void dummy()
 {
 	while (1);
 }
 
-#define ARRAY_SIZE(x) (sizeof(x)/sizeof(x[0]))
 
-void receive(chanend c_receive, chanend c_uartRX);
-void app_manager(chanend c_uartTX,chanend c_chanRX,chanend c_process, chanend c_end);
-void process_data(chanend c_process, chanend c_end);
-void uart_tx_string(chanend c_uartTX,unsigned char message[100]);
 
-unsigned char tx_buffer[64];
- unsigned char rx_buffer[64];
-
-#pragma unsafe arrays
+/**
+ * Top level main for multi-UART demonstration
+ */
 int main()
 {
   chan c_chanTX, c_chanRX,c_receive,c_process,c_end;
@@ -140,11 +159,7 @@ int main()
     	on stdcore[CORE_NUM] : uart_tx(p_tx, tx_buffer, ARRAY_SIZE(tx_buffer), BAUD_RATE, 8, UART_TX_PARITY_EVEN, 1, c_chanTX);
     	on stdcore[CORE_NUM] : app_manager(c_chanTX,c_chanRX,c_process,c_end);
     	on stdcore[CORE_NUM] : process_data(c_process, c_end);
-#if ((TYPE==0)&&(CORE_NUM==0))
-    	on stdcore[CORE_NUM]: init();
-#else
     	on stdcore[CORE_NUM]: dummy();
-#endif
     	on stdcore[CORE_NUM]: dummy();
     	on stdcore[CORE_NUM]: dummy();
     	on stdcore[CORE_NUM]: dummy();
@@ -152,10 +167,21 @@ int main()
   return 0;
 }
 
+/** =========================================================================
+ * app_manager
+ *
+ * Polling uart RX and push button switches and send received commands to
+ * process_data thread
+ *
+ * \param channel to uartTX thread, channel communication to uartRX thread and
+ * channel communication to process data thread
+ *
+ * \return None
+ *
+ **/
 void app_manager(chanend c_uartTX,chanend c_uartRX, chanend c_process, chanend c_end)
 {
 	unsigned char i2c_register[1]={0x13};
-	unsigned char i2c_register1[2];
 	int adc_value;
 	timer t;
 	unsigned char CONSOLE_MESSAGES[16][110]=
@@ -181,7 +207,7 @@ void app_manager(chanend c_uartTX,chanend c_uartRX, chanend c_process, chanend c
 	unsigned char cmd_rcvbuffer[20];
 	unsigned char data_arr[1]={'K'};
 	unsigned crc_value=0,data=0;
-	unsigned byte,button_value1=0,button_value2=0,time;
+	unsigned byte,button_value1=0,button_value2=0,time,led_value=0x01;
 	int j=0,skip=1,selection;
 	int button, button1_press=0,button2_press=0;
 	unsigned COMMAND_MODE=0;
@@ -191,7 +217,7 @@ void app_manager(chanend c_uartTX,chanend c_uartRX, chanend c_process, chanend c
 	uart_rx_set_baud_rate(c_uartRX, rxState, BAUD_RATE);
 
 	uart_tx_set_baud_rate(c_uartTX, BAUD_RATE);
-
+	init();
 	t:>time;
 	i2c_master_write_reg(0x28, 0x00, i2c_register, 1, i2cOne);
 	uart_tx_string(c_uartTX,CONSOLE_MESSAGES[6]);
@@ -206,13 +232,21 @@ void app_manager(chanend c_uartTX,chanend c_uartRX, chanend c_process, chanend c
 				c_end:>data;
 				if(data == BUTTON_1)
 				{
-					CONSOLE_MESSAGES[4][9]='1';
-					uart_tx_string(c_uartTX,CONSOLE_MESSAGES[4]);
+					printstrln("Button 1 Pressed");
+					p_led<:(led_value);
+					led_value=led_value<<1;
+					if(led_value == 16)
+					{
+						led_value=0x01;
+					}
 				}
 				if(data == BUTTON_2)
 				{
-					CONSOLE_MESSAGES[4][9]='2';
-					uart_tx_string(c_uartTX,CONSOLE_MESSAGES[4]);
+					adc_value=read_adc_value();
+					data_arr[0]=(linear_interpolation(adc_value));
+					printstr("Temperature is :");
+					printint(linear_interpolation(adc_value));
+					printstrln(" C");
 				}
 				break;
 			case uart_rx_get_byte_byref(c_uartRX, rxState, buffer):
@@ -386,9 +420,7 @@ void app_manager(chanend c_uartTX,chanend c_uartRX, chanend c_process, chanend c
 										uart_tx_send_byte(c_uartTX, '\n');
 										break;
 									case READ_ADC:
-										i2c_master_rx(0x28, i2c_register1, 2, i2cOne);
-										i2c_register1[0]=i2c_register1[0]&0x0F;
-										adc_value=(i2c_register1[0]<<6)|(i2c_register1[1]>>2);
+										adc_value=read_adc_value();
 										data_arr[0]=(linear_interpolation(adc_value));
 										uart_tx_string(c_uartTX,CONSOLE_MESSAGES[12]);
 										uart_tx_send_byte(c_uartTX, (data_arr[0]/10)+'0');
@@ -433,6 +465,16 @@ void app_manager(chanend c_uartTX,chanend c_uartRX, chanend c_process, chanend c
 	 }//superloop
 }//thread
 
+/** =========================================================================
+ * process data
+ *
+ * process received data to see if received data is valid command or not
+ *
+ * \param channel communication to app manager thread and
+ *
+ * \return None
+ *
+ **/
 void process_data(chanend c_process, chanend c_end)
 {
 	int k=0,skip=1,i=0;
@@ -569,6 +611,16 @@ void process_data(chanend c_process, chanend c_end)
 	}
 }
 
+/** =========================================================================
+ * linear interpolation
+ *
+ * calculates temperatue basedd on linear interpolation
+ *
+ * \param int adc value
+ *
+ * \return int temperature
+ *
+ **/
 int linear_interpolation(int adc_value)
 {
 	int i=0,x1,y1,x2,y2,temper;
@@ -584,6 +636,16 @@ int linear_interpolation(int adc_value)
 	return temper;
 }
 
+/** =========================================================================
+ * uart transmit string
+ *
+ * Transmits byte by byte to the UART TX thread for an input string
+ *
+ * \param usinged char message buffer
+ *
+ * \return None
+ *
+ **/
 void uart_tx_string(chanend c_uartTX,unsigned char message[100])
 {
 	int i=0;
@@ -594,3 +656,22 @@ void uart_tx_string(chanend c_uartTX,unsigned char message[100])
 	}
 }
 
+/** =========================================================================
+ * Read ADC value
+ *
+ * Read ADC value using I2C
+ *
+ * \param None
+ *
+ * \return int adc value
+ *
+ **/
+int read_adc_value()
+{
+	int adc_value;
+	unsigned char i2c_register1[2];
+	i2c_master_rx(0x28, i2c_register1, 2, i2cOne);
+	i2c_register1[0]=i2c_register1[0]&0x0F;
+	adc_value=(i2c_register1[0]<<6)|(i2c_register1[1]>>2);
+	return adc_value;
+}
