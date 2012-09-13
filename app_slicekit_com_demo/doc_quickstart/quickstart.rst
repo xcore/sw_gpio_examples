@@ -13,7 +13,7 @@ Hardware Setup
    
    [**FIXME: To add a subsection listing the hardware required, with links to their product pages on XMOS.com: in git hw_slice_kit for now]
 
-.. figure:: images/hardware_setup.png
+.. figure:: images/hardware_setup.jpeg
    :align: center
 
    Hardware Setup for GPIO Demo
