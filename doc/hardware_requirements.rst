@@ -13,5 +13,5 @@ XA-SK-UART8 Slice Card
 
 **FIXME: Insert link to GPIO SliceCard webpage**
 
-.. image:: images/hardware_setup.jpeg
+.. image:: images/hardware_setup.jpg
     :align: centre
