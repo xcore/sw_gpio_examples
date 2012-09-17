@@ -15,7 +15,7 @@ Hardware Setup
    Details of slice kit modular system and slices are availaible in the following link,
    https://github.com/xmos/hw_slicekit_system.git.
 
-   #. Connect XA-SK-GPIO Slice Card to the XP-SKC-L2 Slicekit Core board. This Slice Card can be connected to either ``Square``, ``Tringle`` or ``Star`` connector of Slicekit Core board, but for now, use the SQUARE slot as shown in the figure above
+   #. Connect XA-SK-GPIO Slice Card to the XP-SKC-L2 Slicekit Core board. This Slice Card can be connected to either ``Square``, ``Tringle``, ``Circle`` or ``Star`` connector of Slicekit Core board, but for now, use the SQUARE slot as shown in the figure above
    #. Connect Serial cable (provided with XA-SK-GPIO Slice Card package) to DB-9 connector on XA-SK-GPIO Slice Card.
    #. Connect other end of cable to Host DB-9 connector slot (or) USB cable (if using USB to UART cable).
    #. Identify serial port number provided by the Host and open a suitable terminal software for the selected serial port (refer to the Hercules or SecureCRT documentation above) for default parameters which are as follows: 115200 baud, 8 bit character length, even parity config, 1 stop bit and no hardware flow control  
