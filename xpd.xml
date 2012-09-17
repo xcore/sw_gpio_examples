@@ -1,0 +1,23 @@
+<?xml version="1.0" ?>
+<xpd>
+    <components></components>
+    <dependency repo = "sc_i2c">
+        <githash>c9c6fc961176ca3bba431a246317c89ddebf0b03</githash>
+        <uri>git@github.com:xcore/sc_i2c.git</uri>
+    </dependency>
+    <dependency repo = "sc_uart">
+        <githash>7dcc605c0a4f8171329786d73cf795150cee81e6</githash>
+        <uri>git@github.com:xcore/sc_uart.git</uri>
+    </dependency>
+    <docdir>doc</docdir>
+    <docdir>app_slicekit_com_demo/doc_quickstart</docdir>
+    <description>Example Application for XA-SK-GPIO Slice Card showing use of I2C, external ADC with temperature sensor, LEDs and buttons</description>
+    <location>git://github.com/xcore/sw_gpio_examples.git</location>
+    <name>sw_gpio_examples</name>
+    <maintainer>sethuchandan</maintainer>
+    <partnumber>XM-001886-DH</partnumber>
+    <subpartnumber>XM-001887-SM</subpartnumber>
+    <vendor>XMOS</vendor>
+    <xcore_repo>sw_gpio_examples.git</xcore_repo>
+    <xpd_version>1.0</xpd_version>
+</xpd>
