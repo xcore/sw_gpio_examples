@@ -1,6 +1,6 @@
 Example Application for XA-SK-GPIO Slice Card
 =============================================
-:scope: General Use
+:scope: Example
 :description: Example Application for XA-SK-GPIO Slice Card showing use of I2C, external ADC with temperature sensor, LEDs and buttons.
 :keywords: I2C, ADC, LEDs, UART, demo
 :boards: XA-SK-GPIO
