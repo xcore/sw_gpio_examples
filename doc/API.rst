@@ -11,7 +11,7 @@ Structure
 All of the files required for operation are located in the ``app_slicekit_com_demo/src`` directory. The files that are need to be included for use of this component in an application are:
 
 .. list-table::
-    :header-rows: 1
+    :header-rows: 2
     
     * - File
       - Description
