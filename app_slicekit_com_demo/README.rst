@@ -1,16 +1,20 @@
-Example Application for XA-SK-GPIO Slice Card
-=============================================
+Slicekit Simple GPIO Demo 
+=========================
+
 :scope: Example
-:description: Example Application for XA-SK-GPIO Slice Card showing use of I2C, external ADC with temperature sensor, LEDs and buttons.
-:keywords: I2C, ADC, LEDs, UART, demo
+:description: An example applications that extends app_slicekit_simple_demo to demonstrate usage of the xSOFTip generic Uart RX/TX components and demonstrate extended features of how to handle concurrent events in the XC programming language.
+:keywords: I2C, LED, buttons, UART
 :boards: XA-SK-GPIO
 
 Features
 --------
 
- * Switch on board LEDs ON by Button Press.
- * Demonstrates I2C application with on board ADC.
- * Reports temperature via UART or on debug console.
- * Demonstrates UART communication using Serial PORT.
- 
+With this general learning application running on the XA-SK-GPIo Slice Card you can issue commands from a PC serial terminal operating via the Slice Card Uart to:
+
+   * turn LEDS on and off
+   * read the room temperature via the ADC and display on the terminal console
+   * display button presses on the terminal console
+
+A PC with a COM port or a USB to Serial adaptor cable will be required (not supplied with XA-Sk-GPIO).
+
 
