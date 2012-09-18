@@ -26,66 +26,12 @@
 #include<string.h>
 #include<common.h>
 
-#define SK_GPIO_SLOT_SQUARE 1
-
 //#define AD7995_0 //define this in module_i2c_master
 
 /*---------------------------------------------------------------------------
  ports and clocks
  ---------------------------------------------------------------------------*/
-#if SK_GPIO_SLOT_STAR
-#define CORE_NUM 0
-#define TYPE 0
-#define BUTTON_PRESS_VALUE 14
-on stdcore[CORE_NUM] : buffered in port:1 p_rx =  PORT_ETH_TXCLK_0;
-on stdcore[CORE_NUM] : out port p_tx = PORT_ETH_RXDV_0;
-on stdcore[CORE_NUM]: port p_led=PORT_ETH_RXD_0;
-on stdcore[CORE_NUM]: in port p_button1=PORT_ETH_MDIOC_0;
-on stdcore[0]: port p_select=PORT_SPI_DISABLE;
-struct r_i2c i2cOne = {
-		PORT_ETH_TXEN_0,
-		PORT_ETH_RXCLK_0,
-		1000
- };
-#endif
-
-#if SK_GPIO_SLOT_TRIANGLE
-#define CORE_NUM 0
-#define TYPE 1
-#define BUTTON_PRESS_VALUE 0
-on stdcore[CORE_NUM] : buffered in port:1 p_rx =  PORT_ETH_TXCLK_1;
-on stdcore[CORE_NUM] : out port p_tx = PORT_ETH_RXDV_1;
-on stdcore[CORE_NUM] : port p_led=PORT_ETH_RXD_1;
-on stdcore[CORE_NUM] : in port p_button1=PORT_ETH_MDIO_1;
-on stdcore[CORE_NUM] : in port p_button2=PORT_ETH_MDC_1;
-
-struct r_i2c i2cOne = {
-		PORT_ETH_TXEN_1,
-		PORT_ETH_RXCLK_1,
-		1000
- };
-#endif
-
-#if SK_GPIO_SLOT_CIRCLE
 #define CORE_NUM 1
-#define TYPE 1
-#define BUTTON_PRESS_VALUE 0
-on stdcore[CORE_NUM] : buffered in port:1 p_rx =  PORT_ETH_TXCLK_3;
-on stdcore[CORE_NUM] : out port p_tx = PORT_ETH_RXDV_3;
-on stdcore[CORE_NUM]: port p_led=PORT_ETH_RXD_3;
-on stdcore[CORE_NUM]: in port p_button1=PORT_ETH_MDIO_3;
-on stdcore[CORE_NUM]: in port p_button2=PORT_ETH_MDC_3;
-
-struct r_i2c i2cOne = {
-		PORT_ETH_TXEN_3,
-		PORT_ETH_RXCLK_3,
-		1000
- };
-#endif
-
-#if SK_GPIO_SLOT_SQUARE
-#define CORE_NUM 1
-#define TYPE 0
 #define BUTTON_PRESS_VALUE 14
 on stdcore[CORE_NUM] : buffered in port:1 p_rx =  PORT_ETH_TXCLK_2;
 on stdcore[CORE_NUM] : out port p_tx = PORT_ETH_RXDV_2;
@@ -96,7 +42,7 @@ struct r_i2c i2cOne = {
 		PORT_ETH_RXCLK_2,
 		1000
  };
-#endif
+
 
 /*---------------------------------------------------------------------------
  typedefs
@@ -116,28 +62,6 @@ unsigned char rx_buffer[64];
 /*---------------------------------------------------------------------------
  implementation
  ---------------------------------------------------------------------------*/
-
-/** =========================================================================
- * init
- *
- * Disables SPI flash when connected to SLOT STAR as Flash pins
- * are multiplexed with UART pins
- *
- * \param None
- *
- * \return None
- *
- **/
-void init()
-{
-	char data;
-
-#if ((TYPE==0)&&(CORE_NUM==0))
-	p_select<:0;
-	p_select<:64;
-#endif
-}
-
 
 void dummy()
 {
@@ -217,10 +141,9 @@ void app_manager(chanend c_uartTX,chanend c_uartRX, chanend c_process, chanend c
 	uart_rx_set_baud_rate(c_uartRX, rxState, BAUD_RATE);
 
 	uart_tx_set_baud_rate(c_uartTX, BAUD_RATE);
-	init();
 	t:>time;
-	i2c_master_write_reg(0x28, 0x00, i2c_register, 1, i2cOne);
-	uart_tx_string(c_uartTX,CONSOLE_MESSAGES[6]);
+	i2c_master_write_reg(0x28, 0x00, i2c_register, 1, i2cOne); //Configure ADC by writing the settings to register
+	uart_tx_string(c_uartTX,CONSOLE_MESSAGES[6]); //Display Welcome messages on UART TX Pin
 	uart_tx_string(c_uartTX,CONSOLE_MESSAGES[13]);
 	uart_tx_send_byte(c_uartTX, '\r');
 	uart_tx_send_byte(c_uartTX, '\n');
@@ -230,7 +153,7 @@ void app_manager(chanend c_uartTX,chanend c_uartRX, chanend c_process, chanend c
 		{
 			case c_end:>data:
 				c_end:>data;
-				if(data == BUTTON_1)
+				if(data == BUTTON_1) //Cycle LEDs on button 1 press
 				{
 					printstrln("Button 1 Pressed");
 					p_led<:(led_value);
@@ -240,7 +163,7 @@ void app_manager(chanend c_uartTX,chanend c_uartRX, chanend c_process, chanend c
 						led_value=0x01;
 					}
 				}
-				if(data == BUTTON_2)
+				if(data == BUTTON_2) //Displays Temperature on console if Button 2 is pressed
 				{
 					adc_value=read_adc_value();
 					data_arr[0]=(linear_interpolation(adc_value));
@@ -251,42 +174,42 @@ void app_manager(chanend c_uartTX,chanend c_uartRX, chanend c_process, chanend c
 				break;
 			case uart_rx_get_byte_byref(c_uartRX, rxState, buffer):
 
-				if(buffer == '>')
+				if(buffer == '>') //IUF received data is '>' character then expects cmd to endter into command mode
 				{
 					j=0;
 					uart_rx_get_byte_byref(c_uartRX, rxState, buffer);
 					cmd_rcvbuffer[j]=buffer;
-					if((cmd_rcvbuffer[j] == 'C' )|| (cmd_rcvbuffer[j] =='c'))
+					if((cmd_rcvbuffer[j] == 'C' )|| (cmd_rcvbuffer[j] =='c')) //Checks if received data is 'C' or 'c'
 					{
 						j++;
 						uart_rx_get_byte_byref(c_uartRX, rxState, buffer);
 						cmd_rcvbuffer[j]=buffer;
 
-						if((cmd_rcvbuffer[j] == 'm' )|| (cmd_rcvbuffer[j] =='M'))
+						if((cmd_rcvbuffer[j] == 'm' )|| (cmd_rcvbuffer[j] =='M')) //Checks if received data is 'M' or 'm'
 						{
 							j++;
 							uart_rx_get_byte_byref(c_uartRX, rxState, buffer);
 							cmd_rcvbuffer[j]=buffer;
-							if((cmd_rcvbuffer[j] == 'D' )|| (cmd_rcvbuffer[j] =='d'))
+							if((cmd_rcvbuffer[j] == 'D' )|| (cmd_rcvbuffer[j] =='d'))//Checks if received data is 'D' or 'd'
 							{
 								uart_tx_send_byte(c_uartTX, '\r');
 								uart_tx_send_byte(c_uartTX, '\n');
 								uart_tx_string(c_uartTX,CONSOLE_MESSAGES[0]);
-								COMMAND_MODE=1;
+								COMMAND_MODE=1; //activates command mode as received data is '>cmd'
 								uart_tx_send_byte(c_uartTX, '\r');
 								uart_tx_send_byte(c_uartTX, '\n');
-								uart_tx_send_byte(c_uartTX, '>');
+								uart_tx_send_byte(c_uartTX, '>'); //displays '>' if command mode is activated
 							}
 							else
 							{
 								uart_tx_send_byte(c_uartTX, '>');
 								for(int i=0;i<3;i++)
-									uart_tx_send_byte(c_uartTX, cmd_rcvbuffer[i]);
+									uart_tx_send_byte(c_uartTX, cmd_rcvbuffer[i]); // if received dta is not 'c' displays back the received data
 							}
 						}
 						else
 						{
-							uart_tx_send_byte(c_uartTX, '>');
+							uart_tx_send_byte(c_uartTX, '>'); //if received data is not 'm' displays the received data
 							for(int i=0;i<2;i++)
 								uart_tx_send_byte(c_uartTX, cmd_rcvbuffer[i]);
 						}
@@ -300,9 +223,9 @@ void app_manager(chanend c_uartTX,chanend c_uartRX, chanend c_process, chanend c
 				}
 				else
 				{
-					uart_tx_send_byte(c_uartTX,buffer);
+					uart_tx_send_byte(c_uartTX,buffer); //Echoes back the input characters if not in command mode
 				}
-				while(COMMAND_MODE)
+				while(COMMAND_MODE) //Command mode activated
 				{
 					j=0;
 					skip=1;
@@ -312,103 +235,105 @@ void app_manager(chanend c_uartTX,chanend c_uartRX, chanend c_process, chanend c
 						{
 							case uart_rx_get_byte_byref(c_uartRX, rxState, buffer):
 								cmd_rcvbuffer[j]=buffer;
-								if(cmd_rcvbuffer[j++] == '\n')
+								if(cmd_rcvbuffer[j++] == '\r')
 								{
 									skip=0;
 									j=0;
 									while(cmd_rcvbuffer[j] != '\r')
 									{
-										c_process<:cmd_rcvbuffer[j];
+										c_process<:cmd_rcvbuffer[j]; //received valid command and send the command to the process_data theread
 										uart_tx_send_byte(c_uartTX, cmd_rcvbuffer[j]);
 										j++;
 									}
 									cmd_rcvbuffer[j]='\0';
 									c_process<:cmd_rcvbuffer[j];
+									for(int inc=0;inc<20;inc++) //Clears the command buffer
+										cmd_rcvbuffer[inc]='0';
 									j=0;
 								}
 								break;
 							case c_end:>data:
 								if(data!=EXIT && data!=INVALID )
 								{
-									uart_tx_string(c_uartTX,CONSOLE_MESSAGES[3]);
+									uart_tx_string(c_uartTX,CONSOLE_MESSAGES[3]); //Displays COmmand Executed Message on Uart
 								}
 
 								switch(data)
 								{
-									case EXIT:
+									case EXIT: //Exit from command mode
 										COMMAND_MODE=0;
 										skip=0;
 										uart_tx_string(c_uartTX,CONSOLE_MESSAGES[1]);
 										uart_tx_string(c_uartTX,CONSOLE_MESSAGES[13]);
 										break;
 
-									case SET_LED_1:
+									case SET_LED_1: //Read port Value and Set LED 1 ON
 										p_led:>data;
 										data=data | 0x01;
 										p_led<:data;
 										break;
 
-									case CLEAR_LED_1:
+									case CLEAR_LED_1://Read port Value and Set LED 1 OFF
 										p_led:>data;
 										p_led<:data&0x0E;
 										break;
 
-									case SET_LED_2:
+									case SET_LED_2: //Read port Value and Set LED 2 ON
 										p_led:>data;
 										p_led<:data | 0x02;
 										break;
 
-									case CLEAR_LED_2:
+									case CLEAR_LED_2: //Read port Value and Set LED 2 OFF
 										p_led:>data;
 										p_led<:data&0x0D;
 
 										break;
 
-									case SET_LED_3:
+									case SET_LED_3: //Read port Value and Set LED 3 ON
 										p_led:>data;
 										p_led<:data | 0x04;
 										break;
 
-									case CLEAR_LED_3:
+									case CLEAR_LED_3: //Read port Value and Set LED 3 OFF
 										p_led:>data;
 										p_led<:data&0x0B;
 										break;
 
-									case SET_LED_4:
+									case SET_LED_4: //Read port Value and Set LED 4 ON
 										p_led:>data;
 										p_led<:data | 0x08;
 										break;
 
-									case CLEAR_LED_4:
+									case CLEAR_LED_4: //Read port Value and Set LED 4 OFF
 										p_led:>data;
 										p_led<:data&0x07;
 
 										break;
 
-									case CLEAR_ALL:
+									case CLEAR_ALL: //sets all four LEDs OFF
 										p_led<:0;
 										break;
 
-									case SET_ALL:
+									case SET_ALL: //sets all four LEDs ON
 										p_led<:0x0F;
 										break;
 
-									case BUTTON_PRESSED:
+									case BUTTON_PRESSED: //Checks if button is pressed
 										c_end:>button;
-										if(button == BUTTON_1)
+										if(button == BUTTON_1) //Prints Button 1 is pressed on the Uart
 										{
 											CONSOLE_MESSAGES[4][9]='1';
 											uart_tx_string(c_uartTX,CONSOLE_MESSAGES[4]);
 											button1_press=1;
 										}
-										if(button == BUTTON_2)
+										if(button == BUTTON_2) //Prints Button 2 is pressed on Uart
 										{
 											CONSOLE_MESSAGES[4][9]='2';
 											uart_tx_string(c_uartTX,CONSOLE_MESSAGES[4]);
 											button2_press=1;
 										}
 										break;
-									case HELP:
+									case HELP: //Displays help messages on Uart
 										uart_tx_string(c_uartTX,CONSOLE_MESSAGES[14]);
 										uart_tx_string(c_uartTX,CONSOLE_MESSAGES[7]);
 										uart_tx_string(c_uartTX,CONSOLE_MESSAGES[8]);
@@ -419,7 +344,7 @@ void app_manager(chanend c_uartTX,chanend c_uartRX, chanend c_process, chanend c
 										uart_tx_send_byte(c_uartTX, '\r');
 										uart_tx_send_byte(c_uartTX, '\n');
 										break;
-									case READ_ADC:
+									case READ_ADC: //Displays temperature value on the Uart
 										adc_value=read_adc_value();
 										data_arr[0]=(linear_interpolation(adc_value));
 										uart_tx_string(c_uartTX,CONSOLE_MESSAGES[12]);
@@ -428,28 +353,28 @@ void app_manager(chanend c_uartTX,chanend c_uartRX, chanend c_process, chanend c
 										uart_tx_send_byte(c_uartTX, 32);
 										uart_tx_send_byte(c_uartTX, 'C');
 										break;
-									case INVALID:
+									case INVALID: //Displays command input is invalid command on the Uart
 										uart_tx_string(c_uartTX,CONSOLE_MESSAGES[2]);
 										break;
-									case CHK_BUTTONS:
+									case CHK_BUTTONS: //Checks if button are pressed and displays on the Uart
 										if(button1_press)
 										{
 											CONSOLE_MESSAGES[4][9]='1';
-											uart_tx_string(c_uartTX,CONSOLE_MESSAGES[4]);
+											uart_tx_string(c_uartTX,CONSOLE_MESSAGES[4]); //Displays Button 1 is pressed
 										}
 										if(button2_press)
 										{
 											CONSOLE_MESSAGES[4][9]='2';
-											uart_tx_string(c_uartTX,CONSOLE_MESSAGES[4]);
+											uart_tx_string(c_uartTX,CONSOLE_MESSAGES[4]); //Dipslays Button 2 is pressed
 										}
 										if( !button1_press && !button2_press)
 										{
-											uart_tx_string(c_uartTX,CONSOLE_MESSAGES[5]);
+											uart_tx_string(c_uartTX,CONSOLE_MESSAGES[5]); //Displays No Buttons are pressed
 										}
 										button1_press=0;
 										button2_press=0;
 								}
-								if(data != EXIT)
+								if(data != EXIT) //Exits from command mode
 								{
 									uart_tx_send_byte(c_uartTX, '\r');
 									uart_tx_send_byte(c_uartTX, '\n');
@@ -486,9 +411,6 @@ void process_data(chanend c_process, chanend c_end)
 
 	t:>time;
 	p_button1:>button_value1;
-#ifndef TYPE
-	p_button2:>button_value2;
-#endif
 	while(1)
 	{
 		select
@@ -496,42 +418,23 @@ void process_data(chanend c_process, chanend c_end)
 			case button => p_button1 when pinsneq(button_value1):>button_value1:
 				button=0;
 				break;
-#ifndef TYPE
-			case button=> p_button2 when pinsneq(button_value2):>button_value2:
-				button=0;
-				break;
-#endif
-			case !button => t when timerafter(time+20000000):>time:
+
+			case !button => t when timerafter(time+20000000):>time: //Read button values for every 200 ms
 				p_button1:> button_value1;
-#ifndef TYPE
-				p_button2:> button_value2;
-#endif
+			//checks if button 1 is pressed or button 2 is pressed
 				if(button_value1 == BUTTON_PRESS_VALUE)
 				{
 					button1_pressed=1;
-					c_end<:BUTTON_PRESSED;
-					c_end<:BUTTON_1;
-
+					c_end<:BUTTON_PRESSED; //send button pressed command
+					c_end<:BUTTON_1; //indicates button 1 is pressed
 				}
-#ifdef TYPE
 				if(button_value1 == BUTTON_PRESS_VALUE-1)
 				{
 					button2_pressed=1;
-					c_end<:BUTTON_PRESSED;
-					c_end<:BUTTON_2;
+					c_end<:BUTTON_PRESSED; //send button pressed command
+					c_end<:BUTTON_2; //send button 2 is pressed
 
 				}
-
-#endif
-#ifndef TYPE
-				if(button_value2== (BUTTON_PRESS_VALUE-1))
-				{
-					c_end<:BUTTON_PRESSED;
-					c_end<:BUTTON_2;
-					button2_pressed=1;
-
-				}
-#endif
 				button=1;
 				break;
 
@@ -540,9 +443,10 @@ void process_data(chanend c_process, chanend c_end)
 				while(skip == 1)
 				{
 					c_process:>cmd_rcvbuffer[i];
-					if(cmd_rcvbuffer[i++] == '\0')
+					if(cmd_rcvbuffer[i++] == '\0') //Reveived the command from  app_manager thread
 						skip=0;
 				}
+				//Checks if received command is valid command or not and sends state machine value to app manager thread
 				if(!strcmp(cmd_rcvbuffer,"exit"))
 				{
 					c_end<:EXIT;
@@ -597,7 +501,6 @@ void process_data(chanend c_process, chanend c_end)
 				}
 				else if(!strcmp(cmd_rcvbuffer,"readadc"))
 				{
-
 					c_end<:READ_ADC;
 				}
 				else
@@ -605,6 +508,8 @@ void process_data(chanend c_process, chanend c_end)
 					c_end<:INVALID;
 				}
 				i=0;
+				for(int inc=0;inc<20;inc++)
+					cmd_rcvbuffer[inc]='0'; //Clear command reveive buffer
 				break;
 
 		}
@@ -628,12 +533,13 @@ int linear_interpolation(int adc_value)
 	{
 		i++;
 	}
+	//Calculating Linear interpolation using the formula y=y1+(x-x1)*(y2-y1)/(x2-x1)
 	x1=TEMPERATURE_LUT[i-1][1];
 	y1=TEMPERATURE_LUT[i-1][0];
 	x2=TEMPERATURE_LUT[i][1];
 	y2=TEMPERATURE_LUT[i][0];
-	temper=y1+(((adc_value-x1)*(y2-y1))/(x2-x1));
-	return temper;
+	temper=y1+(((adc_value-x1)*(y2-y1))/(x2-x1)); //Calculate temeperature valus using linear interploation technique
+	return temper;//Return Temperature value
 }
 
 /** =========================================================================
@@ -646,12 +552,12 @@ int linear_interpolation(int adc_value)
  * \return None
  *
  **/
-void uart_tx_string(chanend c_uartTX,unsigned char message[100])
+void uart_tx_string(chanend c_uartTX,unsigned char message[100]) //transmit string on Uart TX terminal
 {
 	int i=0;
 	while(message[i]!='\0')
 	{
-		uart_tx_send_byte(c_uartTX,message[i]);
+		uart_tx_send_byte(c_uartTX,message[i]); //send data to uart byte by byte
 		i++;
 	}
 }
@@ -670,8 +576,8 @@ int read_adc_value()
 {
 	int adc_value;
 	unsigned char i2c_register1[2];
-	i2c_master_rx(0x28, i2c_register1, 2, i2cOne);
+	i2c_master_rx(0x28, i2c_register1, 2, i2cOne); //Read value from ADC
 	i2c_register1[0]=i2c_register1[0]&0x0F;
 	adc_value=(i2c_register1[0]<<6)|(i2c_register1[1]>>2);
-	return adc_value;
+	return adc_value; //Return ADC value to the application
 }

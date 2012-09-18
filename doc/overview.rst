@@ -1,12 +1,12 @@
 Overview
 ========
 
-The repository explains about the compatability of slice kit core board with GPIO slice card connected to any othe slots. Demonstrates about the flexibility of IO usage and basic functionality like LEDs, ADC and UART.
+The repository explains about the compatability of slice kit core board and demostration of GPIO slice card. Demonstrates about the basic functionality like LEDs, ADC and UART.
 
 Features
 --------
 
-This application provides the following functionality. All options are dynamically reconfigurable via the API.
+This application provides the following functionality. All options are dynamically reconfigurable via the APIs for app_slicekit_com_demo application.
 
 .. list-table::
     :header-rows: 1

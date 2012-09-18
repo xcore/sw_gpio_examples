@@ -3,7 +3,7 @@
 Programming Guide
 =================
 
-The application can be to demonstrate basic functionality like LEDs, UART, Buttons and Flexibility of IO pins
+The applications can be to demonstrate basic functionality like LEDs, UART, Buttons.
 
 Structure
 ---------
@@ -21,8 +21,8 @@ All of the files required for operation are located in the ``app_slicekit_com_de
       - Main file which has API definitions
 
 
-API
----
+API for app_slicekit_com_demo
+-----------------------------
 
 .. doxygenfunction:: app_manager
 
@@ -34,3 +34,13 @@ API
 
 .. doxygenfunction:: read_adc_value
 
+
+API for app_slicekit_simple_demo
+
+--------------------------------
+
+.. doxygenfunction:: app_manager
+
+.. doxygenfunction:: linear_interpolation
+
+.. doxygenfunction:: read_adc_value

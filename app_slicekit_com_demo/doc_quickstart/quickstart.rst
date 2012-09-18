@@ -9,34 +9,25 @@ This demo features UART data loop back, receives commands from comport, and perf
 Hardware Setup
 +++++++++++++++
 
-   The XP-SKC-L2 Slicekit Core board has four slots "SLOT SQUARE", "SLOT CIRCLE","SLOT TRIANGLE" and "SLOT STAR". 
-   The XA-SK-GPIO Slice Card have Four LED's, Thermistor, Two Push Button Switches and an ADC.
-
-   Details of slice kit modular system and slices are availaible in the following link,
-   https://github.com/xmos/hw_slicekit_system.git.
-
-   #. Connect XA-SK-GPIO Slice Card to the XP-SKC-L2 Slicekit Core board. This Slice Card can be connected to either ``Square``, ``Tringle``, ``Circle`` or ``Star`` connector of Slicekit Core board, but for now, use the SQUARE slot as shown in the figure above
-   #. Connect Serial cable (provided with XA-SK-GPIO Slice Card package) to DB-9 connector on XA-SK-GPIO Slice Card.
-   #. Connect other end of cable to Host DB-9 connector slot (or) USB cable (if using USB to UART cable).
-   #. Identify serial port number provided by the Host and open a suitable terminal software for the selected serial port (refer to the Hercules or SecureCRT documentation above) for default parameters which are as follows: 115200 baud, 8 bit character length, even parity config, 1 stop bit and no hardware flow control  
-   #. Connect the XTAG Adapter to Slicekit Core board, Chain connector(xtag slice) and connect XTAG-2 to the adapter. 
-   #. Connect the XTAG-2 to host PC or Mac USB port.
+    * The XP-SKC-L2 Slicekit Core board has four slots ``SLOT SQUARE``, ``SLOT CIRCLE``,``SLOT TRIANGLE`` and ``SLOT STAR``. 
+    * The XA-SK-GPIO Slice Card have Four LED's, Thermistor, Two Push Button Switches and an ADC.
+    * The XA-SK-GPIO Slice Card have to be plugged in to the ``SLOT SQUARE``.
+   
+      Details of slice kit modular system and slices are availaible in the following link,
+      https://github.com/xmos/hw_slicekit_system.git.
+   
+   #. Connect XA-SK-GPIO Slice Card to the XP-SKC-L2 Slicekit Core board. 
+   #. Connect the XTAG Adapter to Slicekit Core board, XA-SK-XTAG2 connector(xtag slice) and connect XTAG-2 to the adapter. 
+   #. Connect the XTAG-2 to host PC.
    #. Switch on the power supply to the Slicekit Core board.
-
+   
 .. figure:: images/hardware_setup.png
    :align: center
-
-   Hardware Setup for GPIO Demo
+   
+   Hardware Setup for Simple GPIO Demo
    
 Software Configuration
 ++++++++++++++++++++++
-
-    The following defines should be made according to the connection of the GPIO slice card to the core board in "main.xc" file:
-
-    * #define SK_GPIO_SLOT_SQUARE 1  - connect the GPIO slice card to the SLOT SQUARE of core baoard.
-    * #define SK_GPIO_SLOT_CIRCLE 1  - connect the GPIO slice card to the SLOT CIRCLE of core baoard.
-    * #define SK_GPIO_SLOT_TRIANGLE 1  - connect the GPIO slice card to the TRIANGLE of core baoard.
-    * #define SK_GPIO_SLOT_STAR 1  - connect the GPIO slice card to the SLOT STAR of core baoard.
     
    #. Define AD7995_0 in module_i2c_master (#define AD7995_0)
  
@@ -68,9 +59,6 @@ The following tools should be installed on the host system in order to run this 
     * For MAC users: SecureCRT7.0 
       http://www.vandyke.com/download/securecrt/
     
-   #. *Note:* Make sure to change the settings of the tool as CR/LF line end characters. 
-      In Secure CRT 'Newline mode' should be selected in the settings.
-
 
 Usage of Software
 +++++++++++++++++
@@ -112,6 +100,5 @@ Demo Application
 Next Steps
 ++++++++++
 
-   #. Refer to the module_i2c_master, module_uart_tx and module_uart_rx documentation 
-   	for implementation details of this application and information on further things to try.
+   #. Refer to the module_i2c_master, module_uart_tx and module_uart_rx documentation for implementation details of this application and information on further things to try.
    
