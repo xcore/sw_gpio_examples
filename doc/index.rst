@@ -1,9 +1,9 @@
-GPIO DEMO application Usage Manual
+SliceKit GPIO Example Applications
 ==================================
 
 .. toctree::
 
    overview
    hardware_requirements
-   API
+   programming
   
