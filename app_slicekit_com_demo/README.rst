@@ -1,5 +1,5 @@
-Slicekit Simple GPIO Demo 
-=========================
+Slicekit GPIO Demo
+==================
 
 :scope: Example
 :description: An example applications that extends app_slicekit_simple_demo to demonstrate usage of the xSOFTip generic Uart RX/TX components and demonstrate extended features of how to handle concurrent events in the XC programming language.
