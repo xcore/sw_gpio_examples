@@ -18,6 +18,7 @@
     <name>sw_gpio_examples</name>
     <maintainer>sethuchandan</maintainer>
     <partnumber>XM-001886-DH</partnumber>
+    <release parenthash = "7b13717b5e114ec924fa71c4c53979d3ffd61f7d" version = "1.0.0alpha0"></release>
     <subpartnumber>XM-001887-SM</subpartnumber>
     <vendor>XMOS</vendor>
     <xcore_repo>sw_gpio_examples.git</xcore_repo>
