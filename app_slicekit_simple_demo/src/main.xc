@@ -25,7 +25,8 @@
 #include<string.h>
 #include"common.h"
 
-//#define AD7995_0 //define this in module_i2c_master
+#define I2C_NO_REGISTER_ADDRESS 1
+
 #define CORE_NUM 1
 #define BUTTON_PRESS_VALUE 14
 
@@ -33,11 +34,11 @@
  ports and clocks
  ---------------------------------------------------------------------------*/
  //::Port configuration
-on stdcore[CORE_NUM]: out port p_led=PORT_ETH_RXD_2;
-on stdcore[CORE_NUM]: in port p_PORT_BUT_1=PORT_ETH_MDIOC_2;
+on stdcore[CORE_NUM]: out port p_led=XS1_PORT_4A;
+on stdcore[CORE_NUM]: in port p_PORT_BUT_1=XS1_PORT_4C;
 struct r_i2c i2cOne = {
-		PORT_ETH_TXEN_2,
-		PORT_ETH_RXCLK_2,
+		XS1_PORT_1F,
+		XS1_PORT_1B,
 		1000
  };
  //::Ports

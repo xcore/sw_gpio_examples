@@ -31,11 +31,6 @@ Hardware Setup
    
    Hardware Setup for Simple GPIO Demo
    
-Software Configuration
-++++++++++++++++++++++
-    
-   #. Define AD7995_0 in module_i2c_master (#define AD7995_0)
- 
  	
 Build the Application
 +++++++++++++++++++++
