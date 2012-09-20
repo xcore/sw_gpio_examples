@@ -15,7 +15,12 @@ Hardware Setup
    
       Details of slice kit modular system and slices are availaible in the following link,
       https://github.com/xmos/hw_slicekit_system.git.
-   
+   #. Connect serial cable (provided with XA-SK-GPIO Slice Card package) to DB-9 connector on XA-SK-GPIO Slice Card.
+   #. Connect other end of cable to Host DB-9 connector slot.
+   #. If the Host does not have an DB-9 Connector slot then use USB-UART cable for the demo. 
+   #. Some of the maufacturers for USB-UART cables are :http://www.bafo.com/products_bf-810_S.asp (Part number : BF-810).
+   #. While using such type of cables make sure that the Uart Tx pin and Rx pins are crossed as one is DCE and the other is DTE.
+   #. Identify serial port number provided by the Host and open a suitable terminal software for the selected serial port (refer to the Hercules or SecureCRT documentation above). For default parameters which are as follows: 115200 baud, 8 bit character length, even parity config, 1 stop bit and no hardware flow control.
    #. Connect XA-SK-GPIO Slice Card to the XP-SKC-L2 Slicekit Core board. 
    #. Connect the XTAG Adapter to Slicekit Core board, XA-SK-XTAG2 connector(xtag slice) and connect XTAG-2 to the adapter. 
    #. Connect the XTAG-2 to host PC.
@@ -26,11 +31,6 @@ Hardware Setup
    
    Hardware Setup for Simple GPIO Demo
    
-Software Configuration
-++++++++++++++++++++++
-    
-   #. Define AD7995_0 in module_i2c_master (#define AD7995_0)
- 
  	
 Build the Application
 +++++++++++++++++++++

@@ -41,6 +41,6 @@ This application extends the simple demo to provides the following functionality
    * Displays temperature value and button press events on the terminal console of a host PC via the UART
 
 .. image:: images/hardware_setup.png
-    :align: center
+    :align: left
 
     Hardware Setup for COM Port UART Demo

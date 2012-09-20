@@ -8,7 +8,7 @@
  Project : app_slicekit_simple_demo
  Author : XMOS Ltd
  Version : 1v0
- Purpose : This file implements demostration of comport, LED's
+ Purpose : This file implements demostration of LED's, Push button switches
   	  	   and ADC using GPIO slice
  -----------------------------------------------------------------------------
 
@@ -23,21 +23,25 @@
 #include "i2c.h"
 #include<platform.h>
 #include<string.h>
+#include"common.h"
 
-//#define AD7995_0 //define this in module_i2c_master
+#define I2C_NO_REGISTER_ADDRESS 1
+
 #define CORE_NUM 1
 #define BUTTON_PRESS_VALUE 14
 
 /*---------------------------------------------------------------------------
  ports and clocks
  ---------------------------------------------------------------------------*/
-on stdcore[CORE_NUM]: out port p_led=PORT_ETH_RXD_2;
-on stdcore[CORE_NUM]: in port p_PORT_BUT_1=PORT_ETH_MDIOC_2;
+ //::Port configuration
+on stdcore[CORE_NUM]: out port p_led=XS1_PORT_4A;
+on stdcore[CORE_NUM]: in port p_PORT_BUT_1=XS1_PORT_4C;
 struct r_i2c i2cOne = {
-		PORT_ETH_TXEN_2,
-		PORT_ETH_RXCLK_2,
+		XS1_PORT_1F,
+		XS1_PORT_1B,
 		1000
  };
+ //::Ports
 /*---------------------------------------------------------------------------
  typedefs
  ---------------------------------------------------------------------------*/
@@ -45,12 +49,13 @@ struct r_i2c i2cOne = {
 /*---------------------------------------------------------------------------
  global variables
  ---------------------------------------------------------------------------*/
+//::LUT start
 int TEMPERATURE_LUT[][2]= //Temperature Look up table
 {
 		{-10,845},{-5,808},{0,765},{5,718},{10,668},{15,614},{20,559},{25,504},{30,450},{35,399},
 		{40,352},{45,308},{50,269},{55,233},{60,202}
 };
-
+//::LUT
 /*---------------------------------------------------------------------------
  static variables
  ---------------------------------------------------------------------------*/
@@ -69,6 +74,7 @@ int TEMPERATURE_LUT[][2]= //Temperature Look up table
  * \return int temperature
  *
  **/
+//::Linear Interpolation
 int linear_interpolation(int adc_value)
 {
 	int i=0,x1,y1,x2,y2,temper;
@@ -76,7 +82,9 @@ int linear_interpolation(int adc_value)
 	{
 		i++;
 	}
+//::Formula start
 	//Calculating Linear interpolation using the formula y=y1+(x-x1)*(y2-y1)/(x2-x1)
+//::Formula
 	x1=TEMPERATURE_LUT[i-1][1];
 	y1=TEMPERATURE_LUT[i-1][0];
 	x2=TEMPERATURE_LUT[i][1];
@@ -84,7 +92,7 @@ int linear_interpolation(int adc_value)
 	temper=y1+(((adc_value-x1)*(y2-y1))/(x2-x1));
 	return temper;//Return Temperature value
 }
-
+//::Linear
 /** =========================================================================
  * App Manager
  *
@@ -105,21 +113,23 @@ void app_manager()
 	int adc_value;
 	unsigned led_value=0x01;
 	p_PORT_BUT_1:> button1;
-	i2c_master_write_reg(0x28, 0x00, data, 1, i2cOne);
+//::Write config
+	i2c_master_write_reg(0x28, 0x00, data, 1, i2cOne); //Write configuration information to ADC
+//::Config
 	t:>time;
-
+	printstrln("** WELCOME TO SIMPLE GPIO DEMO **");
 	while(1)
 	{
-
+//::Select start
 		select
 		{
-			case button => p_PORT_BUT_1 when pinsneq(button1):> button1:
+			case button => p_PORT_BUT_1 when pinsneq(button1):> button1: //checks if any button is pressed
 				button=0;
 				break;
 
-			case !button => t when timerafter(time+20000000):>time:
+			case !button => t when timerafter(time+20000000):>time: //waits for 200ms and checks if the same button is pressed or not
 				p_PORT_BUT_1:> button1;
-				if(button1 == BUTTON_PRESS_VALUE)
+				if(button1 == BUTTON_PRESS_VALUE) //Button 1 is pressed
 				{
 					printstrln("Button 1 Pressed");
 					p_led<:(led_value);
@@ -129,10 +139,10 @@ void app_manager()
 						led_value=0x01;
 					}
 				}
-				if(button1 == BUTTON_PRESS_VALUE-1)
+				if(button1 == BUTTON_PRESS_VALUE-1) //Button 2 is pressed
 				{
 					data1[0]=0;data1[1]=0;
-					i2c_master_rx(0x28, data1, 2, i2cOne);
+					i2c_master_rx(0x28, data1, 2, i2cOne); //Read ADC value using I2C read 
 					printstrln("Reading Temperature value....");
 					data1[0]=data1[0]&0x0F;
 					adc_value=(data1[0]<<6)|(data1[1]>>2);
@@ -143,42 +153,21 @@ void app_manager()
 				button=1;
 				break;
 		}
+//::Select
 	}
 }
-
-/** =========================================================================
- * Dummy
- *
- * Use all Threads on a core
- *
- * \param None
- *
- * \return None
- *
- **/
-void dummy()
-{
-	while (1);
-}
-
 
 /**
  * Top level main for multi-UART demonstration
  */
+ //::Main start
 int main(void)
 {
 	par
 	{
 		on stdcore[CORE_NUM]: app_manager();
-		on stdcore[CORE_NUM]: dummy();
-		on stdcore[CORE_NUM]: dummy();
-		on stdcore[CORE_NUM]: dummy();
-		on stdcore[CORE_NUM]: dummy();
-		on stdcore[CORE_NUM]: dummy();
-		on stdcore[CORE_NUM]: dummy();
-		on stdcore[CORE_NUM]: dummy();
 	}
 	return 0;
 }
 
-
+//::Main

@@ -11,9 +11,9 @@ Features
 
 With this general learning application running on the XA-SK-GPIo Slice Card you can issue commands from a PC serial terminal operating via the Slice Card Uart to:
 
-   * turn LEDS on and off
-   * read the room temperature via the ADC and display on the terminal console
-   * display button presses on the terminal console
+   * Turn LEDS on and off
+   * Read the room temperature via the ADC and display on the terminal console
+   * Display button presses on the terminal console
 
 A PC with a COM port or a USB to Serial adaptor cable will be required (not supplied with XA-Sk-GPIO).
 
