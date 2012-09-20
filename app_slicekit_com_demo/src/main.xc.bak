@@ -133,7 +133,7 @@ void app_manager(chanend c_uartTX,chanend c_uartRX, chanend c_process, chanend c
 					printstrln("Button 1 Pressed");
 					p_led<:(led_value);
 					led_value=led_value<<1;
-					if(led_value == 16) //If LED value is 16 then assigns LED value to 1 which cycles LEDs by button press
+					if(led_value == 16) //If LED value is 16 then assigns LED value to 1 which cycles LEDs
 					{
 						led_value=0x01;
 					}

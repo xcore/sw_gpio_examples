@@ -28,7 +28,6 @@ constants
 /*---------------------------------------------------------------------------
 typedefs
 ---------------------------------------------------------------------------*/
-//::States start
 typedef enum {
 SET_LED_1,
 SET_LED_2,
@@ -49,7 +48,7 @@ BUTTON_1,
 BUTTON_2,
 INVALID
 };
-//::States
+
 /*---------------------------------------------------------------------------
 extern variables
 ---------------------------------------------------------------------------*/
@@ -62,25 +61,6 @@ int TEMPERATURE_LUT[][2]={
 		{30,450},{35,399},{40,352},{45,308},{50,269},{55,233},{60,202}
 };
 
-unsigned char CONSOLE_MESSAGES[16][110]=
-	{
-	 "\r\nCOMMAND MODE ACTIVATED",
-	 "\r\nEXIT COMMAND MODE\r\n",
-	 "\r\nINVALID COMMAND - Use 'help' for details",
-	 "\r\nCOMMAND EXECUTED",
-	 "\r\nBUTTON x PRESSED",
-	 "\r\nNO BUTTONS ARE PRESSED",
-	 "\r\nWELCOME TO GPIO DEMO",
-	 "\r\n setall \t- Sets all LEDs ON\r\n clearall \t- Clear all LEDs",
-	 "\r\n setled 'N' \t- Switch ON LED N",
-	 "\r\n help \t\t- Display all supported commands",
-	 "\r\n chkbuttons \t- Returns if any buttons pressed since last 'chkbuttons' command",
-	 "\r\n readadc \t- Read ADC vaue and Displays temperature\r\n\r\n 'N' is in range 1 to 4",
-	 "\r\nCURRENT TEMPERATURE VALUE IS : ",
-	 "\r\n(**ECHO DATA MODE ACTIVATED**)\r\nPress '>cmd' for command mode\r\n",
-	 "\r\n\r\n-------------------------HELP--------------------------------",
-	 "\r\n clearled 'N' \t- Switch OFF LED 'N'\r\n exit \t\t- Exit from Command mode"
-	};
 /*---------------------------------------------------------------------------
 prototypes
 ---------------------------------------------------------------------------*/

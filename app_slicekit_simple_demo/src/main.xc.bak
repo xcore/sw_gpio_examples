@@ -156,6 +156,22 @@ void app_manager()
 	}
 }
 
+/** =========================================================================
+ * Dummy
+ *
+ * Use all Threads on a core
+ *
+ * \param None
+ *
+ * \return None
+ *
+ **/
+void dummy()
+{
+	while (1);
+}
+
+
 /**
  * Top level main for multi-UART demonstration
  */
