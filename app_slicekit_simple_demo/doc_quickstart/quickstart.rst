@@ -1,21 +1,22 @@
 sw_gpio_examples simple demo : Quick Start Guide
---------------------------------------------------
+------------------------------------------------
 
-We use the XA-SK-GPIO Slice Card together with the xSOFTip I2C to communicate with on board ADC, and display the temperature value on the console.
-This application showcases some of the key software features and serves as an example on how to use ``module_i2c_master`` and push button switches and LEDs. 
+This simple demonstration of basic XCore processor and xTimeComposer Studio functionality uses the XA-SK-GPIO Slice Card together with the xSOFTip I2C Master component to:
+
+   * communicate with the ADC (and external temperature sensing circuit) on the Slice Card
+   * display the temperature value on the xTimeComposer debug console when a button is pressed
+   * Cycle through the 4 LEDs on the Slice Card when another button is pressed
 
 Hardware Setup
 ++++++++++++++++++
-The XP-SKC-L2 Slicekit Core board has four slots ``SLOT SQUARE``, ``SLOT CIRCLE``,``SLOT TRIANGLE`` and ``SLOT STAR``. 
-The XA-SK-GPIO Slice Card have Four LED's, Thermistor, Two Push Button Switches and an ADC.
-The XA-SK-GPIO Slice Card have to be plugged in to the ``SLOT SQUARE``.
 
-   Details of slice kit modular system and slices are availaible in the following link,
-   https://github.com/xmos/hw_slicekit_system.git.
+The XP-SKC-L2 Slicekit Core board has four slots with edge conectors: ``SQUARE``, ``CIRCLE``,``TRIANGLE`` and ``STAR``. 
 
-   #. Connect XA-SK-GPIO Slice Card to the XP-SKC-L2 Slicekit Core board. 
-   #. Connect the XTAG Adapter to Slicekit Core board, XA-SK-XTAG2 connector(xtag slice) and connect XTAG-2 to the adapter. 
-   #. Connect the XTAG-2 to host PC.
+To setup up the system:
+
+   #. Connect XA-SK-GPIO Slice Card to the XP-SKC-L2 Slicekit Core board using the connector marked with the SQUARE.
+   #. Connect the XTAG Adapter to Slicekit Core board, and connect XTAG-2 to the adapter. 
+   #. Connect the XTAG-2 to host PC via the provided USB cable.
    #. Switch on the power supply to the Slicekit Core board.
 
 .. figure:: images/hardware_setup.png
@@ -28,18 +29,16 @@ Software Configuration
         
    #. Define AD7995_0 in module_i2c_master (#define AD7995_0)
 	
-Build the Application
+Import and Build the Application
 +++++++++++++++++++++
 
-The following components are required to build ``app_slicekit_simple_demo`` application:
-    * sc_i2c:  https://github.com/xcore/sc_i2c.git
-
-   #. Clone the above repositroes or download them as zipfile packages.
-   #. Open the XDE (XMOS Development Tools - latest version as of this writing is 11.11.1) and Choose `File` |submenu| `Import`.
-   #. Choose `General` |submenu| `Existing Projects into Workspace` and click **Next**.
-   #. Click **Browse** next to `Select archive file` and select the first firmware ZIP file.
-   #. Click **Finish**.
-   #. To build, select `app_slicekit_com_demo` from `sw_gpio_examples` folder in the Project Explorer pane and click the **Build** icon.   
+   #. Open xTimeComposer and check that it is operating in online mode
+   #. Locate the following items in the xSOFTip pane on the bottom left of the window:
+      * app_slicekit_simple_demo
+      * I2C
+      * UART
+   #. Import all three
+   #. Click on app simple in the Explorer pane then click on the build icon (hammer) in the foo window. Check the console window to verify that the application has built successfully.
 
 Use the Software
 ++++++++++++++++
@@ -55,8 +54,9 @@ Use the Software
 Demo Application
 ++++++++++++++++
 
-   #. Pressing Button 1 cycles on board LEDs and displays Button pressed on the console.
-   #. Pressing Button 2 displays current temperature value on the console.
+   #. Pressing Button 1 on the Slice Card cycles through the Slice Card LEDs and displays "Button 1 pressed" in the debug console within xTime Composer Studio. Press the button 5 or 6 times to verify the functionality.
+   #. Pressing Button 2 displays current temperature value on the console. Press the button a few times. The current temperature is then displayed in the debug console. 
+   #. Do something to alter the temperature of the sensor (use freezer spray, or place your finger on it for a while). Press Button 2 again to verify that the changed temperature is reported.
    
 
 .. figure:: images/Console.png
@@ -67,5 +67,9 @@ Demo Application
 Next Steps
 ++++++++++
 
-   #. Refer to the module_i2c_master documentation for implementation details of this application and information on further things to try.
+   #. Examine the application code. In xTimeCOposer:
+      #. Foo
+      #. Bar
+   #. If you have the USB to Serial cable reccomended for use with this SliceCard (FIXME: add link) you can run the extended version of this application which adds a UART to the application and allows the SliceCard to be controlled from a serial terminal console on a host PC.
+   #. 
    
