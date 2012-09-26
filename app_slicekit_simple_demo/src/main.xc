@@ -128,9 +128,9 @@ void app_manager()
 				button=0;
 				break;
 
-			case !button => t when timerafter(time+20000000):>time: //waits for 200ms and checks if the same button is pressed or not
+			case !button => t when timerafter(time+2000000):>time: //waits for 200ms and checks if the same button is pressed or not
 				p_PORT_BUT_1:> button_press_2;
-				if(button_press_1=button_press_2)
+				if(button_press_1==button_press_2)
 				if(button_press_1 == BUTTON_PRESS_VALUE) //Button 1 is pressed
 				{
 					printstrln("Button 1 Pressed");
