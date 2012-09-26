@@ -6,7 +6,7 @@ TARGET = XK-SK-L2
 # The APP_NAME variable determines the name of the final .xe file. It should
 # not include the .xe postfix. If left blank the name will default to
 # the project name
-APP_NAME = app_slicekit_com_demo
+APP_NAME = app_sk_gpio_com_demo
 
 # The USED_MODULES variable lists other module used by the application.
 USED_MODULES = module_i2c_master module_uart_rx module_uart_tx
