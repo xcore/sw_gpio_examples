@@ -33,11 +33,11 @@
  ---------------------------------------------------------------------------*/
  //::Ports start
 #define CORE_NUM 1
-#define BUTTON_PRESS_VALUE 14
+#define BUTTON_PRESS_VALUE 2
 on stdcore[CORE_NUM] : buffered in port:1 p_rx =  XS1_PORT_1G;
 on stdcore[CORE_NUM] : out port p_tx = XS1_PORT_1C;
 on stdcore[CORE_NUM]: port p_led=XS1_PORT_4A;
-on stdcore[CORE_NUM]: in port p_button1=XS1_PORT_4C;
+on stdcore[CORE_NUM]: port p_button1=XS1_PORT_4C;
 struct r_i2c i2cOne = {
 		XS1_PORT_1F,
 		XS1_PORT_1B,
@@ -388,7 +388,7 @@ void process_data(chanend c_process, chanend c_end)
 	int button=1,button1_pressed=0,button2_pressed=0;
 	timer t;
 	unsigned time;
-
+	set_port_drive_low(p_button1);
 	t:>time;
 	p_button1:>button_value1;
 	while(1)
@@ -400,9 +400,10 @@ void process_data(chanend c_process, chanend c_end)
 				button=0;
 				break;
 
-			case !button => t when timerafter(time+20000000):>time: //Read button values for every 200 ms
-				p_button1:> button_value1;
+			case !button => t when timerafter(time+200000):>time: //Read button values for every 200 ms
+				p_button1:> button_value2;
 			//checks if button 1 is pressed or button 2 is pressed
+				if(button_value1 == button_value2)
 				if(button_value1 == BUTTON_PRESS_VALUE)
 				{
 					button1_pressed=1;

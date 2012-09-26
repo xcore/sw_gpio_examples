@@ -28,14 +28,14 @@
 #define I2C_NO_REGISTER_ADDRESS 1
 
 #define CORE_NUM 1
-#define BUTTON_PRESS_VALUE 14
+#define BUTTON_PRESS_VALUE 2
 
 /*---------------------------------------------------------------------------
  ports and clocks
  ---------------------------------------------------------------------------*/
  //::Port configuration
 on stdcore[CORE_NUM]: out port p_led=XS1_PORT_4A;
-on stdcore[CORE_NUM]: in port p_PORT_BUT_1=XS1_PORT_4C;
+on stdcore[CORE_NUM]: port p_PORT_BUT_1=XS1_PORT_4C;
 struct r_i2c i2cOne = {
 		XS1_PORT_1F,
 		XS1_PORT_1B,
@@ -105,14 +105,15 @@ int linear_interpolation(int adc_value)
  **/
 void app_manager()
 {
-	unsigned button1,button2,time,time1;
+	unsigned button_press_1,button_press_2,time,time1;
 	int button =1,index=0,toggle=0;
 	timer t;
 	unsigned char data[1]={0x13};
 	unsigned char data1[2];
 	int adc_value;
 	unsigned led_value=0x01;
-	p_PORT_BUT_1:> button1;
+	p_PORT_BUT_1:> button_press_1;
+	set_port_drive_low(p_PORT_BUT_1);
 //::Write config
 	i2c_master_write_reg(0x28, 0x00, data, 1, i2cOne); //Write configuration information to ADC
 //::Config
@@ -123,13 +124,14 @@ void app_manager()
 //::Select start
 		select
 		{
-			case button => p_PORT_BUT_1 when pinsneq(button1):> button1: //checks if any button is pressed
+			case button => p_PORT_BUT_1 when pinsneq(button_press_1):> button_press_1: //checks if any button is pressed
 				button=0;
 				break;
 
-			case !button => t when timerafter(time+20000000):>time: //waits for 200ms and checks if the same button is pressed or not
-				p_PORT_BUT_1:> button1;
-				if(button1 == BUTTON_PRESS_VALUE) //Button 1 is pressed
+			case !button => t when timerafter(time+2000000):>time: //waits for 200ms and checks if the same button is pressed or not
+				p_PORT_BUT_1:> button_press_2;
+				if(button_press_1==button_press_2)
+				if(button_press_1 == BUTTON_PRESS_VALUE) //Button 1 is pressed
 				{
 					printstrln("Button 1 Pressed");
 					p_led<:(led_value);
@@ -139,7 +141,7 @@ void app_manager()
 						led_value=0x01;
 					}
 				}
-				if(button1 == BUTTON_PRESS_VALUE-1) //Button 2 is pressed
+				if(button_press_1 == BUTTON_PRESS_VALUE-1) //Button 2 is pressed
 				{
 					data1[0]=0;data1[1]=0;
 					i2c_master_rx(0x28, data1, 2, i2cOne); //Read ADC value using I2C read 
