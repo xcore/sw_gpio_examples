@@ -400,7 +400,7 @@ void process_data(chanend c_process, chanend c_end)
 				button=0;
 				break;
 
-			case !button => t when timerafter(time+20000000):>time: //Read button values for every 200 ms
+			case !button => t when timerafter(time+200000):>time: //Read button values for every 200 ms
 				p_button1:> button_value2;
 			//checks if button 1 is pressed or button 2 is pressed
 				if(button_value1 == button_value2)
