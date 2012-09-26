@@ -388,7 +388,7 @@ void process_data(chanend c_process, chanend c_end)
 	int button=1,button1_pressed=0,button2_pressed=0;
 	timer t;
 	unsigned time;
-	set_port_drive_low(p_button1);
+
 	t:>time;
 	p_button1:>button_value1;
 	while(1)
@@ -401,7 +401,7 @@ void process_data(chanend c_process, chanend c_end)
 				break;
 
 			case !button => t when timerafter(time+20000000):>time: //Read button values for every 200 ms
-				p_button1:> button_value2;
+				p_button1:> button_value1;
 			//checks if button 1 is pressed or button 2 is pressed
 				if(button_value1 == button_value2)
 				if(button_value1 == BUTTON_PRESS_VALUE)
