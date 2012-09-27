@@ -30,7 +30,8 @@
     </dependency>
     <description>Example Application for XA-SK-GPIO Slice Card showing use of I2C, external ADC with temperature sensor, LEDs and buttons</description>
     <docdir>doc</docdir>
-    <docdir>app_slicekit_com_demo/doc_quickstart</docdir>
+    <docdir>app_sk_gpio_simple_demo/doc_quickstart</docdir>
+    <docdir>app_sk_gpio_com_demo/doc_quickstart</docdir>
     <location>git://github.com/xcore/sw_gpio_examples.git</location>
     <name>sw_gpio_examples</name>
     <maintainer>sethuchandan</maintainer>
