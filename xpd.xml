@@ -20,14 +20,13 @@
         </component>
     </components>
     <dependency repo = "sc_i2c">
-        <githash>2109b9294da0af5872e8c596c80f8bba3d539559</githash>
+        <githash>69533c451e47767a270d61241f0286a1bfd7c730</githash>
         <uri>git@github.com:xcore/sc_i2c.git</uri>
-        <version>2.1.0alpha0</version>
     </dependency>
     <dependency repo = "sc_uart">
-        <githash>4a1812b22cbda7dbdce897120aef746fd936a627</githash>
+        <githash>d9d3bb33df8cff90d1ab80711bad85fccdcd961a</githash>
         <uri>git@github.com:xcore/sc_uart.git</uri>
-        <version>2.2.0alpha2</version>
+        <version>2.2.0alpha0</version>
     </dependency>
     <description>Example Application for XA-SK-GPIO Slice Card showing use of I2C, external ADC with temperature sensor, LEDs and buttons</description>
     <docdir>doc</docdir>
@@ -38,7 +37,8 @@
     <partnumber>XM-001886-DH</partnumber>
     <release parenthash = "7b13717b5e114ec924fa71c4c53979d3ffd61f7d" version = "1.0.0alpha0" githash = "4276328c5705581abcb3d846734b1f3804edc828"></release>
     <release parenthash = "bfe52070b81ae72b8d6853c49c5835cc38a70911" version = "1.0.0alpha1" githash = "97d900e9f7bb587051701ff2456a5ae0e17b24b9"></release>
-    <release parenthash = "c906af19e5747b455c65cfc55fa670ff34e96400" version = "1.0.0alpha2"></release>
+    <release parenthash = "c906af19e5747b455c65cfc55fa670ff34e96400" version = "1.0.0alpha2" githash = "d576081661f62b58f22f0d88017f7ca088d0f2cb"></release>
+    <release parenthash = "44903077eb97837372c879f90a16869e90211a10" version = "1.0.0alpha3"></release>
     <subpartnumber>XM-001887-SM</subpartnumber>
     <vendor>XMOS</vendor>
     <xcore_repo>sw_gpio_examples.git</xcore_repo>
