@@ -20,7 +20,7 @@ To setup up the system:
    #. Switch on the power supply to the Slicekit Core board.
 
 .. figure:: images/hardware_setup.png
-   :align: center
+   :align: centre
 
    Hardware Setup for Simple GPIO Demo
    
@@ -41,7 +41,7 @@ Run the Application
    #. Do something to alter the temperature of the sensor (use freezer spray, or place your finger on it for a while). Press Button 2 again to verify that the changed temperature is reported.
 
 .. figure:: images/Console.png
-   :align: center
+   :align: centre
 
    Screenshot of Console window
     
@@ -54,9 +54,11 @@ Look at the Code
    #. Examine the application code. In xTimeComposer navigate to the ``src`` directory under app_sk_gpio_simple_demo and double click on the main.xc file within it. The file should open in the central editor window.
    #. Find the main function and note that it runs the app_manager() function on a single thread. Confirm that there are no other threads running (e.g. only one function call within the par{}.
    #. Find the app_manager function within the same file and look at the ``select`` statement within it. What do you think this select statement is doing?  
+   #. To answer the question above, in the Developer Column within xTimeComposer, navigate back to the root of the documentation for this application. Clock on the 'Slicekit GPIO Example Applications and read the notes there about how the code works.
 
 Try the Com Port Demo
 .....................
 
-   #. If you have a PC with a physical COM port, or a USB to Serial Uart cable you can run the extended version of this application which adds a UART to the application and allows the SliceCard and its buttons, LEDs and ADC to be controlled and interrogated from a serial terminal console on a host PC. See the quickstart guide for this application fort further information on running this extended demo.
+   #. If you have a PC with a physical COM port, or a USB to Serial Uart cable you can run the extended version of this application (app_sk_gpio_com_demo) which adds a UART to the application and allows the SliceCard and its buttons, LEDs and ADC to be controlled and interrogated from a serial terminal console on a host PC. Follow the link to the quickstart guide for this application for further information on running this extended demo. 
+   
    
