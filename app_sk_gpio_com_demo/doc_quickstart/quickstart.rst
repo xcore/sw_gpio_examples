@@ -1,4 +1,6 @@
-sw_gpio_examples COM demo : Quick Start Guide
+.. _Slicekit_GPIO_COM_port_Demo_Quickstart:
+
+sw_gpio_examples COM Port demo : Quick Start Guide
 --------------------------------------------------
 
 We use the XA-SK-GPIO Slice Card together with the xSOFTip UART to create a UART , and send data to and from a PC COM port. 
