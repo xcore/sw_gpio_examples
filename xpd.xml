@@ -20,8 +20,9 @@
         </component>
     </components>
     <dependency repo = "sc_i2c">
-        <githash>69533c451e47767a270d61241f0286a1bfd7c730</githash>
+        <githash>ca4402ef45d14bff260c4230950cfc4d30fc801e</githash>
         <uri>git@github.com:xcore/sc_i2c.git</uri>
+        <version>2.1.0alpha1</version>
     </dependency>
     <dependency repo = "sc_uart">
         <githash>d9d3bb33df8cff90d1ab80711bad85fccdcd961a</githash>
@@ -41,7 +42,8 @@
     <release parenthash = "c906af19e5747b455c65cfc55fa670ff34e96400" version = "1.0.0alpha2" githash = "d576081661f62b58f22f0d88017f7ca088d0f2cb"></release>
     <release parenthash = "44903077eb97837372c879f90a16869e90211a10" version = "1.0.0alpha3" githash = "dbfc27ccba3a762fb833d8ab15b5f323a1b3507b"></release>
     <release parenthash = "951543097f4c171e52417313f6fc0d7b67c69a35" version = "1.0.0alpha4" githash = "ff44308f3b9b99c505810334504f097c29de5bc0"></release>
-    <release parenthash = "635f66ef28b33dd21eed2517ea6c31c9d8546d00" version = "1.0.0alpha5"></release>
+    <release parenthash = "635f66ef28b33dd21eed2517ea6c31c9d8546d00" version = "1.0.0alpha5" githash = "343521974922abb3273d8a0d7cacdc24d157dd48"></release>
+    <release parenthash = "f1d9a1967f321d5fd63b10865817408e6ababacb" version = "1.0.1alpha0"></release>
     <subpartnumber>XM-001887-SM</subpartnumber>
     <vendor>XMOS</vendor>
     <xcore_repo>sw_gpio_examples.git</xcore_repo>
