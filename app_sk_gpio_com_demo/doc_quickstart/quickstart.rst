@@ -26,11 +26,6 @@ The XP-SKC-L2 Slicekit Core board has four slots with edge conectors: ``SQUARE``
 
 To setup up the system refer to the figure and instructions below 
 
-.. figure:: images/hardware_setup.png
-   :align: center
-
-   Hardware Setup for GPIO COM Port Demo 
-
    #. Connect XA-SK-GPIO Slice Card to the XP-SKC-L2 Slicekit Core board using the connector marked with the ``SQUARE``.
    #. Connect the XTAG Adapter to Slicekit Core board, and connect XTAG-2 to the adapter. 
    #. Connect the XTAG-2 to host PC. Note that a USB cable is not provided with the Slicekit starter kit.
@@ -45,6 +40,11 @@ To setup up the system refer to the figure and instructions below
    #. Switch on the power supply to the Slicekit Core board.
    #. Open the serial device on the host console program
    
+.. figure:: images/hardware_setup.png
+   :align: center
+
+   Hardware Setup for GPIO COM Port Demo 
+
 
 Import and Build the Application
 ++++++++++++++++++++++++++++++++
