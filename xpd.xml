@@ -45,6 +45,7 @@
     <release parenthash = "635f66ef28b33dd21eed2517ea6c31c9d8546d00" version = "1.0.0alpha5" githash = "343521974922abb3273d8a0d7cacdc24d157dd48"></release>
     <release parenthash = "f1d9a1967f321d5fd63b10865817408e6ababacb" version = "1.0.1alpha0" githash = "840c877591466ad8e26f9d85bc48e13aa8cae65b"></release>
     <release parenthash = "9f2bae017e26637b4078fe6f7562e6bf14915c2e" version = "1.0.1alpha1" githash = "3496bd83ca78dd0b83fc8652e57e4c17deb0ed75"></release>
+    <release parenthash = "32343386e8877cb584285dafb48bb9aca7db704a" version = "1.0.1alpha2"></release>
     <subpartnumber>XM-001887-SM</subpartnumber>
     <vendor>XMOS</vendor>
     <xcore_repo>sw_gpio_examples.git</xcore_repo>
