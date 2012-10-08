@@ -8,49 +8,6 @@ Also xSOFTip I2C software component to communicate with on board ADC.
 This application showcases some of the key software features and serves as an example on how to use APIs of UART and I2C. 
 This demo features UART data loop back, receives commands from comport, and perform according to the command input.
 
-Hardware Setup
-+++++++++++++++
-
-    * The XP-SKC-L2 Slicekit Core board has four slots ``SLOT SQUARE``, ``SLOT CIRCLE``,``SLOT TRIANGLE`` and ``SLOT STAR``. 
-    * The XA-SK-GPIO Slice Card have Four LED's, Thermistor, Two Push Button Switches and an ADC.
-    * The XA-SK-GPIO Slice Card have to be plugged in to the ``SLOT SQUARE``.
-   
-      Details of slice kit modular system and slices are availaible in the following link,
-      https://github.com/xmos/hw_slicekit_system.git.
-   #. Connect serial cable (provided with XA-SK-GPIO Slice Card package) to DB-9 connector on XA-SK-GPIO Slice Card.
-   #. Connect other end of cable to Host DB-9 connector slot.
-   #. If the Host does not have an DB-9 Connector slot then use USB-UART cable for the demo. 
-   #. Some of the maufacturers for USB-UART cables are :http://www.bafo.com/products_bf-810_S.asp (Part number : BF-810).
-   #. While using such type of cables make sure that the Uart Tx pin and Rx pins are crossed as one is DCE and the other is DTE.
-   #. Identify serial port number provided by the Host and open a suitable terminal software for the selected serial port (refer to the Hercules or SecureCRT documentation above). For default parameters which are as follows: 115200 baud, 8 bit character length, even parity config, 1 stop bit and no hardware flow control.
-   #. Connect XA-SK-GPIO Slice Card to the XP-SKC-L2 Slicekit Core board. 
-   #. Connect the XTAG Adapter to Slicekit Core board, XA-SK-XTAG2 connector(xtag slice) and connect XTAG-2 to the adapter. 
-   #. Connect the XTAG-2 to host PC.
-   #. Switch on the power supply to the Slicekit Core board.
-   
-.. figure:: images/hardware_setup.png
-   :align: center
-   
-   Hardware Setup for Simple GPIO Demo
-   
- 	
-Build the Application
-+++++++++++++++++++++
-
-The following components are required to build ``app_slicekit_com_demo`` application:
-    
-    * sc_i2c:  https://github.com/xcore/sc_i2c.git
-    * sc_uart: https://github.com/xcore/sc_uart.git
-
-   #. Clone the above repositroes or download them as zipfile packages.
-   #. Open the XDE (XMOS Development Tools - latest version as of this writing is 11.11.1) and Choose `File` |submenu| `Import`.
-   #. Choose `General` |submenu| `Existing Projects into Workspace` and click **Next**.
-   #. Click **Browse** next to `Select archive file` and select a component ZIP file.
-   #. Select module_i2c_master from sc_i2c and module_uart_tx, module_uart_rx modules from sc_uart.
-   #. Click **Finish**.
-   #. Repeat the import process for the remaining zipfiles.
-   #. To build, select `app_slicekit_com_demo` from `sw_gpio_examples` folder in the Project Explorer pane and click the **Build** icon.   
-
 Install Demonstration Tools on the Host PC
 ++++++++++++++++++++++++++++++++++++++++++
 
@@ -60,6 +17,56 @@ The following tools should be installed on the host system in order to run this 
       http://www.hw-group.com/products/hercules/index_en.html
     * For MAC users: SecureCRT7.0 
       http://www.vandyke.com/download/securecrt/
+    * For Linux Users: Try cutecom (http://cutecom.sourceforge.net/) or try `sudo apt-get install cutecom`
+
+Hardware Setup
+++++++++++++++
+
+The XP-SKC-L2 Slicekit Core board has four slots with edge conectors: ``SQUARE``, ``CIRCLE``,``TRIANGLE`` and ``STAR``. 
+
+To setup up the system:
+
+   #. Connect XA-SK-GPIO Slice Card to the XP-SKC-L2 Slicekit Core board using the connector marked with the ``SQUARE``.
+   #. Connect the XTAG Adapter to Slicekit Core board, and connect XTAG-2 to the adapter. 
+   #. Connect the XTAG-2 to host PC. Note that a USB cable is not provided with the Slicekit starter kit.
+   #. Switch on the power supply to the Slicekit Core board.
+
+.. figure:: images/hardware_setup.jpg
+   :align: center
+
+   #. Connect a null serial cable to DB-9 connector on XA-SK-GPIO Slice Card. The cable will need a cross over between the UART RX and TX pins at each end.
+   #. Connect other end of cable to Host DB-9 connector slot. If the Host does not have an DB-9 Connector slot then use USB-UART cable for the demo. We used the BF-810 USB to Uart adapter (See http://www.bafo.com/products_bf-810_S.asp (Part number : BF-810). Any other usb to uart bridge should do just as well.
+   #. Identify the serial (COM) port number provided by the Host or the USB to UART adapter and open a suitable terminal software for the selected serial port (refer to the Hercules or SecureCRT documentation above).
+   #. Configure the host terminal console program as follows: 
+      * 115200 baud
+      * 8 bit character length
+      * even parity config
+      * 1 stop bit
+      * no hardware flow control
+      * Transmit End-of-Line should be set to `CR`
+   #. Connect XA-SK-GPIO Slice Card to the XP-SKC-L2 Slicekit Core board. 
+   #. Connect the XTAG Adapter to Slicekit Core board, XA-SK-XTAG2 connector(xtag slice) and connect XTAG-2 to the adapter. 
+   #. Connect the XTAG-2 to host PC.
+   #. Switch on the power supply to the Slicekit Core board.
+   #. Open the serial device on the host console program
+   
+.. figure:: images/hardware_setup.jpg
+   :align: center
+   
+   Hardware Setup for Simple GPIO Demo
+   
+ 	
+
+Import and Build the Application
+++++++++++++++++++++++++++++++++
+
+   #. Open xTimeComposer and check that it is operating in online mode. Open the edit perspective (Window->Open Perspective->XMOS Edit).
+   #. Locate the ``'Slicekit COM Port GPIO Demo'`` item in the xSOFTip pane on the bottom left of the window and drag it into the Project Explorer window in the xTimeComposer. This will also cause the modules on which this application depends (in this case, module_i2c_master, module_uart_rx and module_uart_tx) to be imported as well. 
+   #. Click on the Slicekit COM Port GPIO Demo item in the Explorer pane then click on the build icon (hammer) in xTimeComposer. Check the console window to verify that the application has built successfully.
+
+For help in using xTimeComposer, try the xTimeComposer tutorial. FIXME - link?
+
+Note that the Developer Column in the xTimeComposer on the right hand side of your screen provides information on the xSOFTip components you are using. Select the module_i2c_master component in the Project Explorer, and you will see its description together with API documentation. Having done this, click the `back` icon until you return to this quickstart guide within the Developer Column.
     
 
 Usage of Software
@@ -76,31 +83,42 @@ Usage of Software
 Demo Application
 +++++++++++++++++
 
-   #. Select and Open the configured terminal client application console on the Host.
-   #. The terminal displays the following message "WELCOME TO GPIO DEMO (**ECHO DATA MODE ACTIVATED**) Press '>cmd' for command mode
-      In this mode any character typed in from the key board is echoed back.
+   #. Look at the configured terminal client application console on the Host.
+   #. The terminal displays the following message "WELCOME TO GPIO DEMO (**ECHO DATA MODE ACTIVATED**). In this mode any character typed in from the key board is echoed back. Verify this by typing characters in the terminal console on the host. The typed characters should be echoed back.
+   #. When ready, enter command mode by typing ``>cmd`` (note, including the '>' character. The Console will then show  **COMMAND MODE ACTIVATED**.
+   #. Type ``help`` in the console window. The help menu will be displayed as sown in the figure below.
 
 .. figure:: images/help_menu.png
    :align: center
 
    Screenshot of Hyperterminal window
 
-   #. LED cycles up on each button press of Button 1 in the ECHO DATA MODE and Message "Button 1 is Pressed" is displayed in the XDE Console.
-   #. Displays Temperature value in the XDE Console up on the Press of Button 2.
-   #. Type in >cmd for command mode.
-   #. Type in help for list of supported commands.
-   #. Type in setall for switching ON all the LEDs.
-   #. Type in clearall for switching OFF all the LEDs.
-   #. Type in setled N for switching ON a particular LED. 'N' ranges from 1 to 4.
-   #. Type in clearled N for switching OFF a particular LED. 'N' ranges from 1 to 4.
-   #. Type in chkbuttons for returning status of buttons since last 'chkbuttons' command.
-   #. Type in readadc for readig ADC value and displaying current temperature.
-   #. Type in exit for exiting command mode and go back to ECHO DATA MODE.
+   #. Type ``setall` in the console to switch ON all the LEDs.
+   #. Type ``clearall`` to switch OFF all the LEDs.
+   #. Type ``setled N`` for switching ON a particular LED. 'N' ranges from 1 to 4.
+   #. Type ``clearled N`` for switching OFF a particular LED. 'N' ranges from 1 to 4.
+   #. Type in ``chkbuttons`` to return the status of buttons since last 'chkbuttons' command. The console should display ``COMMAND EXECUTED NO BUTONS ARE PRESSED``.
+   #. Press a button on the Slice Card. The console should display ``COMMAND EXECUTED BUTTON 1 PRESSED`` or ``COMMAND EXECUTED BUTTON 2 PRESSED``
+   #. Type in ``chkbuttons`` again. The console should display ``COMMAND EXECUTED BUTTON 1 PRESSED``.
+   #. Type in ``readadc`` for readig ADC value and displaying current temperature. The console should display ``CURRENT TEMPERATURE VALUE IS : <temperature> C``.
+   #. Type in ``exit`` to leave command mode and go back to ECHO DATA MODE. Verify that once again, typed characters are simply echoed back.
    
   
     
 Next Steps
 ++++++++++
 
-   #. Refer to the module_i2c_master, module_uart_tx and module_uart_rx documentation for implementation details of this application and information on further things to try.
-   
+Look at the Code
+................
+
+   #. Examine the application code. In xTimeComposer navigate to the ``src`` directory under app_sk_gpio_simple_demo and double click on the main.xc file within it. The file will open in the central editor window.
+   #. This code is quite a bit more complex than the GPIO Simple Demo, since more complex user input must be obtained from the UART and processed. 
+   #. Can you find the (very) simple switch debounce code? 
+   #. Find the part of the code which is processing command input from the host console. Check how the General UART RX and TX APIs from the General Uart Component library are being applied. As part of this exercise, locate the documentation for this component in the xSOFTip explorer pane of xTIMEcomposer. 
+
+More complex Serial Bridging Applications
+.........................................
+
+This application uses just one UART which takes up two logical cores. Take a look at the Multi-Uart Component in the xSOFtip Explorer. This fits 8 Uarts into two logical cores. Have a look at the documentation for that component and how its API differs from the stand alone General Uart. 
+
+XMOS has also implemented a reference solution for an Ethernet to Serial bridge offering many features including dynamic reconfiguration, an embedded webserver and 8 uarts running up to 115KBaud. To get access to this solution, buy the XA-SK-UART-8 Multi Uart Slice Card from digikey and contact your sales representative to get the reference code.

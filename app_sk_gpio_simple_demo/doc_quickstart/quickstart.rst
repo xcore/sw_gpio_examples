@@ -18,10 +18,10 @@ To setup up the system:
 
    #. Connect XA-SK-GPIO Slice Card to the XP-SKC-L2 Slicekit Core board using the connector marked with the ``SQUARE``.
    #. Connect the XTAG Adapter to Slicekit Core board, and connect XTAG-2 to the adapter. 
-   #. Connect the XTAG-2 to host PC. Note that the USB cable is not provided with the Slicekit starter kit.
+   #. Connect the XTAG-2 to host PC. Note that a USB cable is not provided with the Slicekit starter kit.
    #. Switch on the power supply to the Slicekit Core board.
 
-.. figure:: images/hardware_setup.png
+.. figure:: images/hardware_setup.jpg
    :align: center
 
    Hardware Setup for Simple GPIO Demo
@@ -62,7 +62,7 @@ Look at the Code
 
    #. Examine the application code. In xTimeComposer navigate to the ``src`` directory under app_sk_gpio_simple_demo and double click on the main.xc file within it. The file will open in the central editor window.
    #. Find the main function and note that it runs the app_manager() function on a single logical core. Confirm that there are no other logical cores running (e.g. only one function call within the par{}.
-   #. Find the app_manager function within the same file and look at the ``select`` statement within it. What do you think this select statement is doing? Review the XC programming guide to find out more about ``select`` statements. Now use the xSoftip explorer pane to navigate back to the root of the documentation for this application. Click on the 'Slicekit GPIO Example Applications and read the notes there about how the code works.
+   #. Find the app_manager function within the same file and look at the ``select`` statement within it. What do you think this select statement is doing? Review the XC programming guide (:ref:`prog_xc_responding_to_multiple_inputs`) to find out more about ``select`` statements. Now use the xSoftip explorer pane to navigate back to the root of the documentation for this application. Click on the 'Slicekit GPIO Example Applications and read the notes there about how the code works.
    #. Examine the I2C interface to the ADC on the Slice Card. Take a look at the calls to the I2C Master function library within main.xc, and use the xSoftip Explorer pane in xTimeComposer to locate this module and display its documentation in the Developer Column.
 
 Try the Com Port Demo
@@ -70,5 +70,5 @@ Try the Com Port Demo
 
    #. If you have a PC with a physical COM port, or a USB to Serial Uart cable you can run the extended version of this application (app_sk_gpio_com_demo) which adds a UART to the application and allows the SliceCard and its buttons, LEDs and ADC to be controlled and interrogated from a serial terminal console on a host PC. Follow the link to the quickstart guide for this application for further information on running this extended demo:
 
-:ref:``Slicekit_GPIO_COM_port_Demo_Quickstart`
+:ref:`Slicekit_GPIO_COM_port_Demo_Quickstart`
    
