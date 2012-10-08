@@ -1,7 +1,7 @@
 <?xml version="1.0" ?>
 <xpd>
     <components>
-        <component description = "An example applications that extends app_slicekit_simple_demo to demonstrate usage of the xSOFTip generic Uart RX/TX components and demonstrate extended features of how to handle concurrent events in the XC programming language." type = "demoCode" scope = "Example" path = "app_sk_gpio_com_demo" local = "false" id = "app_sk_gpio_com_demo" name = "Slicekit GPIO Demo">
+        <component description = "An example applications that extends app_slicekit_simple_demo to demonstrate usage of the xSOFTip generic Uart RX/TX components and demonstrate extended features of how to handle concurrent events in the XC programming language." type = "demoCode" scope = "Example" path = "app_sk_gpio_com_demo" local = "false" id = "app_sk_gpio_com_demo" name = "Slicekit COM Port GPIO Demo">
             <board>XA-SK-GPIO</board>
             <componentDependency>module_uart_tx</componentDependency>
             <componentDependency>module_uart_rx</componentDependency>
@@ -43,7 +43,8 @@
     <release parenthash = "44903077eb97837372c879f90a16869e90211a10" version = "1.0.0alpha3" githash = "dbfc27ccba3a762fb833d8ab15b5f323a1b3507b"></release>
     <release parenthash = "951543097f4c171e52417313f6fc0d7b67c69a35" version = "1.0.0alpha4" githash = "ff44308f3b9b99c505810334504f097c29de5bc0"></release>
     <release parenthash = "635f66ef28b33dd21eed2517ea6c31c9d8546d00" version = "1.0.0alpha5" githash = "343521974922abb3273d8a0d7cacdc24d157dd48"></release>
-    <release parenthash = "f1d9a1967f321d5fd63b10865817408e6ababacb" version = "1.0.1alpha0"></release>
+    <release parenthash = "f1d9a1967f321d5fd63b10865817408e6ababacb" version = "1.0.1alpha0" githash = "840c877591466ad8e26f9d85bc48e13aa8cae65b"></release>
+    <release parenthash = "9f2bae017e26637b4078fe6f7562e6bf14915c2e" version = "1.0.1alpha1"></release>
     <subpartnumber>XM-001887-SM</subpartnumber>
     <vendor>XMOS</vendor>
     <xcore_repo>sw_gpio_examples.git</xcore_repo>
