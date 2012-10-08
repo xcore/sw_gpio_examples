@@ -21,7 +21,7 @@ To setup up the system:
    #. Connect the XTAG-2 to host PC. Note that a USB cable is not provided with the Slicekit starter kit.
    #. Switch on the power supply to the Slicekit Core board.
 
-.. figure:: images/hardware_setup.jpg
+.. figure:: images/hardware_setup.png
    :align: center
 
    Hardware Setup for Simple GPIO Demo

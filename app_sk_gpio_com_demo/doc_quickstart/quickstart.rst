@@ -24,38 +24,27 @@ Hardware Setup
 
 The XP-SKC-L2 Slicekit Core board has four slots with edge conectors: ``SQUARE``, ``CIRCLE``,``TRIANGLE`` and ``STAR``. 
 
-To setup up the system:
+To setup up the system refer to the figure and instructions below 
+
+.. figure:: images/hardware_setup.png
+   :align: center
+
+   Hardware Setup for GPIO COM Port Demo 
 
    #. Connect XA-SK-GPIO Slice Card to the XP-SKC-L2 Slicekit Core board using the connector marked with the ``SQUARE``.
    #. Connect the XTAG Adapter to Slicekit Core board, and connect XTAG-2 to the adapter. 
    #. Connect the XTAG-2 to host PC. Note that a USB cable is not provided with the Slicekit starter kit.
    #. Switch on the power supply to the Slicekit Core board.
-
-.. figure:: images/hardware_setup.jpg
-   :align: center
-
    #. Connect a null serial cable to DB-9 connector on XA-SK-GPIO Slice Card. The cable will need a cross over between the UART RX and TX pins at each end.
    #. Connect other end of cable to Host DB-9 connector slot. If the Host does not have an DB-9 Connector slot then use USB-UART cable for the demo. We used the BF-810 USB to Uart adapter (See http://www.bafo.com/products_bf-810_S.asp (Part number : BF-810). Any other usb to uart bridge should do just as well.
    #. Identify the serial (COM) port number provided by the Host or the USB to UART adapter and open a suitable terminal software for the selected serial port (refer to the Hercules or SecureCRT documentation above).
-   #. Configure the host terminal console program as follows: 
-      * 115200 baud
-      * 8 bit character length
-      * even parity config
-      * 1 stop bit
-      * no hardware flow control
-      * Transmit End-of-Line should be set to `CR`
+   #. Configure the host terminal console program as follows: 115200 baud, 8 bit character length, even parity, 1 stop bit, no hardware flow control. The Transmit End-of-Line character should be set to `CR` (other options presented will probably be `LF` and `CR\LF`).
    #. Connect XA-SK-GPIO Slice Card to the XP-SKC-L2 Slicekit Core board. 
    #. Connect the XTAG Adapter to Slicekit Core board, XA-SK-XTAG2 connector(xtag slice) and connect XTAG-2 to the adapter. 
    #. Connect the XTAG-2 to host PC.
    #. Switch on the power supply to the Slicekit Core board.
    #. Open the serial device on the host console program
    
-.. figure:: images/hardware_setup.jpg
-   :align: center
-   
-   Hardware Setup for Simple GPIO Demo
-   
- 	
 
 Import and Build the Application
 ++++++++++++++++++++++++++++++++
