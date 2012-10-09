@@ -1,7 +1,7 @@
 GPIO Examples Repository
 .................................
 
-:Latest release: 1.0.1alpha2
+:Latest release: 1.0.1alpha3
 :Maintainer: sethuchandan
 :Description: Example Application for XA-SK-GPIO Slice Card showing use of I2C, external ADC with temperature sensor, LEDs and buttons
 

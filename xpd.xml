@@ -1,6 +1,13 @@
 <?xml version="1.0" ?>
 <xpd>
     <components>
+        <component description = "An example applications that demonstrate various features of the XA-SK-GPIO Slice Card including the ADC, LEDs and buttons, the I2C master xSOFTip component, as well as various basic features of the xCORE processor." type = "demoCode" scope = "Example" path = "app_sk_gpio_simple_demo" local = "false" id = "app_sk_gpio_simple_demo" name = "Slicekit Simple GPIO Demo">
+            <board>XA-SK-GPIO</board>
+            <componentDependency>module_i2c_master</componentDependency>
+            <keyword>I2C</keyword>
+            <keyword>LED</keyword>
+            <keyword>buttons</keyword>
+        </component>
         <component description = "An example applications that extends app_slicekit_simple_demo to demonstrate usage of the xSOFTip generic Uart RX/TX components and demonstrate extended features of how to handle concurrent events in the XC programming language." type = "demoCode" scope = "Example" path = "app_sk_gpio_com_demo" local = "false" id = "app_sk_gpio_com_demo" name = "Slicekit COM Port GPIO Demo">
             <board>XA-SK-GPIO</board>
             <componentDependency>module_uart_tx</componentDependency>
@@ -11,23 +18,15 @@
             <keyword>buttons</keyword>
             <keyword>UART</keyword>
         </component>
-        <component description = "An example applications that demonstrate various features of the XA-SK-GPIO Slice Card including the ADC, LEDs and buttons, the I2C master xSOFTip component, as well as various basic features of the xCORE processor." type = "demoCode" scope = "Example" path = "app_sk_gpio_simple_demo" local = "false" id = "app_sk_gpio_simple_demo" name = "Slicekit Simple GPIO Demo">
-            <board>XA-SK-GPIO</board>
-            <componentDependency>module_i2c_master</componentDependency>
-            <keyword>I2C</keyword>
-            <keyword>LED</keyword>
-            <keyword>buttons</keyword>
-        </component>
     </components>
     <dependency repo = "sc_i2c">
-        <githash>ca4402ef45d14bff260c4230950cfc4d30fc801e</githash>
+        <githash>305187c4ba858b22e9b0791adb7bef6d9aab50df</githash>
         <uri>git@github.com:xcore/sc_i2c.git</uri>
-        <version>2.1.0alpha1</version>
+        <version>2.1.0alpha2</version>
     </dependency>
     <dependency repo = "sc_uart">
-        <githash>d9d3bb33df8cff90d1ab80711bad85fccdcd961a</githash>
+        <githash>d72da713bea75c88650bb4364a12c5d98e5db495</githash>
         <uri>git@github.com:xcore/sc_uart.git</uri>
-        <version>2.2.0alpha0</version>
     </dependency>
     <description>Example Application for XA-SK-GPIO Slice Card showing use of I2C, external ADC with temperature sensor, LEDs and buttons</description>
     <docdir>doc</docdir>
@@ -45,7 +44,8 @@
     <release parenthash = "635f66ef28b33dd21eed2517ea6c31c9d8546d00" version = "1.0.0alpha5" githash = "343521974922abb3273d8a0d7cacdc24d157dd48"></release>
     <release parenthash = "f1d9a1967f321d5fd63b10865817408e6ababacb" version = "1.0.1alpha0" githash = "840c877591466ad8e26f9d85bc48e13aa8cae65b"></release>
     <release parenthash = "9f2bae017e26637b4078fe6f7562e6bf14915c2e" version = "1.0.1alpha1" githash = "3496bd83ca78dd0b83fc8652e57e4c17deb0ed75"></release>
-    <release parenthash = "32343386e8877cb584285dafb48bb9aca7db704a" version = "1.0.1alpha2"></release>
+    <release parenthash = "32343386e8877cb584285dafb48bb9aca7db704a" version = "1.0.1alpha2" githash = "9fe6ae8760fe9a8a248031cd4fa5f01fb0ca5a3a"></release>
+    <release parenthash = "709a662d65db433920b3fcc703db6bb66abebc1f" version = "1.0.1alpha3"></release>
     <subpartnumber>XM-001887-SM</subpartnumber>
     <vendor>XMOS</vendor>
     <xcore_repo>sw_gpio_examples.git</xcore_repo>
