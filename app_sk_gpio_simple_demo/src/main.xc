@@ -111,7 +111,7 @@ void app_manager()
 	unsigned char data[1]={0x13};
 	unsigned char data1[2];
 	int adc_value;
-	unsigned led_value=0x01;
+	unsigned led_value=0x0E;
 	p_PORT_BUT_1:> button_press_1;
 	set_port_drive_low(p_PORT_BUT_1);
 //::Write config
@@ -136,9 +136,11 @@ void app_manager()
 					printstrln("Button 1 Pressed");
 					p_led<:(led_value);
 					led_value=led_value<<1;
-					if(led_value == 16)
+					led_value|=0x01;
+					led_value=led_value & 0x0F;
+					if(led_value == 15)
 					{
-						led_value=0x01;
+						led_value=0x0E;
 					}
 				}
 				if(button_press_1 == BUTTON_PRESS_VALUE-1) //Button 2 is pressed
