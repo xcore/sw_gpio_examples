@@ -351,6 +351,7 @@ void app_manager(chanend c_uartTX,chanend c_uartRX, chanend c_process, chanend c
 										}
 										button1_press=0;
 										button2_press=0;
+                                                                                break;
 								}
 								if(data != EXIT) //Exits from command mode
 								{

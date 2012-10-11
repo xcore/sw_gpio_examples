@@ -61,20 +61,10 @@ Note that the Developer Column in the xTIMEcomposer on the right hand side of yo
 Running the Demo
 ++++++++++++++++
 
-   #. Open the XDE
-   #. Choose *Run* |submenu| *Run Configurations*
-   #. Double-click *XCore Application* to create a new configuration
-   #. In the *Project* field, browse for `app_slicekit_com_demo`
-   #. In the *C/C++ Application* field, browse for the compiled XE file
-   #. Select the *XTAG-2* device in the `Target:` adapter list
-   #. Click **Run**
-
-Demo Application
-++++++++++++++++
-
+   #. Click on the ``Run`` icon (the white arrow in the green circle). A dialog will appear asking which device to cvonnect to. Select ``XMOS XTAG2``. 
    #. Look at the configured terminal client application console on the Host.
-   #. The terminal displays the following message "WELCOME TO GPIO DEMO (**ECHO DATA MODE ACTIVATED**). In this mode any character typed in from the key board is echoed back. Verify this by typing characters in the terminal console on the host. The typed characters should be echoed back.
-   #. When ready, enter command mode by typing ``>cmd`` (note, including the '>' character. The Console will then show  **COMMAND MODE ACTIVATED**.
+   #. If the terminal is configured correctly, it should display the following message: ``WELCOME TO GPIO DEMO (**ECHO DATA MODE ACTIVATED**)``. In this mode any character typed in from the key board is echoed back. Verify this by typing characters in the terminal console on the host. The typed characters should be echoed back.
+   #. When ready, enter command mode by typing ``>cmd`` (note, be sure to also type the '>' character). The Console will then show  **COMMAND MODE ACTIVATED**.
    #. Type ``help`` in the console window. The help menu will be displayed as sown in the figure below.
 
 .. figure:: images/help_menu.png
@@ -100,7 +90,7 @@ Look at the Code
 
    #. Examine the application code. In xTIMEcomposer navigate to the ``src`` directory under app_sk_gpio_com_demo and double click on the main.xc file within it. The file will open in the central editor window.
    #. This code is quite a bit more complex than the GPIO Simple Demo, since more complex user input must be obtained from the UART and processed. 
-   #. Find the part of the code which is processing command input from the host console. Check how the Generic UART RX and TX APIs from the General Uart Component library are being applied. As part of this exercise, locate the documentation for this component in the xSOFTip explorer pane of xTIMEcomposer. 
+   #. Find the part of the code which is processing command input from the host console. Check how the Generic UART RX and TX APIs from the General Uart Component library are being applied. As part of this exercise, locate the documentation for these components (``Generic UART Receiver`` and ``Generic UART Transmitter``) in the xSOFTip explorer pane of xTIMEcomposer and review their API documentation. 
 
 More complex Serial Bridging Applications
 .........................................
