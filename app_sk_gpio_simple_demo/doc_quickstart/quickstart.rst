@@ -30,22 +30,22 @@ To setup up the system:
 Import and Build the Application
 ++++++++++++++++++++++++++++++++
 
-   #. Open xTimeComposer and check that it is operating in online mode. Open the edit perspective (Window->Open Perspective->XMOS Edit).
+   #. Open xTimeComposer and open the edit perspective (Window->Open Perspective->XMOS Edit).
    #. Locate the ``'Slicekit Simple GPIO Demo'`` item in the xSOFTip pane on the bottom left of the window and drag it into the Project Explorer window in the xTimeComposer. This will also cause the modules on which this application depends (in this case, module_i2c_master) to be imported as well. 
    #. Click on the app_sk_gpio_simple_demo item in the Explorer pane then click on the build icon (hammer) in xTimeComposer. Check the console window to verify that the application has built successfully.
 
-For help in using xTimeComposer, try the xTimeComposer tutorial. FIXME add link.
+For help in using xTimeComposer, try the xTimeComposer tutorials, which you can find by selecting Help->Tutorials from the xTimeComposer menu.
 
-Note that the Developer Column in the xTimeComposer on the right hand side of your screen provides information on the xSOFTip components you are using. Select the module_i2c_master component in the Project Explorer, and you will see its description together with API documentation. Having done this, click the `back` icon until you return to this quickstart guide within the Developer Column.
+Note that the Developer Column in the xTimeComposer on the right hand side of your screen provides information on the xSOFTip components you are using. Select the ``I2C master (Single Bit Ports)``  component in the xSOFTip Browser, and you will see its description together with links to more documentation for this component. Once you have briefly explored this component, you can return to this quickstart guide by re-selecting  ``'Slicekit COM Port GPIO Demo'`` in the xSOFTip Browser and clicking once more on the Quickstart  link for the ``GPIO Simple Demo Quickstart``.
+    
 
 Run the Application
 +++++++++++++++++++
 
 Now that the application has been compiled, the next step is to run it on the Slicekit Core Board using the tools to load the application over JTAG (via the XTAG2 and Xtag Adaptor card) into the xCORE multicore microcontroller.
 
-   #. Click on the ``Run`` icon (the white arrow in the green circle). The debug console window in xTimeComposer should then display the message "** WELCOME TO SIMPLE
-GPIO DEMO  **". This has been generated from the application code via a call to the ``printstr()`` function. 
-   #. Press Button 1 on the Slice Card. Each time the button is pressed, the application lights the next LEDs on the Slice Card and displays "Button 1 pressed" in the debug console within xTime Composer Studio. Press the button 5 or 6 times to verify the functionality.
+   #. Click on the ``Run`` icon (the white arrow in the green circle). A dialog will appear asking which device to cvonnect to. Select ``XMOS XTAG2``. The debug console window in xTIMEcomposer should then display the message ``** WELCOME TO SIMPLE GPIO DEMO  **`` in the Debug Console window. This has been generated from the application code via a call to the ``printstr()`` function. 
+   #. Press Button 1 on the GPIO Slice Card. Each time the button is pressed, the application lights the next LEDs on the Slice Card and displays "Button 1 pressed" in the debug console within xTime Composer Studio. Press the button 5 or 6 times to verify the functionality.
    #. Press Button 2 on the Slice Card. This causes the current temperature value to be read from the ADC over the I2C bus and then reported on the debug console. Press the button a few times. 
    #. Do something to alter the temperature of the sensor (use freezer spray, or place your finger on it for a while). Press Button 2 again to verify that the changed temperature is reported.
 
@@ -60,10 +60,10 @@ Next Steps
 Look at the Code
 ................
 
-   #. Examine the application code. In xTimeComposer navigate to the ``src`` directory under app_sk_gpio_simple_demo and double click on the main.xc file within it. The file will open in the central editor window.
+   #. Examine the application code. In xTIMEcomposer navigate to the ``src`` directory under app_sk_gpio_simple_demo and double click on the main.xc file within it. The file will open in the central editor window.
    #. Find the main function and note that it runs the app_manager() function on a single logical core. Confirm that there are no other logical cores running (e.g. only one function call within the par{}.
-   #. Find the app_manager function within the same file and look at the ``select`` statement within it. What do you think this select statement is doing? Review the XC programming guide (:ref:`prog_xc_responding_to_multiple_inputs`) to find out more about ``select`` statements. Now use the xSoftip explorer pane to navigate back to the root of the documentation for this application. Click on the 'Slicekit GPIO Example Applications and read the notes there about how the code works.
-   #. Examine the I2C interface to the ADC on the Slice Card. Take a look at the calls to the I2C Master function library within main.xc, and use the xSoftip Explorer pane in xTimeComposer to locate this module and display its documentation in the Developer Column.
+   #. Find the app_manager function within the same file and look at the ``select`` statement within it. What do you think this select statement is doing? Review the XC programming guide (:ref:`prog_xc_responding_to_multiple_inputs`) to find out more about ``select`` statements. Now use the xSOFTip explorer pane to navigate back to the root of the documentation for this application. Click on the 'Slicekit GPIO Example Applications and read the notes there about how the code works.
+   #. Examine the I2C interface to the ADC on the Slice Card. Take a look at the calls to the I2C Master function library within main.xc, and use the xSOFTip Explorer pane in xTIMEcomposer to locate this module and display its documentation in the Developer Column.
 
 Try the Com Port Demo
 .....................

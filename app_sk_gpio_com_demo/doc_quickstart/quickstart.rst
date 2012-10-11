@@ -36,7 +36,7 @@ To setup up the system refer to the figure and instructions below
    #. Configure the host terminal console program as follows: 115200 baud, 8 bit character length, even parity, 1 stop bit, no hardware flow control. The Transmit End-of-Line character should be set to `CR` (other options presented will probably be `LF` and `CR\LF`).
    #. Connect XA-SK-GPIO Slice Card to the XP-SKC-L2 Slicekit Core board. 
    #. Connect the XTAG Adapter to Slicekit Core board, XA-SK-XTAG2 connector(xtag slice) and connect XTAG-2 to the adapter. 
-   #. Connect the XTAG-2 to host PC.
+   #. Connect the XTAG-2 to the computer running xTIMEcomposer.
    #. Switch on the power supply to the Slicekit Core board.
    #. Open the serial device on the host console program
    
@@ -49,17 +49,17 @@ To setup up the system refer to the figure and instructions below
 Import and Build the Application
 ++++++++++++++++++++++++++++++++
 
-   #. Open xTimeComposer and check that it is operating in online mode. Open the edit perspective (Window->Open Perspective->XMOS Edit).
-   #. Locate the ``'Slicekit COM Port GPIO Demo'`` item in the xSOFTip pane on the bottom left of the window and drag it into the Project Explorer window in the xTimeComposer. This will also cause the modules on which this application depends (in this case, module_i2c_master, module_uart_rx and module_uart_tx) to be imported as well. 
-   #. Click on the Slicekit COM Port GPIO Demo item in the Explorer pane then click on the build icon (hammer) in xTimeComposer. Check the console window to verify that the application has built successfully.
+   #. Open xTIMEcomposer, then open the edit perspective (Window->Open Perspective->XMOS Edit).
+   #. Locate the ``'Slicekit COM Port GPIO Demo'`` item in the xSOFTip Broswer window and drag it into the Project Explorer window in the xTIMEcomposer. This will also cause the modules on which this application depends (in this case, module_i2c_master, module_uart_rx and module_uart_tx) to be imported as well. 
+   #. Click on the Slicekit COM Port GPIO Demo item in the Explorer pane then click on the build icon (hammer) in xTIMEcomposer. Check the console window to verify that the application has built successfully.
 
-For help in using xTimeComposer, try the xTimeComposer tutorial. FIXME - link?
+For help in using xTIMEcomposer, try the xTIMEcomposer tutorials, which you can find by selecting Help->Tutorials from the xTIMEcomposer menu.
 
-Note that the Developer Column in the xTimeComposer on the right hand side of your screen provides information on the xSOFTip components you are using. Select the module_i2c_master component in the Project Explorer, and you will see its description together with API documentation. Having done this, click the `back` icon until you return to this quickstart guide within the Developer Column.
+Note that the Developer Column in the xTIMEcomposer on the right hand side of your screen provides information on the xSOFTip components you are using. Select the ``generic UART Receiver``  component in the xSOFTip Browser, and you will see its description together with links to more documentation for this component. Once you have briefly explored this component, you can return to this quickstart guide by re-selecting  ``'Slicekit COM Port GPIO Demo'`` in the xSOFTip Browser and clicking once more on the Quickstart  link for the ``Slicekit Com Port GPIO Demo Quickstart``.
     
 
-Usage of Software
-+++++++++++++++++
+Running the Demo
+++++++++++++++++
 
    #. Open the XDE
    #. Choose *Run* |submenu| *Run Configurations*
@@ -70,7 +70,7 @@ Usage of Software
    #. Click **Run**
 
 Demo Application
-+++++++++++++++++
+++++++++++++++++
 
    #. Look at the configured terminal client application console on the Host.
    #. The terminal displays the following message "WELCOME TO GPIO DEMO (**ECHO DATA MODE ACTIVATED**). In this mode any character typed in from the key board is echoed back. Verify this by typing characters in the terminal console on the host. The typed characters should be echoed back.
@@ -91,8 +91,6 @@ Demo Application
    #. Type in ``chkbuttons`` again. The console should display ``COMMAND EXECUTED BUTTON 1 PRESSED``.
    #. Type in ``readadc`` for readig ADC value and displaying current temperature. The console should display ``CURRENT TEMPERATURE VALUE IS : <temperature> C``.
    #. Type in ``exit`` to leave command mode and go back to ECHO DATA MODE. Verify that once again, typed characters are simply echoed back.
-   
-  
     
 Next Steps
 ++++++++++
@@ -100,14 +98,13 @@ Next Steps
 Look at the Code
 ................
 
-   #. Examine the application code. In xTimeComposer navigate to the ``src`` directory under app_sk_gpio_simple_demo and double click on the main.xc file within it. The file will open in the central editor window.
+   #. Examine the application code. In xTIMEcomposer navigate to the ``src`` directory under app_sk_gpio_com_demo and double click on the main.xc file within it. The file will open in the central editor window.
    #. This code is quite a bit more complex than the GPIO Simple Demo, since more complex user input must be obtained from the UART and processed. 
-   #. Can you find the (very) simple switch debounce code? 
-   #. Find the part of the code which is processing command input from the host console. Check how the General UART RX and TX APIs from the General Uart Component library are being applied. As part of this exercise, locate the documentation for this component in the xSOFTip explorer pane of xTIMEcomposer. 
+   #. Find the part of the code which is processing command input from the host console. Check how the Generic UART RX and TX APIs from the General Uart Component library are being applied. As part of this exercise, locate the documentation for this component in the xSOFTip explorer pane of xTIMEcomposer. 
 
 More complex Serial Bridging Applications
 .........................................
 
-This application uses just one UART which takes up two logical cores. Take a look at the Multi-Uart Component in the xSOFtip Explorer. This fits 8 Uarts into two logical cores. Have a look at the documentation for that component and how its API differs from the stand alone General Uart. 
+This application uses just one UART which takes up two logical cores. Take a look at the Multi-Uart Component in the xSOFTip Explorer. This fits 8 Uarts into two logical cores. Have a look at the documentation for that component and how its API differs from the stand alone General Uart. 
 
 XMOS has also implemented a reference solution for an Ethernet to Serial bridge offering many features including dynamic reconfiguration, an embedded webserver and 8 uarts running up to 115KBaud. To get access to this solution, buy the XA-SK-UART-8 Multi Uart Slice Card from digikey and contact your sales representative to get the reference code.
