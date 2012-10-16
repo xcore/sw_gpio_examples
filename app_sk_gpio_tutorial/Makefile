@@ -9,7 +9,7 @@ TARGET = SLICEKIT-L2
 APP_NAME = 
 
 # The USED_MODULES variable lists other module used by the application.
-USED_MODULES = module_pwm_tutorial_example
+USED_MODULES = module_i2c_master module_pwm_tutorial_example
 
 # The flags passed to xcc when building the application
 # You can also set the following to override flags for a particular language:

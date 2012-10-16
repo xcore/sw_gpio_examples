@@ -158,6 +158,10 @@
 									<listOptionValue builtIn="false" value="&quot;${XMOS_TOOL_PATH}/target/include/gcc&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/module_pwm_tutorial_example/src}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/module_pwm_tutorial_example}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sc_pwm/module_pwm_tutorial_example/src}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/module_i2c_master/src}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/module_i2c_master}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sc_pwm/module_pwm_tutorial_example}&quot;"/>
 								</option>
 								<inputType id="com.xmos.cdt.xc.compiler.input.1571884903" name="XC" superClass="com.xmos.cdt.xc.compiler.input"/>
 							</tool>
@@ -270,6 +274,10 @@
 									<listOptionValue builtIn="false" value="&quot;${XMOS_TOOL_PATH}/target/include/gcc&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/module_pwm_tutorial_example/src}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/module_pwm_tutorial_example}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sc_pwm/module_pwm_tutorial_example/src}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/module_i2c_master/src}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/module_i2c_master}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sc_pwm/module_pwm_tutorial_example}&quot;"/>
 								</option>
 								<inputType id="com.xmos.cdt.c.compiler.input.c.1506490141" name="C" superClass="com.xmos.cdt.c.compiler.input.c"/>
 							</tool>
@@ -388,6 +396,10 @@
 									<listOptionValue builtIn="false" value="&quot;${XMOS_TOOL_PATH}/target/include/c++/4.2.1/xcore-xmos-elf&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/module_pwm_tutorial_example/src}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/module_pwm_tutorial_example}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sc_pwm/module_pwm_tutorial_example/src}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/module_i2c_master/src}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/module_i2c_master}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sc_pwm/module_pwm_tutorial_example}&quot;"/>
 								</option>
 								<inputType id="com.xmos.cdt.cxx.compiler.input.cpp.1947473012" name="C++" superClass="com.xmos.cdt.cxx.compiler.input.cpp"/>
 							</tool>
