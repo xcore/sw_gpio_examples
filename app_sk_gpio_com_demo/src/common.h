@@ -29,7 +29,7 @@ constants
 typedefs
 ---------------------------------------------------------------------------*/
 //::States start
-typedef enum {
+enum {
 SET_LED_1,
 SET_LED_2,
 SET_LED_3,
