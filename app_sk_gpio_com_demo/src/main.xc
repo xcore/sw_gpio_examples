@@ -27,7 +27,7 @@
 #include<common.h>
 
 #define I2C_NO_REGISTER_ADDRESS 1
-
+#define debounce_time XS1_TIMER_HZ/50
 /*---------------------------------------------------------------------------
  ports and clocks
  ---------------------------------------------------------------------------*/
@@ -401,7 +401,7 @@ void process_data(chanend c_process, chanend c_end)
 				button=0;
 				break;
 
-			case !button => t when timerafter(time+200000):>time: //Read button values for every 200 ms
+			case !button => t when timerafter(time+debounce_time):>time: //Read button values for every 20 ms
 				p_button1:> button_value2;
 			//checks if button 1 is pressed or button 2 is pressed
 				if(button_value1 == button_value2)
