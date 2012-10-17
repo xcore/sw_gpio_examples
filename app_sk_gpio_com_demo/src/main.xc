@@ -398,10 +398,11 @@ void process_data(chanend c_process, chanend c_end)
 		select
 		{
 			case button => p_button1 when pinsneq(button_value1):>button_value1:
+				t:>time;
 				button=0;
 				break;
 
-			case !button => t when timerafter(time+debounce_time):>time: //Read button values for every 20 ms
+			case !button => t when timerafter(time+debounce_time):>void: //Read button values for every 20 ms
 				p_button1:> button_value2;
 			//checks if button 1 is pressed or button 2 is pressed
 				if(button_value1 == button_value2)
