@@ -126,9 +126,10 @@ void app_manager()
 		{
 			case button => p_PORT_BUT_1 when pinsneq(button_press_1):> button_press_1: //checks if any button is pressed
 				button=0;
+				t:>time;
 				break;
 
-			case !button => t when timerafter(time+debounce_time):>time: //waits for 20ms and checks if the same button is pressed or not
+			case !button => t when timerafter(time+debounce_time):>void: //waits for 20ms and checks if the same button is pressed or not
 				p_PORT_BUT_1:> button_press_2;
 				if(button_press_1==button_press_2)
 				if(button_press_1 == BUTTON_PRESS_VALUE) //Button 1 is pressed
