@@ -38,7 +38,7 @@ on stdcore[CORE_NUM] : buffered in port:1 p_rx =  XS1_PORT_1G;
 on stdcore[CORE_NUM] : out port p_tx = XS1_PORT_1C;
 on stdcore[CORE_NUM]: port p_led=XS1_PORT_4A;
 on stdcore[CORE_NUM]: port p_button1=XS1_PORT_4C;
-struct r_i2c i2cOne = {
+on stdcore[CORE_NUM]: struct r_i2c i2cOne = {
 		XS1_PORT_1F,
 		XS1_PORT_1B,
 		1000
