@@ -26,7 +26,7 @@
 #include"common.h"
 
 #define I2C_NO_REGISTER_ADDRESS 1
-
+#define debounce_time XS1_TIMER_HZ/50
 #define CORE_NUM 1
 #define BUTTON_PRESS_VALUE 2
 
@@ -36,7 +36,7 @@
  //::Port configuration
 on stdcore[CORE_NUM]: out port p_led=XS1_PORT_4A;
 on stdcore[CORE_NUM]: port p_PORT_BUT_1=XS1_PORT_4C;
-struct r_i2c i2cOne = {
+on stdcore[CORE_NUM]: struct r_i2c i2cOne = {
 		XS1_PORT_1F,
 		XS1_PORT_1B,
 		1000
@@ -126,9 +126,10 @@ void app_manager()
 		{
 			case button => p_PORT_BUT_1 when pinsneq(button_press_1):> button_press_1: //checks if any button is pressed
 				button=0;
+				t:>time;
 				break;
 
-			case !button => t when timerafter(time+2000000):>time: //waits for 200ms and checks if the same button is pressed or not
+			case !button => t when timerafter(time+debounce_time):>void: //waits for 20ms and checks if the same button is pressed or not
 				p_PORT_BUT_1:> button_press_2;
 				if(button_press_1==button_press_2)
 				if(button_press_1 == BUTTON_PRESS_VALUE) //Button 1 is pressed

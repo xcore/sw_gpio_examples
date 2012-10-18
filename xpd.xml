@@ -20,14 +20,17 @@
         </component>
     </components>
     <dependency repo = "sc_i2c">
-        <githash>576de5f72f10954ce0eed83acb418890ed636bb8</githash>
+        <githash>69055c9531de5f88b170d997db32f0b9f9663d5a</githash>
         <uri>git@github.com:xcore/sc_i2c.git</uri>
-        <version>2.1.0rc0</version>
     </dependency>
     <dependency repo = "sc_uart">
-        <githash>4b5a6e17070a4ac435160a034220769adda9c31d</githash>
+        <githash>0257bcd17967e651bc780d2f80373660e32fbfef</githash>
         <uri>git@github.com:xcore/sc_uart.git</uri>
-        <version>2.2.0rc0</version>
+    </dependency>
+    <dependency repo = "sc_pwm">
+        <githash>53f275204764669c9d8ae10378453aa279a5bc47</githash>
+        <uri>git@github.com:xcore/sc_pwm.git</uri>
+        <version>1.0.0rc0</version>
     </dependency>
     <description>Example Application for XA-SK-GPIO Slice Card showing use of I2C, external ADC with temperature sensor, LEDs and buttons</description>
     <docdir>doc</docdir>
@@ -49,9 +52,11 @@
     <release parenthash = "709a662d65db433920b3fcc703db6bb66abebc1f" version = "1.0.1alpha3" githash = "08238fc0207de447fbb619e5648d53b1dd5b45dc"></release>
     <release parenthash = "ac980506b700f19afffbd553a4b88cb5467201f4" version = "1.0.1alpha4" githash = "d77347428b1db9cd95d1903e03f8e4e0afb97054"></release>
     <release parenthash = "d77347428b1db9cd95d1903e03f8e4e0afb97054" version = "1.0.1alpha5" githash = "eb7131fa34dd9359eaeaea1ed25b385b2eb96eba"></release>
-    <release parenthash = "eb7131fa34dd9359eaeaea1ed25b385b2eb96eba" version = "1.0.1rc0"></release>
+    <release parenthash = "eb7131fa34dd9359eaeaea1ed25b385b2eb96eba" version = "1.0.1rc0" githash = "01bea5b5f8f1d0eceb0c448d25a718d0b7b00db9"></release>
+    <release parenthash = "7ddbafe0cab44b137684dc087be56f8cbb29340a" version = "1.0.2alpha0"></release>
     <subpartnumber>XM-001887-SM</subpartnumber>
     <vendor>XMOS</vendor>
     <xcore_repo>sw_gpio_examples.git</xcore_repo>
     <xpd_version>1.0</xpd_version>
+    <xsoftip_exclude>app_sk_gpio_tutorial</xsoftip_exclude>
 </xpd>

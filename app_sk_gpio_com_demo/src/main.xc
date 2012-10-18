@@ -27,7 +27,7 @@
 #include<common.h>
 
 #define I2C_NO_REGISTER_ADDRESS 1
-
+#define debounce_time XS1_TIMER_HZ/50
 /*---------------------------------------------------------------------------
  ports and clocks
  ---------------------------------------------------------------------------*/
@@ -38,7 +38,7 @@ on stdcore[CORE_NUM] : buffered in port:1 p_rx =  XS1_PORT_1G;
 on stdcore[CORE_NUM] : out port p_tx = XS1_PORT_1C;
 on stdcore[CORE_NUM]: port p_led=XS1_PORT_4A;
 on stdcore[CORE_NUM]: port p_button1=XS1_PORT_4C;
-struct r_i2c i2cOne = {
+on stdcore[CORE_NUM]: struct r_i2c i2cOne = {
 		XS1_PORT_1F,
 		XS1_PORT_1B,
 		1000
@@ -398,10 +398,11 @@ void process_data(chanend c_process, chanend c_end)
 		select
 		{
 			case button => p_button1 when pinsneq(button_value1):>button_value1:
+				t:>time;
 				button=0;
 				break;
 
-			case !button => t when timerafter(time+200000):>time: //Read button values for every 200 ms
+			case !button => t when timerafter(time+debounce_time):>void: //Read button values for every 20 ms
 				p_button1:> button_value2;
 			//checks if button 1 is pressed or button 2 is pressed
 				if(button_value1 == button_value2)

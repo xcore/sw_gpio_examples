@@ -8,13 +8,17 @@
 
 on tile[TILE_IDX] : out port p_led = XS1_PORT_4A;
 
+<<<<<<< HEAD
 on tile[TILE_IDX] : struct r_i2c i2cOne = {
+=======
+on stdcore[TILE_IDX]: struct r_i2c i2cOne = {
+>>>>>>> 83b6d4b4139af27f4ea28282e73d456f549a0d9a
 		XS1_PORT_1F,
 		XS1_PORT_1B,
 		1000
 };
 
-on tile[TILE_IDX]: port p_buttons = XS1_PORT_4C;
+on stdcore[TILE_IDX]: port p_buttons = XS1_PORT_4C;
 
 /** =========================================================================
  * wait
