@@ -27,16 +27,11 @@
         <githash>0257bcd17967e651bc780d2f80373660e32fbfef</githash>
         <uri>git@github.com:xcore/sc_uart.git</uri>
     </dependency>
-    <dependency repo = "sc_pwm">
-        <githash>53f275204764669c9d8ae10378453aa279a5bc47</githash>
-        <uri>git@github.com:xcore/sc_pwm.git</uri>
-        <version>1.0.0rc0</version>
-    </dependency>
     <description>Example Application for XA-SK-GPIO Slice Card showing use of I2C, external ADC with temperature sensor, LEDs and buttons</description>
     <docdir>doc</docdir>
     <docdir>app_sk_gpio_simple_demo/doc_quickstart</docdir>
     <docdir>app_sk_gpio_com_demo/doc_quickstart</docdir>
-    <xsoftip_exclude>app_sk_gpio_tutorial</xsotip_exclude>
+    <xsoftip_exclude>app_sk_gpio_tutorial</xsoftip_exclude>
     <location>git://github.com/xcore/sw_gpio_examples.git</location>
     <name>sw_gpio_examples</name>
     <maintainer>sethuchandan</maintainer>
