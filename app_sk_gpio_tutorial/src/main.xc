@@ -8,7 +8,7 @@
 
 on tile[TILE_IDX] : out port p_led = XS1_PORT_4A;
 
-struct r_i2c i2cOne = {
+on tile[TILE_IDX] : struct r_i2c i2cOne = {
 		XS1_PORT_1F,
 		XS1_PORT_1B,
 		1000
@@ -30,8 +30,8 @@ void wait(unsigned wait_cycles) {
     timer tmr;
     unsigned t;
     tmr :> t;
-    t+=wait_cycles;
-    tmr when timerafter (t) :> void;
+    // event will occur wait_cycles * 10ns in the future
+    tmr when timerafter (t+wait_cycles) :> void;
 }
 
 /** =========================================================================
@@ -55,9 +55,12 @@ void pwm_controller(chanend c_pwm)
 	// duty_cycle delta.
 	int delta = -step; // start with increasing brightness
 
-	// send the PWM period length
+	printf("Starting task pwm_controller with initial PWM settings: period %d, duty_cycle %d\n", period, duty_cycle);
+	printf("  periodically changes PWM duty cycle to dim LEDs up and down\n");
+
+	// output the PWM period length to a channel
 	c_pwm <: period;
-	// send the PWM duty cycle length
+	// output the PWM duty cycle length to a channel
 	c_pwm <: duty_cycle;
 
 	while(1) {
@@ -76,6 +79,14 @@ void pwm_controller(chanend c_pwm)
 		}
 	}
 }
+
+/*---------------------------------------------------------------------------
+global variables
+---------------------------------------------------------------------------*/
+int TEMPERATURE_LUT[][2]={
+		{-10,845},{-5,808},{0,765},{5,718},{10,668},{15,614},{20,559},{25,504},
+		{30,450},{35,399},{40,352},{45,308},{50,269},{55,233},{60,202}
+};
 
 /** =========================================================================
  * pwm_controller_thermo
@@ -100,12 +111,15 @@ void pwm_controller_thermo(chanend c_pwm) {
     // ADC value. 845 corresponds to -10 degC, 202 corresponds to 60 degrees.
 	int adc_value;
 
+	printf("Starting task pwm_controller_thermo\n");
+	printf("  Controls the LEDs according to temperature read from ADC via I2C\n\n");
+
 	//::Write config
 	i2c_master_write_reg(0x28, 0x00, wr_data, 1, i2cOne); //Write configuration information to ADC
 
-	// send the PWM period length
+	// output the PWM period length to a channel
 	c_pwm <: period;
-	// send the PWM duty cycle length
+	// output the PWM duty cycle length to a channel
 	c_pwm <: duty_cycle;
 
 	while(1) {
@@ -133,6 +147,33 @@ void pwm_controller_thermo(chanend c_pwm) {
 
 	}
 }
+
+/** =========================================================================
+ * linear interpolation
+ *
+ * calculates temperatue basedd on linear interpolation
+ *
+ * \param int adc value
+ *
+ * \return int temperature
+ *
+ **/
+int linear_interpolation(int adc_value)
+{
+	int i=0,x1,y1,x2,y2,temper;
+	while(adc_value<TEMPERATURE_LUT[i][1])
+	{
+		i++;
+	}
+	//Calculating Linear interpolation using the formula y=y1+(x-x1)*(y2-y1)/(x2-x1)
+	x1=TEMPERATURE_LUT[i-1][1];
+	y1=TEMPERATURE_LUT[i-1][0];
+	x2=TEMPERATURE_LUT[i][1];
+	y2=TEMPERATURE_LUT[i][0];
+	temper=y1+(((adc_value-x1)*(y2-y1))/(x2-x1)); //Calculate temeperature valus using linear interploation technique
+	return temper;//Return Temperature value
+}
+
 
 /** =========================================================================
  * pwm_controller_thermo_ctrl
@@ -163,36 +204,32 @@ void pwm_controller_thermo_ctrl(chanend c_pwm, port p_button) {
 	unsigned adc_time;
 	const unsigned adc_rd_period = XS1_TIMER_HZ/10; // Read ADC every 0.1 seconds
 
-	timer debounce_tmr;
-	unsigned debounce_time;
-	const unsigned press_time = XS1_TIMER_HZ/5; // button must be pressed for 0.2 seconds
+	unsigned button_val;
 
-	unsigned button_val_0,button_val_1;
-	// state variable to control when a button change should be detected.
-	unsigned detect_button=1;
-	// Selected temperature range
-	unsigned sensitive_range=0;
+	printf("Starting task pwm_controller_thermo_ctrl\n");
+	printf("  Controls the LEDs according to temperature read from ADC via I2C\n");
+	printf("  When the user presses button SW1, the temperature is printed in the console\n\n");
 
 	set_port_drive_low(p_button);
 
 	//::Write config
 	i2c_master_write_reg(0x28, 0x00, wr_data, 1, i2cOne); //Write configuration information to ADC
 
-	// send the PWM period length
+	// output the PWM period length to a channel
 	c_pwm <: period;
-	// send the PWM duty cycle length
+	// output the PWM duty cycle length to a channel
 	c_pwm <: duty_cycle;
 
 	// init times
-	debounce_tmr :> debounce_time;
 	adc_tmr :> adc_time;
     // init button val
-	p_button :> button_val_0;
+	p_button :> button_val;
 
 	while(1) {
 		select
 		{
 			// Controls frequency of reading ADC and updating PWM duty_cycle
+			// adc_tmr emits an event at time adc_time+adc_rd_period
 			case adc_tmr when timerafter(adc_time+adc_rd_period) :> adc_time:
 				rd_data[0]=0;rd_data[1]=0;
 				//Read ADC value using I2C read
@@ -200,19 +237,13 @@ void pwm_controller_thermo_ctrl(chanend c_pwm, port p_button) {
 
 				rd_data[0]=rd_data[0]&0x0F;
 				adc_value=(rd_data[0]<<6)|(rd_data[1]>>2);
+
 				// convert from ADC scale to duty cycle scale.
-				if(!sensitive_range) {
-					// range: -10 degC to 60 degC
-					// 845 (-10 degC) corresponds to duty_cycle 1000 (LEDs off)
-					// 242 (60 decC) corresponds to duty_cycle 0 (LEDs fully on)
-					duty_cycle = (adc_value-242) * period/(845-242);
-				} else {
-					// range: 27.5 degC to 30 degC
-					// 477 (27.5 degC) corresponds to duty_cycle 1000 (LEDs off)
-					// 450 (30 decC) corresponds to duty_cycle 0 (LEDs fully on)
-					// this range is sensitive enough to change LED brighness by blowing on the GPIO Slice
-					duty_cycle = (adc_value-450) * period/(477-450);
-				}
+				// range: 27.5 degC to 30 degC
+				// 477 (27.5 degC) corresponds to duty_cycle 1000 (LEDs off)
+				// 450 (30 decC) corresponds to duty_cycle 0 (LEDs fully on)
+				// this range is sensitive enough to change LED brighness by blowing on the GPIO Slice
+				duty_cycle = (adc_value-450) * period/(477-450);
 				// saturate
 				if(duty_cycle < 0) {
 					duty_cycle = 0;
@@ -224,30 +255,11 @@ void pwm_controller_thermo_ctrl(chanend c_pwm, port p_button) {
 				c_pwm <: duty_cycle;
 				break;
 
-			//checks if any button changes
-			case detect_button => p_button when pinsneq(button_val_0):> button_val_0:
-				detect_button=0;
-			    debounce_tmr :> debounce_time; // record the time
-				break;
-
-		    // waits for pressed_time and checks if the same button is still pressed
-			case !detect_button => debounce_tmr when timerafter(debounce_time+press_time):>void:
-			    p_button :> button_val_1;
-		    	detect_button=1; // re-activate detection of button change
-				if(button_val_0==button_val_1) {
-					if(button_val_0 == 0b10) //button 1 is pressed
-					{
-						printf("button 1 Pressed\n");
-						if(sensitive_range) {
-							printf("switching temperature controlled LED dimmer to temperature range -10 degC to 60degC\n");
-							sensitive_range=0;
-						} else {
-							printf("switching temperature controlled LED dimmer to sensitive temperature range 27.5 degC to 30degC\n");
-							sensitive_range=1;
-						}
-
-					}
-				}
+			//p_button emits an event when when any button changes
+			case p_button when pinsneq(button_val):> button_val:
+				if(button_val == 0b10) { // button 1 is pressed
+					printf("Temperature is : %d ¼C\n",linear_interpolation(adc_value));
+	 	        }
 				break;
 
 		}
