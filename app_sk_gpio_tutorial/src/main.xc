@@ -8,7 +8,7 @@
 
 on tile[TILE_IDX] : out port p_led = XS1_PORT_4A;
 
-struct r_i2c i2cOne = {
+on stdcore[TILE_IDX]: struct r_i2c i2cOne = {
 		XS1_PORT_1F,
 		XS1_PORT_1B,
 		1000
