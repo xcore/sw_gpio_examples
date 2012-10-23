@@ -15,7 +15,7 @@ This simple demonstration of xTimeComposer Studio functionality uses the XA-SK-G
 Hardware Setup
 ++++++++++++++
 
-The XP-SKC-L2 Slicekit Core board has four slots with edge conectors: ``SQUARE``, ``CIRCLE``,``TRIANGLE`` and ``STAR``. 
+The XP-SKC-L2 Slicekit Core board has four slots with edge conectors: ``SQUARE``, ``CIRCLE``, ``TRIANGLE`` and ``STAR``. 
 
 To setup up the system:
 
