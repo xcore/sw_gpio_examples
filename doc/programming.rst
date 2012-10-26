@@ -44,7 +44,7 @@ The app_manager API writes the configuration settings information to the ADC as 
    :end-before: //::Config
 
 The select statement in the app_manager API selects one of the two cases in it, checks if there is IO event or timer event. This statement monitors both the events and executes which ever event is occurred first.  
-The select statement in the application is listed below. The statement checks if there is button press or not. If there is button press then it looks if the button state is same even after 200msec. If the buton state is same then it recognises as an valid push.
+The select statement in the application is listed below. The statement checks if there is button press or not. If there is button press then it looks if the button state is same even after 20msec. If the buton state is same then it recognises as an valid push.
 
 .. literalinclude:: app_sk_gpio_simple_demo/src/main.xc
    :start-after: //::Select start
