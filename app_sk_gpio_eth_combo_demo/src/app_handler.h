@@ -17,6 +17,23 @@ typedef struct gpio_state {
   int temperature;
 } gpio_state_t;
 
+/** =========================================================================
+ * app_handler
+ *
+ * Implements GPIO button press checks, reads onboard ADC temperature value,
+ * handles GPIO web commands to set/reset LEDs, read tempearture and button
+ * statuses
+ *
+ * \param c_gpio channel to communicate gpio data between app handler and
+ * tcp handler
+ * \param p_i2c i2c to read adc value from i2c master
+ * \param p_led GPIO LED ports
+ * \param p_button GPIO button ports
+ * tcp handler
+ *
+ * \return None
+ *
+ **/
 void app_handler(chanend c_gpio, REFERENCE_PARAM(r_i2c, p_i2c), port p_led, port p_button);
 void set_gpio_state(chanend c_gpio, REFERENCE_PARAM(gpio_state_t, gpio_new_state));
 void get_gpio_state(chanend c_gpio, REFERENCE_PARAM(gpio_state_t, gpio_state));
