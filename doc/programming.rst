@@ -153,3 +153,93 @@ Process_data thread send instructions to the app_manager thread about the comman
     :end-before: //::States
 
 
+
+
+GPIO Ethernet Combo Demo
+------------------------
+
+Structure
++++++++++
+
+All of the files required for operation are located in the ``app_sk_gpio_eth_combo_demo/src`` directory. The files to be included for use of required components are:
+
+.. list-table::
+    :header-rows: 2
+    
+    * - File
+      - Description
+    * - ``ethernet_board_support.h``
+      - Defines OTP and ethernet pins required for Ethernet component
+    * - ``xtcp.h``
+      - Header file for xtcp API interface
+    * - ``web_server.h``
+      - Header file for web server API interfaces in order to use web pages
+    * - ``i2c.h``
+      - Defines i2c pins and API interfaces to use i2c master component for GPIO adc interfacing
+    * - ``app_handler.h``
+      - Application specific defines and API interfaces across cores to implement demo functionality
+
+API
++++
+
+.. doxygenfunction:: app_handler
+.. doxygenfunction:: process_web_page_data
+.. doxygenfunction:: get_web_user_selection
+
+
+Usage and Implementation
+++++++++++++++++++++++++
+
+The port declaration for Ethernet, LEDs, Buttons and I2C are declared as below:
+Ethernet uses ethernet_board_support.h configuration
+I2C uses 1 bit port for SCL(I2C Clock) and SDA (I2C data)
+LEDs and Buttons uses 4 bit ports
+
+.. literalinclude:: app_sk_gpio_eth_combo_demo/src/main.xc
+   :start-after: //::Ports Start
+   :end-before: //::Ports End
+
+The app_manager API writes the configuration settings to the ADC as shows below
+
+.. literalinclude:: app_sk_gpio_eth_combo_demo/src/app_handler.xc
+   :start-after: //::ADC Config Start
+   :end-before: //::ADC Config End
+
+The select statement in the app_handler API selects either I/O events to check for any valid button presses or uses channel events to detect any commands from web page requests. Valid web page commands include set or reset LEDs and check button press state since last check request. 
+
+Whenever there is a change in values of the button ports, a flag is used to kick start a timer for debounce interval, and port value is sampled used to identify which button is pressed. The code is as shown below:
+.. literalinclude:: app_sk_gpio_eth_combo_demo/src/app_handler.xc
+   :start-after: //::Button Scan Start
+   :end-before: //::Button Scan End
+
+Button check statuses are reset immediately after web page request to check for respective button status. The code is as shown below:
+.. literalinclude:: app_sk_gpio_eth_combo_demo/src/app_handler.xc
+   :start-after: //::Button Reset Start
+   :end-before: //::Button Reset End
+
+Every time a web page request is received, app_handler records current ADC value and sends it to web page. 
+
+
+Using sc_website to build web page for this demo application
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+Makefile in app_sk_gpio_eth_combo_demo folder should include following line
+
+WEBFS_TYPE = internal
+
+This value indicates sc_website component to use program memory instead of FLASH memory to store the web pages.
+
+Create web folder in app_sk_gpio_eth_combo_demo folder app_sk_gpio_eth_combo_demo\web
+
+In order to include any images to be displayed in the web page, create images folder as follows
+app_sk_gpio_eth_combo_demo\web\images
+
+For this application, we have created index.html file web page using html script. This page uses XMOS logo from images folder. We have defined desired user controls for LEDs and Buttons in the web page. 
+
+Functions that are required to be executed by the demo application should be enclosed between the tags {% %}. These functions are to be defined in web_page_functions.c file.
+For example, index.html contains
+<p>{% read_temperature(buf, app_state, connection_state) %}</p>
+
+This indicates ``read_temperature`` is a function executed by the program and result is returned to the web page. During execution, sc_website component replaces this function as 
+<p>"Temperature recorded from onboard ADC: <b>NA </b><sup>o</sup>C"</p>
+

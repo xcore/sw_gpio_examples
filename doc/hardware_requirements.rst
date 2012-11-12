@@ -6,7 +6,7 @@ Recommended Hardware
 
 This application may be evaluated using the Slicekit Modular Development Platform, available from digikey. Required board SKUs are:
 
-   * XP-SKC-L2 (Slicekit L2 Core Board) plus XA-SK-GPIO plus XA-SK-XTAG2 (Slicekit XTAG adaptor) plus XTAG2 (debug adaptor),
+   * XP-SKC-L2 (Slicekit L2 Core Board) plus XA-SK-GPIO plus XA-SK-XTAG2 (Slicekit XTAG adaptor)
 
 Example Applications
 --------------------
@@ -30,7 +30,7 @@ This application has the following features:
 app_slicekit_com_demo
 +++++++++++++++++++++
 
-This application extends the simple demo to provides the following functionality (all options are dynamically reconfigurable via the APIs for app_slicekit_com_demo application):
+This application extends the simple demo to provide the following functionality (all options are dynamically reconfigurable via the APIs for app_slicekit_com_demo application):
 
    * Uart RX and TX Using the generic Uart RX and TX xSOFTip components
       * Baud Rate: 150 to 115200 bps
@@ -44,3 +44,19 @@ This application extends the simple demo to provides the following functionality
     :align: left
 
     Hardware Setup for COM Port UART Demo
+
+app_sk_gpio_eth_combo_demo
+++++++++++++++++++++++++++
+
+   * XA-SK-E100 Ethernet Slice Card is additionally required for this demo
+
+This application extends the gpio com port demo to provides the following functionality
+
+   * Turn GPIO Slice Card LEDS on and off
+   * Read the room temperature via the onboard ADC and display on the web page
+   * Display GPIO Slice Card button presses
+
+.. image:: images/gpio_eth_combo_hardware_setup.png
+    :align: left
+
+    Hardware Setup for GPIO Ethernet combo Demo
