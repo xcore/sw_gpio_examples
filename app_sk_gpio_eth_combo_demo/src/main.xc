@@ -12,6 +12,7 @@
 
 //#define DHCP
 
+//::Ports Start
 ethernet_xtcp_ports_t xtcp_ports =
   {    on tile[1]:  OTP_PORTS_INITIALIZER,
        ETHERNET_DEFAULT_SMI_INIT,
@@ -23,6 +24,7 @@ r_i2c p_i2c =
 		1000 };
 on tile[1]: port p_led=XS1_PORT_4A;
 on tile[1]: port p_button=XS1_PORT_4C;
+//::Ports End
 
 // IP Config - change this to suit your network.  Leave with all
 // 0 values to use DHCP

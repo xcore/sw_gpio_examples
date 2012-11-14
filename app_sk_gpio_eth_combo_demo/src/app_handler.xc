@@ -19,8 +19,8 @@ typedef enum gpio_cmd_t {
 //Temperature to ADC look up table
 int TEMPERATURE_LUT[][2]=
 {
-		{-10,850},{-5,800},{0,750},{5,700},{10,650},{15,600},{20,550},{25,500},{30,450},{35,400},
-		{40,350},{45,300},{50,250},{55,230},{60,210}
+  {-10,850},{-5,800},{0,750},{5,700},{10,650},{15,600},{20,550},{25,500},{30,450},{35,400},
+  {40,350},{45,300},{50,250},{55,230},{60,210}
 };
 gpio_state_t gpio_state;
 
@@ -47,7 +47,7 @@ static int linear_interpolation(int adc_value)
   int i=0,x1,y1,x2,y2,temperature;
 
   while(adc_value<TEMPERATURE_LUT[i][1]) {
-	  i++;
+	i++;
   }
   //Calculating Linear interpolation using the formula y=y1+(x-x1)*(y2-y1)/(x2-x1)
   x1=TEMPERATURE_LUT[i-1][1];
@@ -64,8 +64,7 @@ static int read_adc_value(r_i2c &p_i2c)
   int adc_value;
   unsigned char i2c_data[2];
 
-  i2c_master_rx(0x28, i2c_data, 2, p_i2c);
-  //i2c_master_rx(0x28, i2c_data, sizeof(i2c_data), p_i2c);
+  i2c_master_rx(0x28, i2c_data, sizeof(i2c_data), p_i2c);
 
   i2c_data[0]=i2c_data[0]&0x0F;
   adc_value=(i2c_data[0]<<6)|(i2c_data[1]>>2);
@@ -80,8 +79,9 @@ void app_handler(chanend c_gpio, r_i2c &p_i2c, port p_led, port p_button) {
   timer t_scan_button_flag;
   unsigned time;
 
-  //Configure ADC by writing the settings to register
+//::ADC Config Start
   i2c_master_write_reg(0x28, 0x00, i2c_register, 1, p_i2c);
+//::ADC Config End
 
   set_port_drive_low(p_button);
   t_scan_button_flag :> time;
@@ -89,6 +89,7 @@ void app_handler(chanend c_gpio, r_i2c &p_i2c, port p_led, port p_button) {
 
   while (1) {
     select {
+//::Button Scan Start
       case scan_button_flag => p_button when pinsneq(button_state_1) :> button_state_1 :
     	t_scan_button_flag :> time;
     	scan_button_flag = 0;
@@ -103,6 +104,7 @@ void app_handler(chanend c_gpio, r_i2c &p_i2c, port p_led, port p_button) {
 		}
 		scan_button_flag = 1;
       break;
+//::Button Scan End
       case c_gpio :> int cmd:
         switch (cmd) {
           case APP_HANDLER_SET_GPIO_STATE: {
@@ -113,9 +115,9 @@ void app_handler(chanend c_gpio, r_i2c &p_i2c, port p_led, port p_button) {
         	c_gpio :> gpio_new_state;
 
         	if (gpio_new_state.led_0) //Set LED 0
-        	  led_state = led_state & 0xE;
+              led_state = led_state & 0xE;
         	else
-        	  led_state = led_state | 0x1;
+              led_state = led_state | 0x1;
 
         	if (gpio_new_state.led_1)
         	  led_state = led_state & 0xD;
@@ -145,6 +147,7 @@ void app_handler(chanend c_gpio, r_i2c &p_i2c, port p_led, port p_button) {
         	c_gpio <: gpio_state;
           }
           break;
+//::Button Reset Start
           case APP_HANDLER_RESET_BUTTON_STATE: {
         	int button_value = 0;
         	c_gpio :> button_value;
@@ -158,6 +161,7 @@ void app_handler(chanend c_gpio, r_i2c &p_i2c, port p_led, port p_button) {
         	}
           }
           break;
+//::Button Reset End
         } //switch (cmd)
       break; //case c_gpio :> int cmd:
     } //select

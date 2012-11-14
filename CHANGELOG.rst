@@ -1,6 +1,10 @@
 GPIO Examples Change Log
 ========================
 
+1.0.3
+-----
+  * Added GPIO WebServer example application
+
 1.0.2
 -----
   * Fix to place ports structures on tiles 
