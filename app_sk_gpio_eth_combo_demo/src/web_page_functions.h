@@ -10,10 +10,11 @@ void init_web_state(chanend c_gpio);
 /** =========================================================================
  * process_web_page_data
  *
- * Parses web page data for selected user actions using webserver component
- * calls, identifies GPIO requested commands and sends it to GPIO handler core
- * to process; reads the current application state from GPIO handler and
- * updates application state pertaining to current connection
+ * (i) Parses web page data for selected user actions using webserver component
+ * calls
+ * (ii) Identifies GPIO requested commands and sends it to GPIO handler
+ * (iii) Reads the current application state from GPIO handler and updates
+ * application state pertaining to current web client connection
  *
  * \param buf buffer to contain application data
  * \param app_state application state containing gpio state, button values

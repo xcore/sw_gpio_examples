@@ -19,8 +19,8 @@ typedef enum gpio_cmd_t {
 //Temperature to ADC look up table
 int TEMPERATURE_LUT[][2]=
 {
-		{-10,850},{-5,800},{0,750},{5,700},{10,650},{15,600},{20,550},{25,500},{30,450},{35,400},
-		{40,350},{45,300},{50,250},{55,230},{60,210}
+  {-10,850},{-5,800},{0,750},{5,700},{10,650},{15,600},{20,550},{25,500},{30,450},{35,400},
+  {40,350},{45,300},{50,250},{55,230},{60,210}
 };
 gpio_state_t gpio_state;
 
@@ -47,7 +47,7 @@ static int linear_interpolation(int adc_value)
   int i=0,x1,y1,x2,y2,temperature;
 
   while(adc_value<TEMPERATURE_LUT[i][1]) {
-	  i++;
+	i++;
   }
   //Calculating Linear interpolation using the formula y=y1+(x-x1)*(y2-y1)/(x2-x1)
   x1=TEMPERATURE_LUT[i-1][1];

@@ -9,7 +9,7 @@ Slicekit GPIO and Ethernet Combo Demo
 Features
 --------
 
-With this application running on XP-SKC-L2 using XA-SK-GPIO and XA-SK-E100 Slice Cards, you can issue commands from a web page from a host PC to:
+With this application running on XP-SKC-L2 using XA-SK-GPIO and XA-SK-E100 Slice Cards, you can issue commands using a web page from a host PC to:
 
    * Turn GPIO Slice Card LEDS on and off
    * Read the room temperature via the onboard ADC and display on the web page
