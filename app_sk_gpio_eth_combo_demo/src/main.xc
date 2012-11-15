@@ -18,8 +18,8 @@ ethernet_xtcp_ports_t xtcp_ports =
        ETHERNET_DEFAULT_SMI_INIT,
        ETHERNET_DEFAULT_MII_INIT_lite,
        ETHERNET_DEFAULT_RESET_INTERFACE_INIT};
-r_i2c p_i2c =
-  {     on tile[1]: XS1_PORT_1F,
+on tile[1]: r_i2c p_i2c =
+  {     XS1_PORT_1F,
 		XS1_PORT_1B,
 		1000 };
 on tile[1]: port p_led=XS1_PORT_4A;
