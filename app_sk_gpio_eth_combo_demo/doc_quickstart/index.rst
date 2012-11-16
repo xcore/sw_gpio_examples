@@ -3,11 +3,12 @@ GPIO Com Port Demo Quickstart Guide
 
 .. _Slicekit_GPIO_Ethernet_Combo_Demo_Quickstart:
 
-sw_gpio_examples GPIO Ethernet Combo demo : Quick Start Guide
--------------------------------------------------------------
+sw_gpio_examples GPIO and Ethernet demo : Quick Start Guide
+-----------------------------------------------------------
 
-This example demonstrates a combo application using two Slice Cards XA-SK-GPIO and XA-SK-E100 together with the xSOFTip components for Ethernet, XTCP, I2C and WebServer.
-This application showcase GPIO features using a web page from a host PC to:
+This example demonstrates the use of two Slice Cards, XA-SK-GPIO and XA-SK-E100 together with the xSOFTip components for Ethernet, XTCP, I2C and WebServer to provide access to the GPIo slice features via a simple embedded webserver.
+
+A webpage served from the sliceKIT and accessed in a browser on a host PC has the following demo functions:
    * Turn GPIO Slice Card LEDS on and off
    * Read the room temperature via the onboard ADC and display on the web page
    * Display GPIO Slice Card button press status
@@ -30,7 +31,7 @@ To setup up the system refer to the figure and instructions below
 .. figure:: images/hardware_setup.png
    :align: center
 
-   Hardware Setup for GPIO Ethernet Combo Application Demo 
+   Hardware Setup for the GPIO and Ethernet Application Demo 
 
 
 Import and Build the Application
@@ -38,19 +39,16 @@ Import and Build the Application
 
    #. Open xTIMEcomposer, then open the edit perspective (Window->Open Perspective->XMOS Edit).
    #. Locate the ``'Slicekit GPIO Ethernet Combo Demo'`` item in the xSOFTip Broswer window and drag it into the Project Explorer window in the xTIMEcomposer. This will also cause the modules on which this application depends (in this case, module_ethernet_board_support, module_i2c_master, module_webserver) to be imported as well. 
-   #. Click on the Slicekit GPIO Ethernet Combo Demo item in the Explorer pane then click on the build icon (hammer) in xTIMEcomposer. Check the console window to verify that the application has built successfully.
+   #. Click on the ``Slicekit GPIO Ethernet Combo Demo`` item in the Explorer pane then click on the build icon (hammer) in xTIMEcomposer. Check the console window to verify that the application has built successfully.
 
 For help in using xTIMEcomposer, try the xTIMEcomposer tutorials, which you can find by selecting Help->Tutorials from the xTIMEcomposer menu.
-
-Note that the Developer Column in the xTIMEcomposer on the right hand side of your screen provides information on the xSOFTip components you are using. Select the ``generic UART Receiver``  component in the xSOFTip Browser, and you will see its description together with links to more documentation for this component. Once you have briefly explored this component, you can return to this quickstart guide by re-selecting  ``'Slicekit GPIO Ethernet Combo Demo'`` in the xSOFTip Browser and clicking once more on the Quickstart  link for the ``Slicekit GPIO Ethernet Combo Demo Quickstart``.
-    
 
 Running the Demo
 ++++++++++++++++
 
    #. Click on the ``Run`` icon (the white arrow in the green circle). A dialog will appear asking which device to connect to. Select ``XMOS XTAG2``. 
-   #. xTIMEcomposer console displays ip address obtained by the DHCP client (or local link if DHCP server is not accesible)
-   #. Open a web client on the host PC; say Google Chrome browser and type the above ip address in the browser's address bar
+   #. xTIMEcomposer console displays the ip address obtained by the DHCP client (or local link if DHCP server is not accesible)
+   #. Open a web browser on the host PC and type the ip address displayed in the console into the browser's address bar
    #. On hitting the return key, a web page should get loaded and displayed in the browser as shown in the figure below.
 
 .. figure:: images/gpio_web_page.png
@@ -59,14 +57,9 @@ Running the Demo
    Screenshot of GPIO web page
 
 Use the web page options to perform various actions such as
-   #. Select LEDs to switch ON or switch OFF the LEDs.
-   #. Select Button 1 and/or Button 2 to display button press status.
-   #. Once the LEDs and/or buttons are selected, press ``Submit`` button to send the web page request to XMOS GPIO web server
-   As a response to this web page request,
-   #. Application sets the selected LEDs ON or OFF on the GPIO Slice Card
-   #. If any button is selected, application displays whether the corresponding button on the GPIO Slice Card is pressed since its last request
-   #. The button press status is reset immediately after a button is checked for its press status
-   #. The temperature recorded from GPIO onboard ADC is displayed
+   #. Switch on all the LEDS by turning them all to 'ON' in the browser then clicking Submit. The LEDS should light, the ADC temperature display should be updated, and the webpage will report no buttons have been pressed.
+   #. Switch off two of the LEDS by turning two to 'OFF' in the browser then clicking Submit. Two LEDS should go out and the ADC temperature is reported again.
+   #. Press one of the buttons then press submit. The button status display should now report the button press.
    #. To continue your experimenation, open multiple web clients using different browsers and repeat the above steps for different GPIO settings
     
 Next Steps
