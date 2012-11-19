@@ -59,8 +59,9 @@ Running the Demo
 Use the web page options to perform various actions such as
    #. Switch on all the LEDS by turning them all to 'ON' in the browser then clicking Submit. The LEDS should light, the ADC temperature display should be updated, and the webpage will report no buttons have been pressed.
    #. Switch off two of the LEDS by turning two to 'OFF' in the browser then clicking Submit. Two LEDS should go out and the ADC temperature is reported again. This time also webpage will report no buttons have been pressed.
-   #. Press one of the buttons then press submit. The button status display should now report the button press.
-   #. Press the other button and then press submit. The button status display should now report the selected button press.
+   #. Press SW1 button on the GPIO slice card and then press submit. The web page should now report that Button 1 is pressed.
+   #. Press SW2 button on the GPIO slice card and then press submit. The web page should now report that Button 2 is pressed.
+   #. Just hitting Submit now displays both the buttons are not pressed. LEDs state remain unchanged unless they are explicitly changed on the web page.
     
 Next Steps
 ++++++++++
