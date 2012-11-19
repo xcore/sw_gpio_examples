@@ -213,13 +213,8 @@ Whenever there is a change in values of the button ports, a flag is used to kick
    :start-after: //::Button Scan Start
    :end-before: //::Button Scan End
 
-Button check statuses are reset immediately after the web page request to check for respective button status. The code is as shown below:
-
-.. literalinclude:: app_sk_gpio_eth_combo_demo/src/app_handler.xc
-   :start-after: //::Button Reset Start
-   :end-before: //::Button Reset End
-
-Every time a web page request is received, app_handler records current ADC value and sends it to web page. 
+Every time a web page request is received, app_handler records current ADC value and button press status and sends it to web page. 
+Button check statuses are reset immediately after the web page request.
 
 
 Using sc_website to build web page for this demo application
@@ -236,7 +231,7 @@ As a next step, create ``web`` folder in app_sk_gpio_eth_combo_demo
 In order to include any images to be displayed on the web page, create images folder as follows
 app_sk_gpio_eth_combo_demo/web/images
 
-For this application, we have created index.html web page using html script. This page uses XMOS logo from images folder. We have defined desired GPIO controls for LEDs and Buttons in this web page. 
+For this application, we have created index.html web page using html script. This page uses XMOS logo from images folder. We have defined desired GPIO controls for LEDs in this web page. 
 
 APIs that are required to be executed by the demo application should be enclosed between the tags ``{%`` and  ``%}``. These are to be defined in ``web_page_functions.c`` file.
 For example, index.html contains
