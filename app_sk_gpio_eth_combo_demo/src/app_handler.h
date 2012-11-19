@@ -37,6 +37,5 @@ typedef struct gpio_state {
 void app_handler(chanend c_gpio, REFERENCE_PARAM(r_i2c, p_i2c), port p_led, port p_button);
 void set_gpio_state(chanend c_gpio, REFERENCE_PARAM(gpio_state_t, gpio_new_state));
 void get_gpio_state(chanend c_gpio, REFERENCE_PARAM(gpio_state_t, gpio_state));
-void reset_gpio_button_state(chanend c_gpio, int button_id);
 
 #endif /* APP_HANDLER_H_ */

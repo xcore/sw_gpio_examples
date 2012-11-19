@@ -13,7 +13,6 @@
 typedef enum gpio_cmd_t {
   APP_HANDLER_SET_GPIO_STATE,
   APP_HANDLER_GET_GPIO_STATE,
-  APP_HANDLER_RESET_BUTTON_STATE,
 } gpio_cmd_t;
 
 //Temperature to ADC look up table
@@ -34,12 +33,6 @@ void get_gpio_state(chanend c_gpio, gpio_state_t &data)
 {
   c_gpio <: APP_HANDLER_GET_GPIO_STATE;
   c_gpio :> data;
-}
-
-void reset_gpio_button_state(chanend c_gpio, int button_id)
-{
-  c_gpio <: APP_HANDLER_RESET_BUTTON_STATE;
-  c_gpio <: button_id;
 }
 
 static int linear_interpolation(int adc_value)
@@ -142,26 +135,15 @@ void app_handler(chanend c_gpio, r_i2c &p_i2c, port p_led, port p_button) {
           }
           break;
           case APP_HANDLER_GET_GPIO_STATE: {
-        	int adc_value=read_adc_value(p_i2c);
-        	gpio_state.temperature = linear_interpolation(adc_value);
-        	c_gpio <: gpio_state;
+            int adc_value=read_adc_value(p_i2c);
+            gpio_state.temperature = linear_interpolation(adc_value);
+            /* Button states are already updated */
+            c_gpio <: gpio_state;
+            /* Reset button press statuses after a web page request */
+            gpio_state.button_1 = 0;
+            gpio_state.button_2 = 0;
           }
           break;
-//::Button Reset Start
-          case APP_HANDLER_RESET_BUTTON_STATE: {
-        	int button_value = 0;
-        	c_gpio :> button_value;
-        	if (0b01 == button_value)
-        	  gpio_state.button_1 = 0;
-        	else if (0b10 == button_value)
-        	  gpio_state.button_2 = 0;
-        	else if (0b11 == button_value) {
-        	  gpio_state.button_1 = 0;
-        	  gpio_state.button_2 = 0;
-        	}
-          }
-          break;
-//::Button Reset End
         } //switch (cmd)
       break; //case c_gpio :> int cmd:
     } //select

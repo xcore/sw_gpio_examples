@@ -32,21 +32,7 @@
 <option value='1' {% get_web_user_selection(buf,app_state,connection_state,1,4) %}>On</option>
 </select></td></tr>
 </table><br>
-<p>Check button press status :</p>
-<table border='1'>
-<tr><td width='150'>Button 1</td>
-<td><select name='b1' id='b1'>
-<option value='0' {% get_web_user_selection(buf,app_state,connection_state,0,5) %}>No</option>
-<option value='1' {% get_web_user_selection(buf,app_state,connection_state,1,5) %}>Yes</option>
-</select></td></tr>
-<tr><td width='150'>Button 2</td>
-<td><select name='b2' id='b2'>
-<option value='0' {% get_web_user_selection(buf,app_state,connection_state,0,6) %}>No</option>
-<option value='1' {% get_web_user_selection(buf,app_state,connection_state,1,6) %}>Yes</option>
-</select></td></tr>
-</table><br>
 <p>{% get_button_state(buf, app_state, connection_state) %}</p>
-<p>{% reset_button_state(buf, app_state, connection_state) %}</p>
 <p>{% read_temperature(buf, app_state, connection_state) %}</p>
 <input type="submit" Value="Submit"/><br><br>
 </form>

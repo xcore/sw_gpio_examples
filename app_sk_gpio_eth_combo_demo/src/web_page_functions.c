@@ -13,7 +13,6 @@
 typedef struct app_state_t {
   chanend c_gpio;
   gpio_state_t gpio_data;
-  int button_id;
 } app_state_t;
 
 static app_state_t app_state;
@@ -63,36 +62,10 @@ int process_web_page_data(char buf[], int app_state, int connection_state)
   } else
 	((app_state_t *) app_state)->gpio_data.led_3 = atoi(user_choice);
 
-  user_choice = web_server_get_param("b1", connection_state);
-  if (!user_choice || !(*user_choice)) {
-    char selstr[] = "Error in parsing web page variables";
-    strcpy(buf, selstr);
-    return strlen(selstr);
-  } else
-	((app_state_t *) app_state)->gpio_data.button_1 = atoi(user_choice);
-
-  user_choice = web_server_get_param("b2", connection_state);
-  if (!user_choice || !(*user_choice)) {
-    char selstr[] = "Error in parsing web page variables";
-    strcpy(buf, selstr);
-    return strlen(selstr);
-  } else
-	((app_state_t *) app_state)->gpio_data.button_2 = atoi(user_choice);
-
-  if ((((app_state_t *) app_state)->gpio_data.button_1) &&
-    (((app_state_t *) app_state)->gpio_data.button_2))
-	((app_state_t *) app_state)->button_id = 3;
-  else if (((app_state_t *) app_state)->gpio_data.button_1)
-	((app_state_t *) app_state)->button_id = 1;
-  else if (((app_state_t *) app_state)->gpio_data.button_2)
-	((app_state_t *) app_state)->button_id = 2;
-  else
-	((app_state_t *) app_state)->button_id = 0;
-
   ((app_state_t *) app_state)->gpio_data.temperature = 0;
-  /* Send web page request to app_handler to apply LED and button status enquiry */
+  /* Send web page request to app_handler to apply LED settings */
   set_gpio_state(c_gpio, &((app_state_t *) app_state)->gpio_data);
-  /* Fetch button press states and new temperature value */
+  /* Fetch LEDs, button press states and new temperature value */
   get_gpio_state(c_gpio, &((app_state_t *) app_state)->gpio_data);
   return 0;
 }
@@ -119,12 +92,6 @@ int get_web_user_selection(char buf[],
   break;
   case 4:
 	if (((app_state_t *) app_state)->gpio_data.led_3 == selected_value)
-	  select_flag = 1;
-  break;
-  case 5:
-  case 6:
-	/* Reset button check user selection to 'No' */
-	if (0 == selected_value)
 	  select_flag = 1;
   break;
   default:
@@ -157,35 +124,25 @@ int get_button_state(char buf[], int app_state, int connection_state)
     return 0;
 
   if ((((app_state_t *) app_state)->gpio_data.button_1) &&
-	(((app_state_t *) app_state)->gpio_data.button_2) &&
-	(0x3 == ((app_state_t *) app_state)->button_id)) {
+	(((app_state_t *) app_state)->gpio_data.button_2)) {
     char selstr[] = "<b>Both</b> Button 1 and Button 2 are pressed ";
     strcpy(buf, selstr);
     return strlen(selstr);
   }
-  else if ((((app_state_t *) app_state)->gpio_data.button_1) &&
-    (0x1 & ((app_state_t *) app_state)->button_id)) {
+  else if (((app_state_t *) app_state)->gpio_data.button_1) {
     char selstr[] = "<b>Button 1</b> is pressed";
     strcpy(buf, selstr);
     return strlen(selstr);
   }
-  else if ((((app_state_t *) app_state)->gpio_data.button_2) &&
-    (0x2 & ((app_state_t *) app_state)->button_id)) {
+  else if (((app_state_t *) app_state)->gpio_data.button_2) {
     char selstr[] = "<b>Button 2</b> is pressed";
     strcpy(buf, selstr);
     return strlen(selstr);
   }
-  else if (((app_state_t *) app_state)->button_id) {
-    char selstr[] = "Selected button(s) is <b>not</b> pressed";
+  else  {
+    char selstr[] = "<b>Both</b> Button 1 and Button 2 are <b>not</b> pressed";
     strcpy(buf, selstr);
     return strlen(selstr);
   }
-  return 0;
-}
-
-int reset_button_state(char buf[], int app_state, int connection_state)
-{
-  chanend c_gpio = (chanend) ((app_state_t *) app_state)->c_gpio;
-  reset_gpio_button_state(c_gpio, ((app_state_t *) app_state)->button_id);
   return 0;
 }
