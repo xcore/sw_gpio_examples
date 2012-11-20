@@ -98,7 +98,7 @@ int get_web_user_selection(char buf[],
   break;
   }
   if (select_flag) {
-	char selstr[] = "selected";
+	char selstr[] = "checked";
 	strcpy(buf, selstr);
 	return strlen(selstr);
   } else
@@ -125,7 +125,7 @@ int get_button_state(char buf[], int app_state, int connection_state)
 
   if ((((app_state_t *) app_state)->gpio_data.button_1) &&
 	(((app_state_t *) app_state)->gpio_data.button_2)) {
-    char selstr[] = "<b>Both</b> Button 1 and Button 2 are pressed ";
+    char selstr[] = "<b>Both</b> Button 1 and Button 2 are pressed";
     strcpy(buf, selstr);
     return strlen(selstr);
   }
@@ -140,7 +140,7 @@ int get_button_state(char buf[], int app_state, int connection_state)
     return strlen(selstr);
   }
   else  {
-    char selstr[] = "<b>Both</b> Button 1 and Button 2 are <b>not</b> pressed";
+    char selstr[] = "Button 1 and Button 2 are <b>not</b> pressed";
     strcpy(buf, selstr);
     return strlen(selstr);
   }
