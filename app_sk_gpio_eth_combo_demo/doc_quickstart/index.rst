@@ -38,7 +38,7 @@ Import and Build the Application
 ++++++++++++++++++++++++++++++++
 
    #. Open xTIMEcomposer, then open the edit perspective (Window->Open Perspective->XMOS Edit).
-   #. Locate the ``'Slicekit GPIO Ethernet Combo Demo'`` item in the xSOFTip Broswer window and drag it into the Project Explorer window in the xTIMEcomposer. This will also cause the modules on which this application depends (in this case, module_ethernet_board_support, module_i2c_master, module_webserver) to be imported as well. 
+   #. Locate the ``'Slicekit GPIO Ethernet Demo'`` item in the xSOFTip Broswer window and drag it into the Project Explorer window in the xTIMEcomposer. This will also cause the modules on which this application depends (in this case, module_ethernet_board_support, module_i2c_master, module_webserver) to be imported as well. 
    #. Click on the ``Slicekit GPIO Ethernet Demo`` item in the Explorer pane then click on the build icon (hammer) in xTIMEcomposer. Check the console window to verify that the application has built successfully.
 
 For help in using xTIMEcomposer, try the xTIMEcomposer tutorials, which you can find by selecting Help->Tutorials from the xTIMEcomposer menu.
@@ -73,7 +73,7 @@ Look at the Code
    #. The channel ``c_gpio`` is used between web page handler and application handler to send web page requests to the application and to collect GPIO status from the application.
    #. Identify which is the application structure to store the GPIO LEDs and buttons status. Yes, it is ``gpio_state_t`` as defined in app_handler.h file.
    #. In the app_handler.xc file, API set_gpio_state is used by web page in order to apply web page LED settings and similarly API get_gpio_state is used by web page to collect the current GPIO status containing LEDs, button presses and ADC temperature values.
-   #. GPIO button scan logic monitors for value changes on the configured 4-bit button port (XS1_PORT_4C) in the application handler routine as defined in the app_handler.xc file. Whenever this port value changes, GPIO button states are updated accordingly. Any clue on why the bebounce interval is required? Modify its value and check the application behaviour. You can infer this value as transient time required for button states to get a stable value.
+   #. GPIO button scan logic monitors for value changes on the configured 4-bit button port (XS1_PORT_4C) in the application handler routine as defined in the app_handler.xc file. Whenever this port value changes, GPIO button states are updated accordingly.
    #. You can also observe that ADC value is read whenever there is a web page request. This value is interpolated to get proper temerature value and is updated in the GPIO state structure before sending it to the web page.
    #. As a part of this exercise, modify the IP address in main.xc file to a local link address as in the commented part of ip config, build and run the application. Open a web browser to check whether you are able to open a web page using the new ip address and able to issue LED commands from the web page.
 
