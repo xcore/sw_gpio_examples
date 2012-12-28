@@ -1,0 +1,38 @@
+<html>
+<head>
+<title>XMOS GPIO Webserver</title>
+</head>
+<body>
+<h1>xSOFTip GPIO and Wi-Fi Demo Application</h1>
+<p>This is an example application to showcase GPIO features using a web page</p>
+<p>{% process_web_page_data(buf,app_state,connection_state) %}</p>
+<form name="form" action = "" method="post">
+<p>Modify LEDs State :</p>
+<table border='1'>
+<tr>
+<td width='150'>LED 0</td>
+<td width='70'><input type="radio" name='l0' id='l0' value='0' {% get_web_user_selection(buf,app_state,connection_state,0,1) %}>Off</td>
+<td width='70'><input type="radio" name='l0' id='l0' value='1' {% get_web_user_selection(buf,app_state,connection_state,1,1) %}>On</td>
+</tr>
+<tr>
+<td width='150'>LED 1</td>
+<td><input type="radio" name='l1' id='l1' value='0' {% get_web_user_selection(buf,app_state,connection_state,0,2) %}>Off</td>
+<td><input type="radio" name='l1' id='l1' value='1' {% get_web_user_selection(buf,app_state,connection_state,1,2) %}>On</td>
+</tr>
+<tr>
+<td width='150'>LED 2</td>
+<td><input type="radio" name='l2' id='l2' value='0' {% get_web_user_selection(buf,app_state,connection_state,0,3) %}>Off</td>
+<td><input type="radio" name='l2' id='l2' value='1' {% get_web_user_selection(buf,app_state,connection_state,1,3) %}>On</td>
+</tr>
+<tr>
+<td width='150'>LED 3</td>
+<td><input type="radio" name='l3' id='l3' value='0' {% get_web_user_selection(buf,app_state,connection_state,0,4) %}>Off</td>
+<td><input type="radio" name='l3' id='l3' value='1' {% get_web_user_selection(buf,app_state,connection_state,1,4) %}>On</td>
+</tr>
+</table>
+<p>{% get_button_state(buf, app_state, connection_state) %}</p>
+<p>{% read_temperature(buf, app_state, connection_state) %}</p>
+<input type="submit" Value="Submit"/>
+</form>
+</body>
+</html>

@@ -240,3 +240,90 @@ For example, index.html contains
 This indicates ``read_temperature`` is a function executed by the program and result is returned to the web page. After execution, sc_website component replaces this function as 
 <p>"Temperature recorded from onboard ADC: <b>NA </b><sup>o</sup>C"</p>
 
+
+
+GPIO Wi-Fi Combo Demo
+---------------------
+
+Structure
++++++++++
+
+All the files required for operation are located in the app_sk_gpio_wifi_tiwisl_combo_demo/src directory. The files to be included for use of the dependent components are:
+
+.. list-table::
+    :header-rows: 1
+    
+    * - File
+      - Description
+    * - ``wifi_tiwisl_server.h``
+      - Header file for Wi-Fi API interface
+    * - ``web_server.h``
+      - Header file for web server API interface in order to use web pages
+    * - ``i2c.h``
+      - Defines i2c pins and API interface to use i2c master component for GPIO adc interfacing
+    * - ``app_handler.h``
+      - Application specific defines and API interface to implement demo functionality
+
+API
++++
+
+.. doxygenfunction:: app_handler
+.. doxygenfunction:: process_web_page_data
+.. doxygenfunction:: get_web_user_selection
+
+
+Usage and Implementation
+++++++++++++++++++++++++
+
+The port declaration for Wi-Fi (SPI), LEDs, Buttons and I2C are declared as below:
+   * Wi-Fi control uses 3 one-bit ports for nCS(Chip Select), nIRQ(interrupt) and Power enable
+   * SPI uses 3 one-bit ports for MOSI, CLK and MISO
+   * I2C uses 1 bit port for SCL(I2C Clock) and SDA (I2C data)
+   * LEDs and Buttons use 4 bit ports
+
+.. literalinclude:: app_sk_gpio_wifi_tiwisl_combo_demo/src/main.xc
+   :start-after: //::Ports Start
+   :end-before: //::Ports End
+
+The app_manager API writes the configuration settings to the ADC as shows below
+
+.. literalinclude:: app_sk_gpio_wifi_tiwisl_combo_demo/src/app_handler.xc
+   :start-after: //::ADC Config Start
+   :end-before: //::ADC Config End
+
+The select statement in the app_handler API selects either I/O events to check for any valid button presses or uses channel events to detect any commands from web page requests. Valid web page commands are either to set or reset LEDs and check button press state since last check request. 
+
+Whenever there is a change in values of the button ports, a flag is used to kick start a timer for debounce interval, and port value is sampled to identify which button is pressed. The code is as shown below
+
+.. literalinclude:: app_sk_gpio_wifi_tiwisl_combo_demo/src/app_handler.xc
+   :start-after: //::Button Scan Start
+   :end-before: //::Button Scan End
+
+Every time a web page request is received, app_handler records current ADC value and button press status and sends it to web page. 
+Button check statuses are reset immediately after the web page request.
+
+
+Using sc_website to build web page for this demo application
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+Makefile in app_sk_gpio_wifi_tiwisl_combo_demo folder should include the following line:
+
+WEBFS_TYPE = internal
+
+This value indicates sc_website component to use program memory instead of FLASH memory to store the web pages.
+
+As a next step, create ``web`` folder in app_sk_gpio_wifi_tiwisl_combo_demo
+
+In order to include any images to be displayed on the web page, create images folder as follows
+app_sk_gpio_wifi_tiwisl_combo_demo/web/images
+
+For this application, we have created index.html web page using html script. We have defined desired GPIO controls for LEDs in this web page. 
+
+APIs that are required to be executed by the demo application should be enclosed between the tags ``{%`` and  ``%}``. These are to be defined in ``web_page_functions.c`` file.
+For example, index.html contains
+<p>{% read_temperature(buf, app_state, connection_state) %}</p>
+
+This indicates ``read_temperature`` is a function executed by the program and result is returned to the web page. After execution, sc_website component replaces this function as 
+<p>"Temperature recorded from on-board ADC: <b>NA </b><sup>o</sup>C"</p>
+
+
