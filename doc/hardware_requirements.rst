@@ -60,3 +60,20 @@ This application extends the GPIO com port demo to utilize Ethernet and XTCP com
     :align: left
 
     Hardware Setup for GPIO Ethernet combo Demo
+
+app_sk_gpio_wifi_tiwisl_combo_demo
+++++++++++++++++++++++++++++++++++
+
+   * Wi-Fi Slice Card is additionally required for this demo
+
+This application extends the GPIO com port demo to utilize Wi-Fi component in order to host a web page to
+
+   * Turn GPIO Slice Card LEDs on and off
+   * Display GPIO Slice Card button press status
+   * Read the room temperature via the on-board ADC and display on the web page
+
+.. image:: images/gpio_wifi_tiwisl_combo_hardware_setup.png
+    :align: left
+
+    Hardware Setup for GPIO Wi-Fi combo Demo
+    

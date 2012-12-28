@@ -22,3 +22,7 @@ Each application might require some or all of the following components. Refer to
   * sc_xtcp (git@github.com:xcore/sc_xtcp.git)
   * sc_otp (git@github.com:xcore/sc_otp.git)
   * sc_util (git@github.com:xcore/sc_util.git)
+  * sc_wifi (git@github.com:xcore/sc_wifi.git)
+  * sc_spi (git@github.com:xcore/sc_spi.git)
+  
+  
