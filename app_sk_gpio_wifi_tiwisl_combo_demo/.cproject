@@ -613,6 +613,6 @@
 		</cconfiguration>
 	</storageModule>
 	<storageModule moduleId="cdtBuildSystem" version="4.0.0">
-		<project id="app_sk_gpio_eth_combo_demo.null.898489281" name="app_sk_gpio_eth_combo_demo"/>
+		<project id="app_sk_gpio_wifi_tiwisl_combo_demo.null.898489281" name="app_sk_gpio_wifi_tiwisl_combo_demo"/>
 	</storageModule>
 </cproject>
