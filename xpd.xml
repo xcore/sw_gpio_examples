@@ -82,5 +82,5 @@
     <xcore_repo>sw_gpio_examples.git</xcore_repo>
     <xpd_version>1.0</xpd_version>
     <xsoftip_exclude>app_sk_gpio_tutorial</xsoftip_exclude>
-    <xsoftip_exclude>app_sk_gpio_wifi_tiwisl_combo_demo</xsoftip_exclude>
+    <exclude_dir>app_sk_gpio_wifi_tiwisl_combo_demo</exclude_dir>
 </xpd>
