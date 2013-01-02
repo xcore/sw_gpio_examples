@@ -1,9 +1,5 @@
 GPIO Examples Change Log
 ========================
-
-1.0.4
------
-  * Added GPIO WebServer example application with Wi-Fi
   
 1.0.3
 -----
