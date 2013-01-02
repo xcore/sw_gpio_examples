@@ -11,6 +11,24 @@
             <keyword>buttons</keyword>
             <keyword>UART</keyword>
         </component>
+        <component description = "An example application to demonstrate usage of multiple Slice Cards. This application showcase GPIO features which can be accessed and controlled using a web page" type = "demoCode" scope = "Example" path = "app_sk_gpio_eth_combo_demo" local = "false" id = "app_sk_gpio_eth_combo_demo" name = "app_sk_gpio_eth_combo_demo">
+            <board>XP-SKC-L2</board>
+            <board>XA-SK-GPIO</board>
+            <board>XA-SK-E100</board>
+            <componentDependency>module_webserver</componentDependency>
+            <componentDependency>module_i2c_master</componentDependency>
+            <componentDependency>module_otp_board_info</componentDependency>
+            <componentDependency>module_locks</componentDependency>
+            <componentDependency>module_xtcp</componentDependency>
+            <componentDependency>module_ethernet_board_support</componentDependency>
+            <componentDependency>module_mutual_thread_comm</componentDependency>
+            <componentDependency>module_ethernet_smi</componentDependency>
+            <componentDependency>module_ethernet</componentDependency>
+            <keyword>Ethernet</keyword>
+            <keyword>I2C</keyword>
+            <keyword>LED</keyword>
+            <keyword>buttons</keyword>
+        </component>
         <component description = "An example applications that demonstrate various features of the XA-SK-GPIO Slice Card including the ADC, LEDs and buttons, the I2C master xSOFTip component, as well as various basic features of the xCORE processor." type = "demoCode" scope = "Example" path = "app_sk_gpio_simple_demo" local = "false" id = "app_sk_gpio_simple_demo" name = "Slicekit Simple GPIO Demo">
             <board>XA-SK-GPIO</board>
             <componentDependency>module_i2c_master</componentDependency>
@@ -58,6 +76,7 @@
     <docdir>app_sk_gpio_simple_demo/doc_quickstart</docdir>
     <docdir>app_sk_gpio_com_demo/doc_quickstart</docdir>
     <docdir>app_sk_gpio_eth_combo_demo/doc_quickstart</docdir>
+    <exclude_dir>app_sk_gpio_wifi_tiwisl_combo_demo</exclude_dir>
     <location>git://github.com/xcore/sw_gpio_examples.git</location>
     <name>sw_gpio_examples</name>
     <maintainer>sethuchandan</maintainer>
@@ -77,10 +96,10 @@
     <release parenthash = "eb7131fa34dd9359eaeaea1ed25b385b2eb96eba" version = "1.0.1rc0" githash = "01bea5b5f8f1d0eceb0c448d25a718d0b7b00db9"></release>
     <release parenthash = "7ddbafe0cab44b137684dc087be56f8cbb29340a" version = "1.0.2alpha0" githash = "83b6d4b4139af27f4ea28282e73d456f549a0d9a"></release>
     <release parenthash = "dcbdb01637adb10aef2a3a8afb1a61706fd53ca7" version = "1.0.2rc0" githash = "b5889de3a516d8554b3e337f73d0e95b21d9a97b"></release>
+    <release parenthash = "3b7e4eb45a6f5b1f0212b47c1cee9937fac3134e" version = "1.0.3alpha0"></release>
     <subpartnumber>XM-001887-SM</subpartnumber>
     <vendor>XMOS</vendor>
     <xcore_repo>sw_gpio_examples.git</xcore_repo>
     <xpd_version>1.0</xpd_version>
     <xsoftip_exclude>app_sk_gpio_tutorial</xsoftip_exclude>
-    <exclude_dir>app_sk_gpio_wifi_tiwisl_combo_demo</exclude_dir>
 </xpd>
