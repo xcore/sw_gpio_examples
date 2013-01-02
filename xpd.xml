@@ -48,6 +48,7 @@
     <docdir>doc</docdir>
     <docdir>app_sk_gpio_simple_demo/doc_quickstart</docdir>
     <docdir>app_sk_gpio_com_demo/doc_quickstart</docdir>
+    <docdir>app_sk_gpio_eth_combo_demo/doc_quickstart</docdir>
     <location>git://github.com/xcore/sw_gpio_examples.git</location>
     <name>sw_gpio_examples</name>
     <maintainer>sethuchandan</maintainer>
