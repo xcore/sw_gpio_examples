@@ -40,13 +40,18 @@
         <githash>f01fa2f8121e8d69d71185a04a05fddf9373c523</githash>
         <uri>https://github.com/xcore/sc_ethernet.git</uri>
     </dependency>
+    <dependency repo = "sc_otp">
+        <githash>062aa923a78bc603b254b2a99b78593ab3a816ec</githash>
+        <uri>https://github.com/xcore/sc_otp.git</uri>
+        <version>1.0.0rc0</version>
+    </dependency>
     <dependency repo = "sc_xtcp">
-        <githash>f01fa2f8121e8d69d71185a04a05fddf9373c523</githash>
-        <uri>https://github.com/xcore/sc_ethernet.git</uri>
+        <githash>072fc71ce5b5c699ea55621c77db1834bddd3b4b</githash>
+        <uri>git://github.com/xcore/sc_xtcp.git</uri>
     </dependency>
     <dependency repo = "sc_util">
-        <githash>f01fa2f8121e8d69d71185a04a05fddf9373c523</githash>
-        <uri>https://github.com/xcore/sc_ethernet.git</uri>
+        <githash>be23d74c64ddcd8bfd21285b5918090dbd5046ce</githash>
+        <uri>git://github.com/xcore/sc_util.git</uri>
     </dependency>
     <description>Example Application for XA-SK-GPIO Slice Card showing use of I2C, external ADC with temperature sensor, LEDs and buttons</description>
     <docdir>doc</docdir>
