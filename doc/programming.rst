@@ -276,7 +276,9 @@ Usage and Implementation
 ++++++++++++++++++++++++
 
 The port declaration for Wi-Fi (SPI), LEDs, Buttons and I2C are declared as below:
-   * Wi-Fi control uses 3 one-bit ports for nCS(Chip Select), nIRQ(interrupt) and Power enable
+   * Wi-Fi control uses 
+        * 1 four-bit port for nCS(Chip Select) and Power enable
+        * 1 one-bit port for nIRQ(interrupt) 
    * SPI uses 3 one-bit ports for MOSI, CLK and MISO
    * I2C uses 1 bit port for SCL(I2C Clock) and SDA (I2C data)
    * LEDs and Buttons use 4 bit ports
