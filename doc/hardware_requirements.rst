@@ -64,7 +64,7 @@ This application extends the GPIO com port demo to utilize Ethernet and XTCP com
 app_sk_gpio_wifi_tiwisl_combo_demo
 ++++++++++++++++++++++++++++++++++
 
-   * Wi-Fi Slice Card is additionally required for this demo
+   * XA-SK-WIFI Slice Card is additionally required for this demo
 
 This application extends the GPIO com port demo to utilize Wi-Fi component in order to host a web page to
 

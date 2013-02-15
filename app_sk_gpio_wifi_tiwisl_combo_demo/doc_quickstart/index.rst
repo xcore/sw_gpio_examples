@@ -6,7 +6,7 @@ GPIO Wi-Fi Demo Quick Start Guide
 sw_gpio_examples GPIO and Wi-Fi demo : Quick Start Guide
 -----------------------------------------------------------
 
-This example demonstrates the use of two Slice Cards, XA-SK-GPIO and Wi-Fi slice together with the xSOFTip components for Wi-Fi, SPI, I2C and WebServer to provide access to the GPIO slice features via a simple embedded webserver.
+This example demonstrates the use of two Slice Cards, XA-SK-GPIO and XA-SK-WIFI slice together with the xSOFTip components for Wi-Fi, SPI, I2C and WebServer to provide access to the GPIO slice features via a simple embedded webserver.
 
 A webpage served from the sliceKIT and accessed in a browser on a host PC has the following demo functions:
    * Turn GPIO Slice Card LEDS on and off
@@ -20,7 +20,7 @@ The XP-SKC-L2 Slicekit Core board has four slots with edge connectors: ``SQUARE`
 
 To setup up the system refer to the figure and instructions below 
 
-   #. Connect the Wi-Fi Slice Card to the XP-SKC-L2 Slicekit Core board using the connector marked with the ``TRIANGLE``.
+   #. Connect the XA-SK-WIFI Slice Card to the XP-SKC-L2 Slicekit Core board using the connector marked with the ``TRIANGLE``.
    #. Connect the XA-SK-GPIO Slice Card to the XP-SKC-L2 Slicekit Core board using the connector marked with the ``SQUARE``.
    #. Connect the XTAG Adapter to Slicekit Core board, and connect XTAG-2 to the adapter. 
    #. Connect the XTAG-2 to the host PC.

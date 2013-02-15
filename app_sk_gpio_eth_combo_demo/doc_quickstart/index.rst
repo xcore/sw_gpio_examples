@@ -47,7 +47,7 @@ Running the Demo
 ++++++++++++++++
 
    #. Click on the ``Run`` icon (the white arrow in the green circle). A dialog will appear asking which device to connect to. Select ``XMOS XTAG2``. 
-   #. xTIMEcomposer console displays the ip address obtained by the DHCP client (or local link if DHCP server is not accesible)
+   #. xTIMEcomposer console displays the ip address obtained by the DHCP client (or local link if DHCP server is not accesible). Please note if the DHCP  server is not available on the host PC, it may take a while to obtain the ip address.
    #. Open a web browser on the host PC and type the ip address displayed on the xTIMEcomposer console into the browser's address bar
    #. On hitting the return key, a web page should get loaded and displayed in the browser as shown in the figure below.
 
@@ -66,17 +66,19 @@ Use the web page options to perform various actions such as
 Next Steps
 ++++++++++
 
-Look at the Code
-................
-
-   #. Examine the application code. In xTIMEcomposer navigate to the ``src`` directory under app_sk_gpio_eth_combo_demo and double click on the main.xc file within it. The file will open in the central editor window.
-   #. The channel ``c_gpio`` is used between web page handler and application handler to send web page requests to the application and to collect GPIO status from the application.
-   #. In the app_handler.xc file, API set_gpio_state is used by the web page in order to apply web page LED settings and similarly API get_gpio_state is used by web page to collect the current GPIO status containing LEDs, button presses and ADC temperature values.
-   #. GPIO button scan logic monitors for value changes on the configured 4-bit button port (XS1_PORT_4C) in the application handler routine as defined in the app_handler.xc file. Whenever this port value changes, GPIO button states are updated accordingly.
-   #. You can also observe that the ADC value is read whenever there is a web page request. This value is interpolated to get a proper temerature value and is updated in the GPIO state structure before sending it to the web page.
-   #. As a part of this exercise, modify the IP address in main.xc file to a local link address as in the commented part of ip config, build and run the application. Open a web browser to check whether you are able to open a web page using the new ip address and able to issue LED commands from the web page.
-
 Building web pages for your applications
 ........................................
 
-This application parses ethernet data to interpret web page commands. Refer to Programming Guide section within the ``SliceKit GPIo Example Applications`` documentation linked from the front page documentation for this demo for more information on how to utilize the ``Embedded Webserver Function Library`` component in building your own custom web server applications.
+This application parses ethernet data to interpret web page commands. Refer to the Programming Guide section within the ``SliceKit GPIO Example Applications`` documentation linked from the front page documentation for this demo for more information on how to utilize the ``Embedded Webserver Function Library`` component in building your own custom web server applications.
+
+Look at the Code
+................
+
+The application handler runs on one core. It uses I/O pins to read or write data to the LEDs, buttons and the I2C ADC to read the temperature. The web page handler executes in another core, receiving the TCP requests and processing them. It calls the functions described in the webpage (webpage includes embedded function calls into the application code), processing the requests and sending commands over the c_gpio channel to the gpio core (application handler).
+
+   #. Examine the application code. In xTIMEcomposer navigate to the ``src`` directory under app_sk_gpio_eth_combo_demo and double click on the main.xc file within it. The file will open in the central editor window.
+   #. The channel ``c_gpio`` is used between tcp handler and application handler to send web page requests to the application and to collect GPIO status from the application.
+   #. In the app_handler.xc file, the API function ``set_gpio_state`` is used by the web page in order to apply web page LED settings and similarly the API function ``get_gpio_state`` is used by the web page to collect the current GPIO status containing LEDs, button presses and ADC temperature values.
+   #. There is some GPIO button scan logic which monitors for value changes on the configured 4-bit button port (XS1_PORT_4C) in the application handler routine as defined in the ``app_handler.xc`` file. Whenever this port value changes, the GPIO button states are updated accordingly.
+   #. Also verify that that the ADC value is read whenever there is a web page request. This value is interpolated to get a proper temerature value and is updated in the GPIO state structure before sending it to the web page.
+   #. As a part of this exercise, modify the IP address settings in main.xc file to a static ip address as in the commented part of ip config, build and run the application. Open a web browser to check whether you are able to open a web page using the new ip address and able to issue LED commands from the web page.

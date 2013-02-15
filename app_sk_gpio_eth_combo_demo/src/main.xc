@@ -10,7 +10,6 @@
 #include "app_handler.h"
 #include "ethernet_board_support.h"
 
-//#define DHCP
 
 //::Ports Start
 ethernet_xtcp_ports_t xtcp_ports =
@@ -28,17 +27,17 @@ on tile[1]: port p_button=XS1_PORT_4C;
 
 // IP Config - change this to suit your network.  Leave with all
 // 0 values to use DHCP
-#ifdef DHCP
+#ifdef STATIC_IP
+xtcp_ipconfig_t ipconfig = {
+  { 192, 168, 1, 178 },
+  { 255, 255, 0, 0 },
+  { 0, 0, 0, 0 }
+};
+#else
 xtcp_ipconfig_t ipconfig = {
   { 0, 0, 0, 0 }, // ip address (eg 192,168,0,2)
   { 0, 0, 0, 0 }, // netmask (eg 255,255,255,0)
   { 0, 0, 0, 0 } // gateway (eg 192,168,0,1)
-};
-#else
-xtcp_ipconfig_t ipconfig = {
-  { 169, 254, 196, 178 },
-  { 255, 255, 0, 0 },
-  { 0, 0, 0, 0 }
 };
 #endif
 
