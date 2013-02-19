@@ -45,6 +45,7 @@ For help in using xTIMEcomposer, try the xTIMEcomposer tutorials, which you can 
 Running the Demo
 ++++++++++++++++
 
+   #. Enable offline Xscope printing in the run configurations. Run Configuration -> XScope: Select Offline [Xscope] mode.
    #. Click on the ``Run`` icon (the white arrow in the green circle). A dialog will appear asking which device to connect to. Select ``XMOS XTAG2``. 
    #. xTIMEcomposer console displays the IP address obtained by the DHCP client
    #. Open a web browser on the host PC and type the IP address displayed on the xTIMEcomposer console into the browser's address bar
