@@ -77,7 +77,7 @@
     <docdir>app_sk_gpio_simple_demo/doc_quickstart</docdir>
     <docdir>app_sk_gpio_com_demo/doc_quickstart</docdir>
     <docdir>app_sk_gpio_eth_combo_demo/doc_quickstart</docdir>
-    <exclude_dir>app_sk_gpio_wifi_tiwisl_combo_demo</exclude_dir>
+    <docdir>app_sk_gpio_wifi_tiwisl_combo_demo/doc_quickstart</docdir>
     <location>git://github.com/xcore/sw_gpio_examples.git</location>
     <name>sw_gpio_examples</name>
     <maintainer>sethuchandan</maintainer>
