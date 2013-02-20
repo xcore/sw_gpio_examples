@@ -1,5 +1,9 @@
 GPIO Examples Change Log
 ========================
+
+1.0.4
+-----
+  * Added Wifi GPIO combo application
   
 1.0.3
 -----
