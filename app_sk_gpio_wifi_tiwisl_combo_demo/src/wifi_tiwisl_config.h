@@ -20,9 +20,9 @@
  constants
  ---------------------------------------------------------------------------*/
 /* SSID as advertized by your wireless router */
-#define WIFI_SSID           "xms6testap0"
+#define WIFI_SSID           "XMOS"
 /* Password (if any) to connect to your wireless router */
-#define WIFI_PASSWORD       ""
+#define WIFI_PASSWORD       "TS;V=9fg.f"
 /*
  * Security type of your wireless router
  * If its unsecured (no password or open): TIWISL_SEC_TYPE_UNSEC
@@ -30,7 +30,7 @@
  * If its WPA: TIWISL_SEC_TYPE_WPA
  * If its WPA2: TIWISL_SEC_TYPE_WPA2
  */
-#define WIFI_SECURITY_TYPE  TIWISL_SEC_TYPE_UNSEC
+#define WIFI_SECURITY_TYPE  TIWISL_SEC_TYPE_WPA2
 
 /*---------------------------------------------------------------------------
  typedefs
