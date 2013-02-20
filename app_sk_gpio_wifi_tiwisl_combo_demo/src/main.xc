@@ -6,6 +6,7 @@
 #include <platform.h>
 #include <xs1.h>
 #include "wifi_tiwisl_server.h"
+#include "wifi_tiwisl_config.h"
 #include "web_server.h"
 #include "app_handler.h"
 
@@ -51,8 +52,8 @@ xtcp_ipconfig_t ipconfig = {
 };
 #endif
 
-// Wireless Access Point Configuration: SSID, Key, Security Type.
-wifi_ap_config_t ap_config = {"xms6testap0", "", TIWISL_SEC_TYPE_UNSEC};
+// Wireless access point config: SSID, Key, Security Type
+wifi_ap_config_t ap_config = {WIFI_SSID, WIFI_PASSWORD, WIFI_SECURITY_TYPE};
 
 void tcp_handler(chanend c_xtcp, chanend c_gpio) {
   xtcp_connection_t conn;
