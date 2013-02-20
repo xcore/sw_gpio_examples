@@ -422,7 +422,8 @@ void process_data(chanend c_process, chanend c_end)
 				button=1;
 				break;
 
-			case c_process:>cmd_rcvbuffer[i++]:
+			case c_process :> cmd_rcvbuffer[i]:
+                                i+=1;
 				skip=1;
 				while(skip == 1)
 				{
