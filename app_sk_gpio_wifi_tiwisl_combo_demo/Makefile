@@ -24,5 +24,7 @@ VERBOSE = 0
 
 WEBFS_TYPE = internal
 
+WEBSERVER_USE_MODULE_WIFI = 1
+
 XMOS_MAKE_PATH ?= ../..
 -include $(XMOS_MAKE_PATH)/xcommon/module_xcommon/build/Makefile.common
