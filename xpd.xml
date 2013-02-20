@@ -72,6 +72,11 @@
         <githash>3f82b846395c07e8dd32ad9951afc209b6ed7efc</githash>
         <uri>git://github.com/xcore/sc_util.git</uri>
     </dependency>
+    <dependency repo = "sc_spi">
+        <githash>16898e9423ff46c1516a436a865730df85457b6b</githash>
+        <uri>https://github.com/xcore/sc_spi.git</uri>
+        <version>1.3.0rc1</version>
+    </dependency>
     <description>Example Application for XA-SK-GPIO Slice Card showing use of I2C, external ADC with temperature sensor, LEDs and buttons</description>
     <docdir>doc</docdir>
     <docdir>app_sk_gpio_simple_demo/doc_quickstart</docdir>
@@ -98,7 +103,7 @@
     <release parenthash = "7ddbafe0cab44b137684dc087be56f8cbb29340a" version = "1.0.2alpha0" githash = "83b6d4b4139af27f4ea28282e73d456f549a0d9a"></release>
     <release parenthash = "dcbdb01637adb10aef2a3a8afb1a61706fd53ca7" version = "1.0.2rc0" githash = "b5889de3a516d8554b3e337f73d0e95b21d9a97b"></release>
     <release parenthash = "3b7e4eb45a6f5b1f0212b47c1cee9937fac3134e" version = "1.0.3alpha0" githash = "504812a4f92bfb31b29b27fab3e35b3c963335ad"></release>
-    <release parenthash = "65c5e39da349ec675a6c546d88c9c40c220cc32d" version = "1.0.3alpha1"></release>
+    <release parenthash = "65c5e39da349ec675a6c546d88c9c40c220cc32d" version = "1.0.3alpha1" githash = "fbd0565ec8fbf960e3890b13e12b866af31d913a"></release>
     <subpartnumber>XM-001887-SM</subpartnumber>
     <vendor>XMOS</vendor>
     <xcore_repo>sw_gpio_examples.git</xcore_repo>
