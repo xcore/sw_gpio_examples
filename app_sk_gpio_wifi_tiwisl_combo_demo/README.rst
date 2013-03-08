@@ -4,7 +4,7 @@ Slicekit GPIO and Wi-Fi Combo Demo
 :scope: Example
 :description: An example application to demonstrate the Wifi Slice controlling the LEDS and monitoring thebuttons and temperature sensor on the GPIO Slice.
 :keywords: wifi, I2C, LED, buttons
-:boards: XP-SKC-L2, XA-SK-GPIO, Wi-Fi Slice
+:boards: XP-SKC-L2, XA-SK-GPIO, XA-SK-WIFI-TIWISL
 
 Features
 --------
