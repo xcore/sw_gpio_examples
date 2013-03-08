@@ -38,7 +38,7 @@
             <keyword>LED</keyword>
             <keyword>buttons</keyword>
         </component>
-        <component description = "An example application to demonstrate the Wifi Slice controlling the LEDS and monitoring thebuttons and temperature sensor on the GPIO Slice." type = "demoCode" scope = "Example" path = "app_sk_gpio_wifi_tiwisl_combo_demo" local = "false" id = "app_sk_gpio_wifi_tiwisl_combo_demo" name = "app_sk_gpio_wifi_tiwisl_combo_demo">
+        <component description = "An example application to demonstrate the Wifi Slice controlling the LEDS and monitoring thebuttons and temperature sensor on the GPIO Slice." type = "demoCode" scope = "Example" path = "app_sk_gpio_wifi_tiwisl_combo_demo" local = "false" id = "app_sk_gpio_wifi_tiwisl_combo_demo" name = "Slicekit GPIO and Wi-Fi Combo Demo">
             <board>XP-SKC-L2</board>
             <board>XA-SK-GPIO</board>
             <board>Wi-Fi Slice</board>

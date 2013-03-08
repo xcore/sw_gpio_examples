@@ -16,13 +16,3 @@ With this application running on XP-SKC-L2 using XA-SK-GPIO and Wi-Fi Slice Card
    * Display GPIO Slice Card button presses
 
 
-Required software (dependencies)
-================================
-
-  * sc_i2c (git@github.com:xcore/sc_i2c.git)
-  * sc_website (git@github.com:xcore/sc_webiste.git)
-  * sc_wifi (git@github.com:xcore/sc_wifi.git)
-  * sc_spi (git@github.com:xcore/sc_spi.git)
-  * sc_otp (git@github.com:xcore/sc_otp.git)
-  * sc_util (git@github.com:xcore/sc_util.git)
-
