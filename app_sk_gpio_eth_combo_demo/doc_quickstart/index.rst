@@ -1,5 +1,5 @@
-GPIO Ethernet Demo Quickstart Guide
-===================================
+Slicekit GPIO and Ethernet Combo Demo Quickstart Guide
+======================================================
 
 .. _Slicekit_GPIO_Ethernet_Demo_Quickstart:
 
