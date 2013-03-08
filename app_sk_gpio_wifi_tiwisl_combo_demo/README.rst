@@ -1,5 +1,5 @@
 Slicekit GPIO and Wi-Fi Combo Demo
-=====================================
+==================================
 
 :scope: Example
 :description: An example application to demonstrate the Wifi Slice controlling the LEDS and monitoring thebuttons and temperature sensor on the GPIO Slice.
