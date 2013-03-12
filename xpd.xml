@@ -63,7 +63,7 @@
         <uri>git@github.com:xcore/sc_i2c.git</uri>
     </dependency>
     <dependency repo = "sc_uart">
-        <githash>5d35c57d976fc431dfac105b7101ccc0d64b5b65</githash>
+        <githash>a0b8776a61e6bb0f83450d831ff9d137a66a76e7</githash>
         <uri>git@github.com:xcore/sc_uart.git</uri>
     </dependency>
     <dependency repo = "sc_pwm">
@@ -135,7 +135,8 @@
     <release parenthash = "2fbaf7cb17aa8c5ddd1f0069c600ed48a1313cc2" version = "1.0.4beta2" githash = "41d354368a96f0aaadaa5e950cae9b5883efd1e1"></release>
     <release parenthash = "38e04a72954d2581f45e45809a1e91ecf5c1f4a8" version = "1.0.4beta3" githash = "d65e4c0aeba40475197a75818e6e3a08c527b74c"></release>
     <release parenthash = "356ff77f63c215c757970b5d5d9892882fd5fe15" version = "1.0.4beta4" githash = "ee4b5814a5cba0995f68f201d1ddab825ac6d7d5"></release>
-    <release parenthash = "13b5d3987fa00e58366009abe9f2c0021fb44085" version = "1.0.4beta5"></release>
+    <release parenthash = "13b5d3987fa00e58366009abe9f2c0021fb44085" version = "1.0.4beta5" githash = "2aaf923a5a98ae3ac1bac2f1baf88623b7a1f4ed"></release>
+    <release parenthash = "2aaf923a5a98ae3ac1bac2f1baf88623b7a1f4ed" version = "1.0.4rc0"></release>
     <subpartnumber>XM-001887-SM</subpartnumber>
     <vendor>XMOS</vendor>
     <xcore_repo>sw_gpio_examples.git</xcore_repo>
