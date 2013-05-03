@@ -6,10 +6,10 @@ GPIO Simple Demo Quickstart Guide
 sw_gpio_examples simple demo : Quick Start Guide
 ------------------------------------------------
 
-This simple demonstration of xTimeComposer Studio functionality uses the XA-SK-GPIO Slice Card together with the xSOFTip I2C Master component to:
+This simple demonstration of xTIMEcomposer Studio functionality uses the XA-SK-GPIO Slice Card together with the xSOFTip I2C Master component to:
 
    * communicate with the ADC (and external temperature sensing circuit) on the Slice Card
-   * display the temperature value on the xTimeComposer debug console when a button is pressed
+   * display the temperature value on the xTIMEcomposer debug console when a button is pressed
    * Cycle through the 4 LEDs on the Slice Card when another button is pressed
 
 Hardware Setup
@@ -33,13 +33,13 @@ To setup up the system:
 Import and Build the Application
 ++++++++++++++++++++++++++++++++
 
-   #. Open xTimeComposer and open the edit perspective (Window->Open Perspective->XMOS Edit).
-   #. Locate the ``'Slicekit Simple GPIO Demo'`` item in the xSOFTip pane on the bottom left of the window and drag it into the Project Explorer window in the xTimeComposer. This will also cause the modules on which this application depends (in this case, module_i2c_master) to be imported as well. 
-   #. Click on the app_sk_gpio_simple_demo item in the Explorer pane then click on the build icon (hammer) in xTimeComposer. Check the console window to verify that the application has built successfully.
+   #. Open xTIMEcomposer and open the edit perspective (Window->Open Perspective->XMOS Edit).
+   #. Locate the ``'Slicekit Simple GPIO Demo'`` item in the xSOFTip pane on the bottom left of the window and drag it into the Project Explorer window in the xTIMEcomposer. This will also cause the modules on which this application depends (in this case, module_i2c_master) to be imported as well. 
+   #. Click on the app_sk_gpio_simple_demo item in the Explorer pane then click on the build icon (hammer) in xTIMEcomposer. Check the console window to verify that the application has built successfully.
 
-For help in using xTimeComposer, try the xTimeComposer tutorials, which you can find by selecting Help->Tutorials from the xTimeComposer menu.
+For help in using xTIMEcomposer, try the xTIMEcomposer tutorials, which you can find by selecting Help->Tutorials from the xTIMEcomposer menu.
 
-Note that the Developer Column in the xTimeComposer on the right hand side of your screen provides information on the xSOFTip components you are using. Select the ``I2C master (Single Bit Ports)``  component in the xSOFTip Browser, and you will see its description together with links to more documentation for this component. Once you have briefly explored this component, you can return to this quickstart guide by re-selecting  ``'Slicekit COM Port GPIO Demo'`` in the xSOFTip Browser and clicking once more on the Quickstart  link for the ``GPIO Simple Demo Quickstart``.
+Note that the Developer Column in the xTIMEcomposer on the right hand side of your screen provides information on the xSOFTip components you are using. Select the ``I2C master (Single Bit Ports)``  component in the xSOFTip Browser, and you will see its description together with links to more documentation for this component. Once you have briefly explored this component, you can return to this quickstart guide by re-selecting  ``'Slicekit COM Port GPIO Demo'`` in the xSOFTip Browser and clicking once more on the Quickstart  link for the ``GPIO Simple Demo Quickstart``.
     
 
 Run the Application
@@ -48,7 +48,7 @@ Run the Application
 Now that the application has been compiled, the next step is to run it on the Slicekit Core Board using the tools to load the application over JTAG (via the XTAG2 and Xtag Adaptor card) into the xCORE multicore microcontroller.
 
    #. Click on the ``Run`` icon (the white arrow in the green circle). A dialog will appear asking which device to cvonnect to. Select ``XMOS XTAG2``. The debug console window in xTIMEcomposer should then display the message ``** WELCOME TO SIMPLE GPIO DEMO  **`` in the Debug Console window. This has been generated from the application code via a call to the ``printstr()`` function. 
-   #. Press Button 1 on the GPIO Slice Card. Each time the button is pressed, the application lights the next LEDs on the Slice Card and displays "Button 1 pressed" in the debug console within xTime Composer Studio. Press the button 5 or 6 times to verify the functionality.
+   #. Press Button 1 on the GPIO Slice Card. Each time the button is pressed, the application lights the next LEDs on the Slice Card and displays "Button 1 pressed" in the debug console within xTIMEcomposer Studio. Press the button 5 or 6 times to verify the functionality.
    #. Press Button 2 on the Slice Card. This causes the current temperature value to be read from the ADC over the I2C bus and then reported on the debug console. Press the button a few times. 
    #. Do something to alter the temperature of the sensor (use freezer spray, or place your finger on it for a while). Press Button 2 again to verify that the changed temperature is reported.
 
@@ -73,5 +73,5 @@ Try the Com Port Demo
 
    #. If you have a PC with a physical COM port, or a USB to Serial Uart cable you can run the extended version of this application (app_sk_gpio_com_demo) which adds a UART to the application and allows the SliceCard and its buttons, LEDs and ADC to be controlled and interrogated from a serial terminal console on a host PC. Follow the link to the quickstart guide for this application for further information on running this extended demo:
 
-:ref:`Slicekit_GPIO_COM_port_Demo_Quickstart`
+:ref:`Slicekit_GPIO_COM_port_Demo_Quickstart` Slicekit COM Port GPIO Demo
    
