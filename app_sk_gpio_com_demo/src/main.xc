@@ -247,44 +247,44 @@ void app_manager(chanend c_uartTX,chanend c_uartRX, chanend c_process, chanend c
 
 									case SET_LED_1: //Read port Value and Set LED 1 ON
 										p_led:>data;
-										data=data | 0xE;
+										data=data & 0xE;
 										p_led<:data;
 										break;
 
 									case CLEAR_LED_1://Read port Value and Set LED 1 OFF
 										p_led:>data;
-										p_led<:data&0x1;
+										p_led<:data|0x1;
 										break;
 
 									case SET_LED_2: //Read port Value and Set LED 2 ON
 										p_led:>data;
-										p_led<:data | 0xD;
+										p_led<:data & 0xD;
 										break;
 
 									case CLEAR_LED_2: //Read port Value and Set LED 2 OFF
 										p_led:>data;
-										p_led<:data&0x2;
+										p_led<:data|0x2;
 
 										break;
 
 									case SET_LED_3: //Read port Value and Set LED 3 ON
 										p_led:>data;
-										p_led<:data | 0xB;
+										p_led<:data & 0xB;
 										break;
 
 									case CLEAR_LED_3: //Read port Value and Set LED 3 OFF
 										p_led:>data;
-										p_led<:data&0x4;
+										p_led<:data|0x4;
 										break;
 
 									case SET_LED_4: //Read port Value and Set LED 4 ON
 										p_led:>data;
-										p_led<:data | 0x7;
+										p_led<:data & 0x7;
 										break;
 
 									case CLEAR_LED_4: //Read port Value and Set LED 4 OFF
 										p_led:>data;
-										p_led<:data&0x8;
+										p_led<:data|0x8;
 
 										break;
 
