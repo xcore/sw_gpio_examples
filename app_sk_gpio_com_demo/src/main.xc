@@ -4,566 +4,337 @@
 // LICENSE.txt and at <http://github.xcore.com/>
 
 /*===========================================================================
- Filename: main.xc
- Project : app_slicekit_com_demo
- Author : XMOS Ltd
- Version : 1v0
- Purpose : This file implements demostration of comport, LED's
-  	  	   and ADC using GPIO slice
- -----------------------------------------------------------------------------
-
- ===========================================================================*/
-
-/*---------------------------------------------------------------------------
- include files
- ---------------------------------------------------------------------------*/
+  This file implements demonstration of serial communication,
+  LED's and ADC using GPIO slice
+  ---------------------------------------------------------------------------*/
 #include <xs1.h>
 #include <platform.h>
+#include <print.h>
+#include <string.h>
+#include <ctype.h>
+#include <xscope.h>
+
 #include "uart_rx.h"
 #include "uart_tx.h"
-#include <print.h>
-#include<i2c.h>
-#include<string.h>
-#include<common.h>
+#include "i2c.h"
+#include "temp_sensor.h"
 
-#define I2C_NO_REGISTER_ADDRESS 1
-#define debounce_time XS1_TIMER_HZ/50
-/*---------------------------------------------------------------------------
- ports and clocks
- ---------------------------------------------------------------------------*/
- //::Ports start
-#define CORE_NUM 1
-#define BUTTON_PRESS_VALUE 2
-on stdcore[CORE_NUM] : buffered in port:1 p_rx =  XS1_PORT_1G;
-on stdcore[CORE_NUM] : out port p_tx = XS1_PORT_1C;
-on stdcore[CORE_NUM]: port p_led=XS1_PORT_4A;
-on stdcore[CORE_NUM]: port p_button1=XS1_PORT_4C;
-on stdcore[CORE_NUM]: struct r_i2c i2cOne = {
-		XS1_PORT_1F,
-		XS1_PORT_1B,
-		1000
- };
-//::Ports
+#define BAUD_RATE 115200
+#define CMD_BUFFER_SIZE 20
 
-/*---------------------------------------------------------------------------
- typedefs
- ---------------------------------------------------------------------------*/
+on tile[1] : buffered in port:1 p_rx = XS1_PORT_1G;
+on tile[1] : out port p_tx = XS1_PORT_1C;
+on tile[1] : port p_led = XS1_PORT_4A;
+on tile[1] : port p_buttons = XS1_PORT_4C;
 
-/*---------------------------------------------------------------------------
- global variables
- ---------------------------------------------------------------------------*/
+// I2C ports
+on tile[1]: port p_scl = XS1_PORT_1F;
+on tile[1]: port p_sda = XS1_PORT_1B;
+
 #define ARRAY_SIZE(x) (sizeof(x)/sizeof(x[0]))
-unsigned char tx_buffer[64];
-unsigned char rx_buffer[64];
-#pragma unsafe arrays
-/*---------------------------------------------------------------------------
- static variables
- ---------------------------------------------------------------------------*/
+static unsigned char rx_buffer[64];
 
-/*---------------------------------------------------------------------------
- implementation
- ---------------------------------------------------------------------------*/
+interface led_if {
+  void set(int led_number);
+  void clear(int led_number);
+  void clear_all(void);
+  void set_all(void);
+  void cycle(void);
+};
 
-/**
- * Top level main for multi-UART demonstration
- */
-//::Main start
+[[distributable]]
+void led_server(server interface led_if c[n], unsigned n, port p_led)
+{
+  int cycle_val = 0;
+  p_led <: 0b1111;
+  while (1) {
+    select {
+    case c[int i].set(int led_number):
+      unsigned val;
+      p_led :> val;
+      val = val & ~(1 << (led_number - 1));
+      p_led <: val;
+      break;
+
+    case c[int i].clear(int led_number):
+      unsigned val;
+      p_led :> val;
+      val = val | (1 << (led_number - 1));
+      p_led <: val;
+      break;
+
+    case c[int i].clear_all():
+      p_led <: 0b1111;
+      break;
+
+    case c[int i].set_all():
+      p_led <: 0b0000;
+      break;
+
+    case c[int i].cycle():
+      cycle_val++;
+      p_led <: ~cycle_val;
+      break;
+    }
+  }
+}
+
+interface button_counter_if {
+  void inc_button_count(int button_num);
+  int  get_button_count(int button_num);
+  void clear_button_counts(void);
+};
+
+[[distributable]]
+void button_counter(server interface button_counter_if c[n], unsigned n)
+{
+  int button_count[2] = {0, 0};
+  while (1) {
+    select {
+    case c[int i].inc_button_count(int i):
+      button_count[i]++;
+      break;
+
+    case c[int i].clear_button_counts():
+      button_count[0] = button_count[1] = 0;
+      break;
+
+    case c[int i].get_button_count(int i) -> int value:
+      value = button_count[i];
+      break;
+    }
+  }
+}
+
+#define DEBOUNCE_TIME XS1_TIMER_HZ/50
+
+[[combinable]]
+static void button_handler(port p_buttons,
+                           client interface temp_sensor_if c_temp,
+                           client interface led_if c_led,
+                           client interface button_counter_if c_button_count)
+{
+  int enabled = 1;
+  int button_value = -1;
+  timer tmr;
+  unsigned event_time;
+  // Configure ADC by writing the settings to register
+  while (1) {
+    select {
+      case enabled => p_buttons when pinsneq(button_value) :> button_value:
+        tmr :> event_time;
+        if (button_value == 0xd) {
+          printstr("Temperature is :");
+          printint(c_temp.get_temp());
+          printstrln(" C");
+          c_button_count.inc_button_count(0);
+        } else if (button_value == 0xe) {
+          c_led.cycle();
+          c_button_count.inc_button_count(1);
+        }
+        // Disable the button to handle bouncing
+        enabled = 0;
+        break;
+
+      case !enabled => tmr when timerafter(event_time + DEBOUNCE_TIME) :> void:
+        enabled = 1;
+        break;
+    }
+  }
+}
+
+static void output_string(client interface uart_tx_if c_uart_tx, const char s[])
+{
+  int i = 0;
+  while (s[i] != '\0') {
+    c_uart_tx.output_byte(s[i]);
+    i++;
+  }
+}
+
+const char help_msg[] =
+  "\r\n\r\n-------------------------HELP--------------------------------"
+  "\r\n setall       - Sets all LEDs ON"
+  "\r\n clearall     - Clear all LEDs"
+  "\r\n setled 'N'   - Switch ON LED N"
+  "\r\n clearled 'N' - Switch OFF LED 'N'"
+  "\r\n help         - Display all supported commands"
+  "\r\n chkbuttons   - Returns if any buttons pressed since last 'chkbuttons' command"
+  "\r\n readadc      - Read ADC vaue and Displays temperature"
+  "\r\n exit         - Exit from Command mode"
+  "\r\n\r\n 'N' is in range 1 to 4\r\n";
+
+static int handle_cmd(unsigned char cmd_buffer[CMD_BUFFER_SIZE],
+                      client interface uart_tx_if c_uart_tx,
+                      client interface temp_sensor_if c_temp,
+                      client interface led_if c_led,
+                      client interface button_counter_if c_button_count)
+{
+  if (strcmp(cmd_buffer,"exit") == 0) {
+    return 0;
+  }
+  else if (strcmp(cmd_buffer,"setled 1") == 0) {
+    c_led.set(1);
+  }
+  else if (strcmp(cmd_buffer,"clearled 1") == 0) {
+    c_led.clear(1);
+  }
+  else if (strcmp(cmd_buffer,"setled 2") == 0) {
+    c_led.set(2);
+  }
+  else if (strcmp(cmd_buffer,"clearled 2") == 0) {
+    c_led.clear(2);
+  }
+  else if (strcmp(cmd_buffer,"setled 3") == 0) {
+    c_led.set(3);
+  }
+  else if (strcmp(cmd_buffer,"clearled 3") == 0) {
+    c_led.clear(3);
+  }
+  else if(strcmp(cmd_buffer,"setled 4") == 0) {
+    c_led.set(4);
+  }
+  else if(strcmp(cmd_buffer,"clearled 4") == 0) {
+    c_led.clear(4);
+  }
+  else if(strcmp(cmd_buffer,"clearall") == 0) {
+    c_led.clear_all();
+  }
+  else if(strcmp(cmd_buffer,"setall") == 0) {
+    c_led.set_all();
+  }
+  else if(strcmp(cmd_buffer,"chkbuttons") == 0) {
+    int button1count = c_button_count.get_button_count(0);
+    int button2count = c_button_count.get_button_count(1);
+    output_string(c_uart_tx, "Button 1 pressed ");
+    c_uart_tx.output_byte((button1count / 10) + '0');
+    c_uart_tx.output_byte((button1count % 10) + '0');
+    output_string(c_uart_tx, " times.\r\n");
+    output_string(c_uart_tx, "Button 2 pressed ");
+    c_uart_tx.output_byte((button2count / 10) + '0');
+    c_uart_tx.output_byte((button2count % 10) + '0');
+    output_string(c_uart_tx, " times.\r\n");
+    c_button_count.clear_button_counts();
+  }
+  else if(strcmp(cmd_buffer,"help") == 0) {
+    output_string(c_uart_tx, help_msg);
+  }
+  else if(strcmp(cmd_buffer,"readadc") == 0) {
+    int val = c_temp.get_temp();
+    output_string(c_uart_tx, "Temperature is : ");
+    c_uart_tx.output_byte((val/10)+'0');
+    c_uart_tx.output_byte((val%10)+'0');
+    output_string(c_uart_tx, " C\r\n");
+  }
+  else {
+    output_string(c_uart_tx, "\r\nINVALID COMMAND - Use 'help' for details\r\n");
+  }
+  return 1;
+}
+
+
+[[combinable]]
+void uart_handler(client interface uart_tx_if c_uart_tx,
+                  client interface uart_rx_if c_uart_rx,
+                  client interface temp_sensor_if c_temp,
+                  client interface led_if c_led,
+                  client interface button_counter_if c_button_count)
+{
+  unsigned char cmd_buffer[CMD_BUFFER_SIZE];
+  int cmd_buffer_index = 0;
+  int in_command_mode = 0;
+  char cmd_str[] = ">cmd\r";
+  int cmd_str_index = 0;
+
+  c_uart_tx.set_baud_rate(115200);
+  c_uart_tx.set_parity(UART_TX_PARITY_EVEN);
+  c_uart_tx.set_bits_per_byte(8);
+  c_uart_tx.set_stop_bits(1);
+
+  c_uart_rx.set_baud_rate(115200);
+  c_uart_rx.set_parity(UART_TX_PARITY_EVEN);
+  c_uart_rx.set_bits_per_byte(8);
+  c_uart_rx.set_stop_bits(1);
+
+  output_string(c_uart_tx, "\r\nWELCOME TO THE XMOS sliceKIT GPIO DEMO\r\n");
+  output_string(c_uart_tx, "\r\n(**ECHO DATA MODE ACTIVATED**)\r\nPress '>cmd' for command mode\r\n");
+
+  while(1)  {
+    select {
+      case c_uart_rx.data_ready():
+        unsigned char data = c_uart_rx.input_byte();
+        if (in_command_mode) {
+          if (data == '\r') {
+            cmd_buffer[cmd_buffer_index] = '\0';
+            in_command_mode = handle_cmd(cmd_buffer, c_uart_tx,
+                                         c_temp, c_led, c_button_count);
+            if (!in_command_mode) {
+              output_string(c_uart_tx, "\r\nCOMMAND MODE DE-ACTIVATED\r\n");
+            }
+            cmd_buffer_index = 0;
+          }
+          else {
+            cmd_buffer[cmd_buffer_index] = data;
+            cmd_buffer_index++;
+            if (cmd_buffer_index > CMD_BUFFER_SIZE)
+              cmd_buffer_index = 0;
+          }
+        } else {
+          c_uart_tx.output_byte(data);
+          if (tolower(data) == cmd_str[cmd_str_index]) {
+            cmd_str_index++;
+            if (cmd_str_index == strlen(cmd_str)) {
+              output_string(c_uart_tx, "\r\nCOMMAND MODE ACTIVATED\r\n");
+              in_command_mode = 1;
+            }
+          }
+          else {
+            cmd_str_index = 0;
+          }
+        }
+        break;
+    }
+  }
+}
+
+void xscope_user_init(void) {
+  xscope_register(0);
+  xscope_config_io(XSCOPE_IO_BASIC);
+}
+
+
 int main()
 {
-  chan c_chanTX, c_chanRX,c_receive,c_process,c_end;
+  interface uart_tx_if c_uart_tx[1];
+  interface uart_rx_if c_uart_rx;
+  interface i2c_master_if c_i2c[1];
+  interface temp_sensor_if c_temp[2];
+  interface led_if c_led[2];
+  interface button_counter_if c_button_count[2];
+  par {
+      // The peripherals - a bidirectional uart, an i2c component and
+      // a special led component implemented in this file.
+      on tile[1] : [[distribute]] uart_tx(c_uart_tx, 1, p_tx);
+      on tile[1] : uart_rx(c_uart_rx, rx_buffer, ARRAY_SIZE(rx_buffer), p_rx);
+      on tile[1] : [[distribute]] i2c_master(c_i2c, 1, p_scl, p_sda);
 
-	par
-	{
-    	on stdcore[CORE_NUM] : uart_rx(p_rx, rx_buffer, ARRAY_SIZE(rx_buffer), BAUD_RATE, 8, UART_TX_PARITY_EVEN, 1, c_chanRX);
-    	on stdcore[CORE_NUM] : uart_tx(p_tx, tx_buffer, ARRAY_SIZE(tx_buffer), BAUD_RATE, 8, UART_TX_PARITY_EVEN, 1, c_chanTX);
-    	on stdcore[CORE_NUM] : app_manager(c_chanTX,c_chanRX,c_process,c_end);
-    	on stdcore[CORE_NUM] : process_data(c_process, c_end);
-	}
+      // The application logic consists of three tasks - one to handle button
+      // input and one dealing with the serial I/O, these run on the same
+      // logical core.
+      // Both tasks communicate with the i2c and led tasks.
+      on tile[1] : [[distribute]] led_server(c_led, 2, p_led);
+      on tile[1] : [[distribute]] temp_sensor(c_temp, 2, c_i2c[0]);
+      on tile[1] : [[distribute]] button_counter(c_button_count, 2);
+      on tile[1] :
+        [[combine]]
+        par {
+          button_handler(p_buttons, c_temp[0], c_led[0], c_button_count[0]);
+          uart_handler(c_uart_tx[0], c_uart_rx, c_temp[1],
+                      c_led[1], c_button_count[1]);
+        }
+  }
   return 0;
 }
-//::Main
-/** =========================================================================
- * app_manager
- *
- * Polling uart RX and push button switches and send received commands to
- * process_data thread
- *
- * \param channel to uartTX thread, channel communication to uartRX thread and
- * channel communication to process data thread
- *
- * \return None
- *
- **/
-void app_manager(chanend c_uartTX,chanend c_uartRX, chanend c_process, chanend c_end)
-{
-	unsigned char i2c_register[1]={0x13};
-	int adc_value;
-	timer t;
-	unsigned char rcvbuffer;
-	unsigned char cmd_rcvbuffer[20];
-	unsigned char data_arr[1]={'K'};
-	unsigned crc_value=0,data=0;
-	unsigned byte,button_value1=0,button_value2=0,time,led_value=0x01;
-	int j=0,skip=1,selection;
-	int button, button1_press=0,button2_press=0;
-	unsigned COMMAND_MODE=0;
-	uart_rx_client_state rxState;
-	unsigned char buffer;
-	uart_rx_init(c_uartRX, rxState);
-	uart_rx_set_baud_rate(c_uartRX, rxState, BAUD_RATE);
 
-	uart_tx_set_baud_rate(c_uartTX, BAUD_RATE);
-	t:>time;
-//::Config start
-	i2c_master_write_reg(0x28, 0x00, i2c_register, 1, i2cOne); //Configure ADC by writing the settings to register
-//::Config
-	uart_tx_string(c_uartTX,CONSOLE_MESSAGES[6]); //Display Welcome messages on UART TX Pin
-	uart_tx_string(c_uartTX,CONSOLE_MESSAGES[13]);
-	uart_tx_send_byte(c_uartTX, '\r');
-	uart_tx_send_byte(c_uartTX, '\n');
-	 while(1)
-	 {
-//::Select start
-		select
-		{
-			case c_end:>data:
-				c_end:>data;
-				if(data == BUTTON_1) //Cycle LEDs on button 1 press
-				{
-					printstrln("Button 1 Pressed");
-					p_led<:(led_value);
-					led_value=led_value<<1;
-					if(led_value == 16) //If LED value is 16 then assigns LED value to 1 which cycles LEDs by button press
-					{
-						led_value=0x01;
-					}
-				}
-				if(data == BUTTON_2) //Displays Temperature on console if Button 2 is pressed
-				{
-					adc_value=read_adc_value();
-					data_arr[0]=(linear_interpolation(adc_value));
-					printstr("Temperature is :");
-					printint(linear_interpolation(adc_value));
-					printstrln(" C");
-				}
-				break;
-			case uart_rx_get_byte_byref(c_uartRX, rxState, buffer):
-//::Command start
-				if(buffer == '>') //IUF received data is '>' character then expects cmd to endter into command mode
-				{
-					j=0;
-					uart_rx_get_byte_byref(c_uartRX, rxState, buffer);
-					cmd_rcvbuffer[j]=buffer;
-					if((cmd_rcvbuffer[j] == 'C' )|| (cmd_rcvbuffer[j] =='c')) //Checks if received data is 'C' or 'c'
-					{
-						j++;
-						uart_rx_get_byte_byref(c_uartRX, rxState, buffer);
-						cmd_rcvbuffer[j]=buffer;
 
-						if((cmd_rcvbuffer[j] == 'm' )|| (cmd_rcvbuffer[j] =='M')) //Checks if received data is 'M' or 'm'
-						{
-							j++;
-							uart_rx_get_byte_byref(c_uartRX, rxState, buffer);
-							cmd_rcvbuffer[j]=buffer;
-							if((cmd_rcvbuffer[j] == 'D' )|| (cmd_rcvbuffer[j] =='d'))//Checks if received data is 'D' or 'd'
-							{
-								uart_tx_send_byte(c_uartTX, '\r');
-								uart_tx_send_byte(c_uartTX, '\n');
-								uart_tx_string(c_uartTX,CONSOLE_MESSAGES[0]);
-								COMMAND_MODE=1; //activates command mode as received data is '>cmd'
-								uart_tx_send_byte(c_uartTX, '\r');
-								uart_tx_send_byte(c_uartTX, '\n');
-								uart_tx_send_byte(c_uartTX, '>'); //displays '>' if command mode is activated
-							}
-							else
-							{
-								uart_tx_send_byte(c_uartTX, '>');
-								for(int i=0;i<3;i++)
-									uart_tx_send_byte(c_uartTX, cmd_rcvbuffer[i]); // if received dta is not 'c' displays back the received data
-							}
-						}
-						else
-						{
-							uart_tx_send_byte(c_uartTX, '>'); //if received data is not 'm' displays the received data
-							for(int i=0;i<2;i++)
-								uart_tx_send_byte(c_uartTX, cmd_rcvbuffer[i]);
-						}
-					}
-					else
-					{
-						uart_tx_send_byte(c_uartTX, '>');
-						uart_tx_send_byte(c_uartTX, cmd_rcvbuffer[j]);
-						j=0;
-					}
-				}
-				else
-				{
-					uart_tx_send_byte(c_uartTX,buffer); //Echoes back the input characters if not in command mode
-				}
-//::Command
-				while(COMMAND_MODE) //Command mode activated
-				{
-					j=0;
-					skip=1;
-					while(skip == 1)
-					{
-//::Send to process start					
-						select
-						{
-							case uart_rx_get_byte_byref(c_uartRX, rxState, buffer):
-								cmd_rcvbuffer[j]=buffer;
-								if(cmd_rcvbuffer[j++] == '\r')
-								{
-									skip=0;
-									j=0;
-									while(cmd_rcvbuffer[j] != '\r')
-									{
-										c_process<:cmd_rcvbuffer[j]; //received valid command and send the command to the process_data theread
-										uart_tx_send_byte(c_uartTX, cmd_rcvbuffer[j]);
-										j++;
-									}
-									cmd_rcvbuffer[j]='\0';
-									c_process<:cmd_rcvbuffer[j];
-									for(int inc=0;inc<20;inc++) //Clears the command buffer
-										cmd_rcvbuffer[inc]='0';
-									j=0;
-								}
-								break;
-//::Send
-							case c_end:>data:
-								if(data!=EXIT && data!=INVALID )
-								{
-									uart_tx_string(c_uartTX,CONSOLE_MESSAGES[3]); //Displays COmmand Executed Message on Uart
-								}
-//::State machine
-								switch(data)
-								{
-									case EXIT: //Exit from command mode
-										COMMAND_MODE=0;
-										skip=0;
-										uart_tx_string(c_uartTX,CONSOLE_MESSAGES[1]);
-										uart_tx_string(c_uartTX,CONSOLE_MESSAGES[13]);
-										break;
 
-									case SET_LED_1: //Read port Value and Set LED 1 ON
-										p_led:>data;
-										data=data | 0xE;
-										p_led<:data;
-										break;
-
-									case CLEAR_LED_1://Read port Value and Set LED 1 OFF
-										p_led:>data;
-										p_led<:data&0x1;
-										break;
-
-									case SET_LED_2: //Read port Value and Set LED 2 ON
-										p_led:>data;
-										p_led<:data | 0xD;
-										break;
-
-									case CLEAR_LED_2: //Read port Value and Set LED 2 OFF
-										p_led:>data;
-										p_led<:data&0x2;
-
-										break;
-
-									case SET_LED_3: //Read port Value and Set LED 3 ON
-										p_led:>data;
-										p_led<:data | 0xB;
-										break;
-
-									case CLEAR_LED_3: //Read port Value and Set LED 3 OFF
-										p_led:>data;
-										p_led<:data&0x4;
-										break;
-
-									case SET_LED_4: //Read port Value and Set LED 4 ON
-										p_led:>data;
-										p_led<:data | 0x7;
-										break;
-
-									case CLEAR_LED_4: //Read port Value and Set LED 4 OFF
-										p_led:>data;
-										p_led<:data&0x8;
-
-										break;
-
-									case CLEAR_ALL: //sets all four LEDs OFF
-										p_led<:0xF;
-										break;
-
-									case SET_ALL: //sets all four LEDs ON
-										p_led<:0x0;
-										break;
-
-									case BUTTON_PRESSED: //Checks if button is pressed
-										c_end:>button;
-										if(button == BUTTON_1) //Prints Button 1 is pressed on the Uart
-										{
-											CONSOLE_MESSAGES[4][9]='1';
-											uart_tx_string(c_uartTX,CONSOLE_MESSAGES[4]);
-											button1_press=1;
-										}
-										if(button == BUTTON_2) //Prints Button 2 is pressed on Uart
-										{
-											CONSOLE_MESSAGES[4][9]='2';
-											uart_tx_string(c_uartTX,CONSOLE_MESSAGES[4]);
-											button2_press=1;
-										}
-										break;
-									case HELP: //Displays help messages on Uart
-										uart_tx_string(c_uartTX,CONSOLE_MESSAGES[14]);
-										uart_tx_string(c_uartTX,CONSOLE_MESSAGES[7]);
-										uart_tx_string(c_uartTX,CONSOLE_MESSAGES[8]);
-										uart_tx_string(c_uartTX,CONSOLE_MESSAGES[9]);
-										uart_tx_string(c_uartTX,CONSOLE_MESSAGES[10]);
-										uart_tx_string(c_uartTX,CONSOLE_MESSAGES[15]);
-										uart_tx_string(c_uartTX,CONSOLE_MESSAGES[11]);
-										uart_tx_send_byte(c_uartTX, '\r');
-										uart_tx_send_byte(c_uartTX, '\n');
-										break;
-									case READ_ADC: //Displays temperature value on the Uart
-										adc_value=read_adc_value();
-										data_arr[0]=(linear_interpolation(adc_value));
-										uart_tx_string(c_uartTX,CONSOLE_MESSAGES[12]);
-										uart_tx_send_byte(c_uartTX, (data_arr[0]/10)+'0');
-										uart_tx_send_byte(c_uartTX, (data_arr[0]%10)+'0');
-										uart_tx_send_byte(c_uartTX, 32);
-										uart_tx_send_byte(c_uartTX, 'C');
-										break;
-									case INVALID: //Displays command input is invalid command on the Uart
-										uart_tx_string(c_uartTX,CONSOLE_MESSAGES[2]);
-										break;
-									case CHK_BUTTONS: //Checks if button are pressed and displays on the Uart
-										if(button1_press)
-										{
-											CONSOLE_MESSAGES[4][9]='1';
-											uart_tx_string(c_uartTX,CONSOLE_MESSAGES[4]); //Displays Button 1 is pressed
-										}
-										if(button2_press)
-										{
-											CONSOLE_MESSAGES[4][9]='2';
-											uart_tx_string(c_uartTX,CONSOLE_MESSAGES[4]); //Dipslays Button 2 is pressed
-										}
-										if( !button1_press && !button2_press)
-										{
-											uart_tx_string(c_uartTX,CONSOLE_MESSAGES[5]); //Displays No Buttons are pressed
-										}
-										button1_press=0;
-										button2_press=0;
-                                                                                break;
-								}
-								if(data != EXIT) //Exits from command mode
-								{
-									uart_tx_send_byte(c_uartTX, '\r');
-									uart_tx_send_byte(c_uartTX, '\n');
-									uart_tx_send_byte(c_uartTX, '>');
-								}
-								break;
-						}//select
-//::State
-					}//skip
-					j=0;
-				}//command mode
-				break;
-		}//main select
-//::Select
-	 }//superloop
-}//thread
-
-/** =========================================================================
- * process data
- *
- * process received data to see if received data is valid command or not
- *
- * \param channel communication to app manager thread and
- *
- * \return None
- *
- **/
-void process_data(chanend c_process, chanend c_end)
-{
-	int k=0,skip=1,i=0;
-	unsigned data=0,button_value1,button_value2;
-	unsigned char cmd_rcvbuffer[20];
-	int button=1,button1_pressed=0,button2_pressed=0;
-	timer t;
-	unsigned time;
-	set_port_drive_low(p_button1);
-	t:>time;
-	p_button1:>button_value1;
-	while(1)
-	{
-//::select in process data
-		select
-		{
-			case button => p_button1 when pinsneq(button_value1):>button_value1:
-				t:>time;
-				button=0;
-				break;
-
-			case !button => t when timerafter(time+debounce_time):>void: //Read button values for every 20 ms
-				p_button1:> button_value2;
-			//checks if button 1 is pressed or button 2 is pressed
-				if(button_value1 == button_value2)
-				if(button_value1 == BUTTON_PRESS_VALUE)
-				{
-					button1_pressed=1;
-					c_end<:BUTTON_PRESSED; //send button pressed command
-					c_end<:BUTTON_1; //indicates button 1 is pressed
-				}
-				if(button_value1 == BUTTON_PRESS_VALUE-1)
-				{
-					button2_pressed=1;
-					c_end<:BUTTON_PRESSED; //send button pressed command
-					c_end<:BUTTON_2; //send button 2 is pressed
-
-				}
-				button=1;
-				break;
-
-			case c_process :> cmd_rcvbuffer[i]:
-                                i+=1;
-				skip=1;
-				while(skip == 1)
-				{
-					c_process:>cmd_rcvbuffer[i];
-					if(cmd_rcvbuffer[i++] == '\0') //Reveived the command from  app_manager thread
-						skip=0;
-				}
-				//Checks if received command is valid command or not and sends state machine value to app manager thread
-				if(!strcmp(cmd_rcvbuffer,"exit"))
-				{
-					c_end<:EXIT; //Exits from Command mode
-				}
-				else if(!strcmp(cmd_rcvbuffer,"setled 1"))
-				{
-					c_end<:SET_LED_1; //Switches ON LED 1
-				}
-				else if(!strcmp(cmd_rcvbuffer,"clearled 1"))
-				{
-					c_end<:CLEAR_LED_1; //Switches OFF LED 1
-				}
-				else if(!strcmp(cmd_rcvbuffer,"setled 2"))
-				{
-					c_end<:SET_LED_2; //Switches ON LED 2
-				}
-				else if(!strcmp(cmd_rcvbuffer,"clearled 2"))
-				{
-					c_end<:CLEAR_LED_2;//Switches OFF LED 2
-				}
-				else if(!strcmp(cmd_rcvbuffer,"setled 3"))
-				{
-					c_end<:SET_LED_3;//Switches ON LED 3
-				}
-				else if(!strcmp(cmd_rcvbuffer,"clearled 3"))
-				{
-					c_end<:CLEAR_LED_3; //Switches OFF LED 3
-				}
-				else if(!strcmp(cmd_rcvbuffer,"setled 4"))
-				{
-					c_end<:SET_LED_4; //Switches ON LED 4
-				}
-				else if(!strcmp(cmd_rcvbuffer,"clearled 4"))
-				{
-					c_end<:CLEAR_LED_4; //Switches OFF LED 4
-				}
-				else if(!strcmp(cmd_rcvbuffer,"clearall"))
-				{
-					c_end<:CLEAR_ALL; //Switches OFF ALL FOUR LEDs
-				}
-				else if(!strcmp(cmd_rcvbuffer,"setall"))
-				{
-					c_end<:SET_ALL; //Switches ON ALL FOUR LEDs
-				}
-				else if(!strcmp(cmd_rcvbuffer,"chkbuttons"))
-				{
-					c_end<:CHK_BUTTONS; //Checks if any button is pressed since since previous chkbuttons command
-				}
-				else if(!strcmp(cmd_rcvbuffer,"help"))
-				{
-					c_end<:HELP; //Displays available command list
-				}
-				else if(!strcmp(cmd_rcvbuffer,"readadc"))
-				{
-					c_end<:READ_ADC; //Read ADC value and displays room temperature
-				}
-				else
-				{
-					c_end<:INVALID; //Displays Invalid command
-				}
-				i=0;
-				for(int inc=0;inc<20;inc++)
-					cmd_rcvbuffer[inc]='0'; //Clear command reveive buffer
-				break;
-
-		}
-	}
-//::Select
-}
-
-/** =========================================================================
- * linear interpolation
- *
- * calculates temperatue basedd on linear interpolation
- *
- * \param int adc value
- *
- * \return int temperature
- *
- **/
-int linear_interpolation(int adc_value)
-{
-	int i=0,x1,y1,x2,y2,temper;
-	while(adc_value<TEMPERATURE_LUT[i][1])
-	{
-		i++;
-	}
-	//Calculating Linear interpolation using the formula y=y1+(x-x1)*(y2-y1)/(x2-x1)
-	x1=TEMPERATURE_LUT[i-1][1];
-	y1=TEMPERATURE_LUT[i-1][0];
-	x2=TEMPERATURE_LUT[i][1];
-	y2=TEMPERATURE_LUT[i][0];
-	temper=y1+(((adc_value-x1)*(y2-y1))/(x2-x1)); //Calculate temeperature valus using linear interploation technique
-	return temper;//Return Temperature value
-}
-
-/** =========================================================================
- * uart transmit string
- *
- * Transmits byte by byte to the UART TX thread for an input string
- *
- * \param usinged char message buffer
- *
- * \return None
- *
- **/
-void uart_tx_string(chanend c_uartTX,unsigned char message[100]) //transmit string on Uart TX terminal
-{
-	int i=0;
-	while(message[i]!='\0')
-	{
-		uart_tx_send_byte(c_uartTX,message[i]); //send data to uart byte by byte
-		i++;
-	}
-}
-
-/** =========================================================================
- * Read ADC value
- *
- * Read ADC value using I2C
- *
- * \param None
- *
- * \return int adc value
- *
- **/
-int read_adc_value()
-{
-	int adc_value;
-	unsigned char i2c_register1[2];
-	i2c_master_rx(0x28, i2c_register1, 2, i2cOne); //Read value from ADC
-	i2c_register1[0]=i2c_register1[0]&0x0F;
-	adc_value=(i2c_register1[0]<<6)|(i2c_register1[1]>>2);
-	return adc_value; //Return ADC value to the application
-}

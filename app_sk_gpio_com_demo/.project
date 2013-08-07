@@ -1,10 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
-	<name>app_slicekit_com_demo</name>
+	<name>app_sk_gpio_com_demo</name>
 	<comment></comment>
 	<projects>
 	</projects>
 	<buildSpec>
+		<buildCommand>
+			<name>com.xmos.cdt.core.IncludePathBuilder</name>
+			<arguments>
+			</arguments>
+		</buildCommand>
 		<buildCommand>
 			<name>com.xmos.cdt.core.ModulePathBuilder</name>
 			<arguments>
@@ -28,7 +33,7 @@
 				</dictionary>
 				<dictionary>
 					<key>org.eclipse.cdt.make.core.buildArguments</key>
-					<value>CONFIG=Debug</value>
+					<value></value>
 				</dictionary>
 				<dictionary>
 					<key>org.eclipse.cdt.make.core.buildCommand</key>

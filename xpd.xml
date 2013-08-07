@@ -1,15 +1,31 @@
 <?xml version="1.0" ?>
 <xpd>
     <components>
-        <component description = "An example applications that extends app_slicekit_simple_demo to demonstrate usage of the xSOFTip generic Uart RX/TX components and demonstrate extended features of how to handle concurrent events in the XC programming language." type = "demoCode" scope = "Example" path = "app_sk_gpio_com_demo" local = "false" id = "app_sk_gpio_com_demo" name = "Slicekit COM Port GPIO Demo">
+        <component description = "An example application to demonstrate the Wifi Slice controlling the LEDS and monitoring thebuttons and temperature sensor on the GPIO Slice." type = "demoCode" scope = "Example" path = "app_sk_gpio_wifi_tiwisl_combo_demo" local = "false" id = "app_sk_gpio_wifi_tiwisl_combo_demo" name = "app_sk_gpio_wifi_tiwisl_combo_demo">
+            <board>XP-SKC-L2</board>
             <board>XA-SK-GPIO</board>
-            <componentDependency>module_uart_tx</componentDependency>
-            <componentDependency>module_uart_rx</componentDependency>
+            <board>Wi-Fi Slice</board>
+            <componentDependency>module_webserver</componentDependency>
+            <componentDependency>module_i2c_master</componentDependency>
+            <componentDependency>module_otp_board_info</componentDependency>
+            <componentDependency>module_locks</componentDependency>
+            <componentDependency>module_wifi_tiwisl</componentDependency>
+            <componentDependency>module_ethernet</componentDependency>
+            <componentDependency>module_spi_master</componentDependency>
+            <componentDependency>module_mutual_thread_comm</componentDependency>
+            <componentDependency>module_ethernet_smi</componentDependency>
+            <componentDependency>module_xtcp</componentDependency>
+            <keyword>wifi</keyword>
+            <keyword>I2C</keyword>
+            <keyword>LED</keyword>
+            <keyword>buttons</keyword>
+        </component>
+        <component description = "An example applications that demonstrate various features of the XA-SK-GPIO Slice Card including the ADC, LEDs and buttons, the I2C master xSOFTip component, as well as various basic features of the xCORE processor." type = "demoCode" scope = "Example" path = "app_sk_gpio_simple_demo" local = "false" id = "app_sk_gpio_simple_demo" name = "Slicekit Simple GPIO Demo">
+            <board>XA-SK-GPIO</board>
             <componentDependency>module_i2c_master</componentDependency>
             <keyword>I2C</keyword>
             <keyword>LED</keyword>
             <keyword>buttons</keyword>
-            <keyword>UART</keyword>
         </component>
         <component description = "This application showcases GPIO features which can be accessed and controlled over Ethernet via a webpage on an embedded webserver, using the GPIO and Ethernet Slices" type = "demoCode" scope = "Example" path = "app_sk_gpio_eth_combo_demo" local = "false" id = "app_sk_gpio_eth_combo_demo" name = "Slicekit GPIO and Ethernet Combo Demo">
             <board>XP-SKC-L2</board>
@@ -31,31 +47,15 @@
             <keyword>LED</keyword>
             <keyword>buttons</keyword>
         </component>
-        <component description = "An example applications that demonstrate various features of the XA-SK-GPIO Slice Card including the ADC, LEDs and buttons, the I2C master xSOFTip component, as well as various basic features of the xCORE processor." type = "demoCode" scope = "Example" path = "app_sk_gpio_simple_demo" local = "false" id = "app_sk_gpio_simple_demo" name = "Slicekit Simple GPIO Demo">
+        <component description = "An example applications that extends app_slicekit_simple_demo to demonstrate usage of the xSOFTip generic Uart RX/TX components and demonstrate extended features of how to handle concurrent events in the XC programming language." type = "demoCode" scope = "Example" path = "app_sk_gpio_com_demo" local = "false" id = "app_sk_gpio_com_demo" name = "Slicekit COM Port GPIO Demo">
             <board>XA-SK-GPIO</board>
+            <componentDependency>module_uart_tx</componentDependency>
+            <componentDependency>module_uart_rx</componentDependency>
             <componentDependency>module_i2c_master</componentDependency>
             <keyword>I2C</keyword>
             <keyword>LED</keyword>
             <keyword>buttons</keyword>
-        </component>
-        <component description = "An example application to demonstrate the Wifi Slice controlling the LEDS and monitoring thebuttons and temperature sensor on the GPIO Slice." type = "demoCode" scope = "Example" path = "app_sk_gpio_wifi_tiwisl_combo_demo" local = "false" id = "app_sk_gpio_wifi_tiwisl_combo_demo" name = "app_sk_gpio_wifi_tiwisl_combo_demo">
-            <board>XP-SKC-L2</board>
-            <board>XA-SK-GPIO</board>
-            <board>Wi-Fi Slice</board>
-            <componentDependency>module_webserver</componentDependency>
-            <componentDependency>module_i2c_master</componentDependency>
-            <componentDependency>module_otp_board_info</componentDependency>
-            <componentDependency>module_locks</componentDependency>
-            <componentDependency>module_wifi_tiwisl</componentDependency>
-            <componentDependency>module_ethernet</componentDependency>
-            <componentDependency>module_spi_master</componentDependency>
-            <componentDependency>module_mutual_thread_comm</componentDependency>
-            <componentDependency>module_ethernet_smi</componentDependency>
-            <componentDependency>module_xtcp</componentDependency>
-            <keyword>wifi</keyword>
-            <keyword>I2C</keyword>
-            <keyword>LED</keyword>
-            <keyword>buttons</keyword>
+            <keyword>UART</keyword>
         </component>
     </components>
     <dependency repo = "sc_i2c">
@@ -77,8 +77,9 @@
         <version>1.0.1beta0</version>
     </dependency>
     <dependency repo = "sc_ethernet">
-        <githash>f01fa2f8121e8d69d71185a04a05fddf9373c523</githash>
+        <githash>3db65a9cd09d968d0f8e59550f900cc8b6b77401</githash>
         <uri>https://github.com/xcore/sc_ethernet.git</uri>
+        <version>2.2.2rc0</version>
     </dependency>
     <dependency repo = "sc_otp">
         <githash>062aa923a78bc603b254b2a99b78593ab3a816ec</githash>
@@ -86,11 +87,11 @@
         <version>1.0.0rc0</version>
     </dependency>
     <dependency repo = "sc_xtcp">
-        <githash>072fc71ce5b5c699ea55621c77db1834bddd3b4b</githash>
+        <githash>8ce08457bcd2d0cdeb7c629dd737be8a4073b144</githash>
         <uri>git://github.com/xcore/sc_xtcp.git</uri>
     </dependency>
     <dependency repo = "sc_util">
-        <githash>84c4a06e1d75e12fc0e607a4d60b434e69ed1a71</githash>
+        <githash>a80483ec476b8bf3afb5d065847cec58da6edfee</githash>
         <uri>git://github.com/xcore/sc_util.git</uri>
     </dependency>
     <dependency repo = "sc_spi">
@@ -99,9 +100,9 @@
         <version>1.3.0rc1</version>
     </dependency>
     <dependency repo = "sc_wifi">
-        <githash>529ddbc3fb68308e6affd31e54333d8286069ef7</githash>
+        <githash>0bd8fb26d2f058989775e7be017f61c2942691e5</githash>
         <uri>git@github.com:xcore/sc_wifi.git</uri>
-        <version>1.0.0beta3</version>
+        <version>1.0.0beta0</version>
     </dependency>
     <description>Example Application for XA-SK-GPIO Slice Card showing use of I2C, external ADC with temperature sensor, LEDs and buttons</description>
     <docdir>doc</docdir>
