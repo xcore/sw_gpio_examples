@@ -83,19 +83,15 @@ All of the files required for operation are located in the ``app_slicekit_simple
     
     * - File
       - Description
-    * - ``common.h``
-      - Header file for API interfaces and Look up tables for thermistor. FIXME - what about the uart
+    * - ``temp_sensor.xc``
+	  - File contains information about reading the ADC values from the temperature sensor using the I2C interface and calculating the accurate values using Linear Interpolation. 
     * - ``main.xc``
       - Main file which implements the demo functionality
 
 API
 +++
 
-.. doxygenfunction:: app_manager
-.. doxygenfunction:: process_data
-.. doxygenfunction:: uart_tx_string
-.. doxygenfunction:: linear_interpolation
-.. doxygenfunction:: read_adc_value
+.. doxygenfunction:: temp_sensor
 
 
 Usage and Implementation
@@ -104,57 +100,47 @@ Usage and Implementation
 The port declaration for the LEDs, Buttons, I2C and UART are declared as below. LEDs and Buttons uses 4 bit ports, UART uses 1 bit ports both for Transmit and Receive and I2C uses 1 bit port for SCL(I2c Clock) and SDA (I2C data).
 
 .. literalinclude:: app_sk_gpio_com_demo/src/main.xc
-   :start-after: //::Ports start
+   :start-after: //::Ports Start
    :end-before: //::Ports
 
-The app_manager API writes the configuration settings information to the ADC as shows below.
+The led_server is a distributable task which does not run on a specific core. The led_server task changes the state of the LEDs based on the user input from the UART console.
 
 .. literalinclude:: app_sk_gpio_com_demo/src/main.xc
-   :start-after: //::Config start
-   :end-before: //::Config
+   :start-after: //::LED Server
+   :end-before: //::LED Server end
 
-The select statement in the app_manager API selects one of the three cases in it, checks if there is IO event or timer event or any event on the Uart Receive pin. This statement monitors all the events and executes which ever event is occurred first.  
-The select statement in the applciation is listed below. The statement checks if there is button press or availability of data on the Uart Receive pin. If there is button press then it looks if the button state is same as even after 200msec. If the buton state is same then it recognises as a valid push.
-If there is data on the Uart Receive pin the it echoes the data back to the uart Transmit pin until ``>`` character is received in the input data.
+The button_counter is a distributable task which does not run on a specific core. The button_counter task counts the number of times each button 'Button 1' and 'Button 2' are pressed.
 
 .. literalinclude:: app_sk_gpio_com_demo/src/main.xc
-   :start-after: //::Select start
-   :end-before: //::Select
+   :start-after: //::Button Start
+   :end-before: //::Button
 
-If the received data is ``>`` character the it waits to see if the next received successive bytes are ``c``, ``m`` and ``d``. If the successive received data is ``>cmd`` then the application activates comman mode otherwise the data is echoed back to the Uart Transmit pin. The part of code which explains about the command mode is as blow.
-
-.. literalinclude:: app_sk_gpio_com_demo/src/main.xc
-   :start-after: //::Command start
-   :end-before: //::Command
-
-After the command mode is active the applicaion receives all the input commands and send to the process_data API using a channel.The part of the code is shown below.
+The button_handler is a distributable task which does not run on a specific core. The button_handler task cycles the LEDs on the slice when 'Button 1' is pressed and Displays the Temperature value when 'Button 2' is pressed.
 
 .. literalinclude:: app_sk_gpio_com_demo/src/main.xc
-   :start-after: //::Send to process start
-   :end-before: //::Send
-
-The process_data thread checks if any button is pressed or checks if there is any command from app_manager thread. If there is button press then the thread sends instructions to the app_manager thread about the button or if command is received, then  it send instructions about teh command received. 
-The details in the process_data thread is as shown below.
-
-.. literalinclude:: app_sk_gpio_com_demo/src/main.xc
-   :start-after: //::Select in process start
-   :end-before: //::Select
+   :start-after: //::Button Handler
+   :end-before: //::Button Handler end
    
-Process_data thread send instructions to the app_manager thread about the command received. The app_manager thread then implementys the state machine according to the instructions received from the process_data thread. The state machine of app_manager thread is as below.
+The command_handler function does action based on the command input from the terminal window. It receives an input from the terminal and checks if it is valid command or not. If the received command is valid command it executes the command.
 
 .. literalinclude:: app_sk_gpio_com_demo/src/main.xc
-   :start-after: //::State machine start
-   :end-before: //::State
- 
- The state machine has states as described below. The state details are available in the quick starter guide of the applications.
- 
- .. literalinclude:: app_sk_gpio_com_demo/src/common.h
-    :start-after: //::States start
-    :end-before: //::States
+   :start-after: //::Command Handler   
+   :end-before: //::Command Handler end
 
+   
+The uart_handler is a combinable task which runs on a specific core. The uart_handler receives all the information from the terminal and based on the ode it echoes data back to the terminal to send a command to the command_handler function.
+   
+.. literalinclude:: app_sk_gpio_com_demo/src/main.xc
+   :start-after: //::UART Handler
+   :end-before: //::UART Handler end
 
+The temp_sensor task gets the ADC value using I2C interface and calculates the temperature value from the temperature look up table using Linear Interpolation method.
 
+ .. literalinclude:: app_sk_gpio_com_demo/src/temp_sensor.xc
+    :start-after: //::TEMP sensor
+    :end-before: //::TEMP sensor end
 
+	
 GPIO Ethernet Combo Demo
 ------------------------
 

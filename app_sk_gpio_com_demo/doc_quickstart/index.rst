@@ -27,7 +27,7 @@ Hardware Setup
 
 The XP-SKC-L2 Slicekit Core board has four slots with edge conectors: ``SQUARE``, ``CIRCLE``,``TRIANGLE`` and ``STAR``. 
 
-To setup up the system refer to the figure and instructions below 
+To setup the system refer to the figure and instructions below 
 
    #. Connect XA-SK-GPIO Slice Card to the XP-SKC-L2 Slicekit Core board using the connector marked with the ``SQUARE``.
    #. Connect the XTAG Adapter to Slicekit Core board, and connect XTAG-2 to the adapter. 
@@ -63,12 +63,13 @@ Note that the Developer Column in the xTIMEcomposer on the right hand side of yo
 
 Running the Demo
 ++++++++++++++++
-
-   #. Click on the ``Run`` icon (the white arrow in the green circle). A dialog will appear asking which device to cvonnect to. Select ``XMOS XTAG2``. 
+   
+   #. Right click on the project, click "Run As" | "1 xCore Application". The project then builds and runs. Subsequently the white arrow, in the green circle approach can be used.
+   #. A dialogue will appear asking which device to connect to. Select ``XMOS XTAG2``. 
    #. Look at the configured terminal client application console on the Host.
    #. If the terminal is configured correctly, it should display the following message: ``WELCOME TO GPIO DEMO (**ECHO DATA MODE ACTIVATED**)``. In this mode any character typed in from the key board is echoed back. Verify this by typing characters in the terminal console on the host. The typed characters should be echoed back.
    #. When ready, enter command mode by typing ``>cmd`` (note, be sure to also type the '>' character). The Console will then show  **COMMAND MODE ACTIVATED**.
-   #. Type ``help`` in the console window. The help menu will be displayed as sown in the figure below.
+   #. Type ``help`` in the console window. The help menu will be displayed as shown in the figure below.
 
 .. figure:: images/help_menu.png
    :align: center

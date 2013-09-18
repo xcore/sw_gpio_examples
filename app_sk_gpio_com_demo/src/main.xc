@@ -22,6 +22,7 @@
 #define BAUD_RATE 115200
 #define CMD_BUFFER_SIZE 20
 
+//::Ports Start
 on tile[1] : buffered in port:1 p_rx = XS1_PORT_1G;
 on tile[1] : out port p_tx = XS1_PORT_1C;
 on tile[1] : port p_led = XS1_PORT_4A;
@@ -30,6 +31,7 @@ on tile[1] : port p_buttons = XS1_PORT_4C;
 // I2C ports
 on tile[1]: port p_scl = XS1_PORT_1F;
 on tile[1]: port p_sda = XS1_PORT_1B;
+//::Ports
 
 #define ARRAY_SIZE(x) (sizeof(x)/sizeof(x[0]))
 static unsigned char rx_buffer[64];
@@ -42,6 +44,7 @@ interface led_if {
   void cycle(void);
 };
 
+//::LED Server
 [[distributable]]
 void led_server(server interface led_if c[n], unsigned n, port p_led)
 {
@@ -78,6 +81,7 @@ void led_server(server interface led_if c[n], unsigned n, port p_led)
     }
   }
 }
+//::LED Server end
 
 interface button_counter_if {
   void inc_button_count(int button_num);
@@ -85,6 +89,7 @@ interface button_counter_if {
   void clear_button_counts(void);
 };
 
+//::Button Start
 [[distributable]]
 void button_counter(server interface button_counter_if c[n], unsigned n)
 {
@@ -105,9 +110,11 @@ void button_counter(server interface button_counter_if c[n], unsigned n)
     }
   }
 }
+//::Button
 
 #define DEBOUNCE_TIME XS1_TIMER_HZ/50
 
+//::Button Handler
 [[combinable]]
 static void button_handler(port p_buttons,
                            client interface temp_sensor_if c_temp,
@@ -142,6 +149,7 @@ static void button_handler(port p_buttons,
     }
   }
 }
+//::Button Handler end
 
 static void output_string(client interface uart_tx_if c_uart_tx, const char s[])
 {
@@ -164,6 +172,7 @@ const char help_msg[] =
   "\r\n exit         - Exit from Command mode"
   "\r\n\r\n 'N' is in range 1 to 4\r\n";
 
+//::Command Handler
 static int handle_cmd(unsigned char cmd_buffer[CMD_BUFFER_SIZE],
                       client interface uart_tx_if c_uart_tx,
                       client interface temp_sensor_if c_temp,
@@ -231,8 +240,9 @@ static int handle_cmd(unsigned char cmd_buffer[CMD_BUFFER_SIZE],
   }
   return 1;
 }
+//::Command Handler
 
-
+//::UART Handler
 [[combinable]]
 void uart_handler(client interface uart_tx_if c_uart_tx,
                   client interface uart_rx_if c_uart_rx,
@@ -296,6 +306,7 @@ void uart_handler(client interface uart_tx_if c_uart_tx,
     }
   }
 }
+//::UART Handler end
 
 void xscope_user_init(void) {
   xscope_register(0);

@@ -23,6 +23,7 @@ static int linear_interpolation(int adc_value)
   return temper;//Return Temperature value
 }
 
+//::TEMP sensor
 [[distributable]]
 void temp_sensor(server interface temp_sensor_if c[n], unsigned n,
                  client interface i2c_master_if c_i2c)
@@ -42,3 +43,5 @@ void temp_sensor(server interface temp_sensor_if c[n], unsigned n,
     }
   }
 }
+
+//::TEMP sensor end

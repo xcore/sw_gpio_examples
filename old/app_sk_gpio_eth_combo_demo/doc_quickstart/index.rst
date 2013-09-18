@@ -46,7 +46,8 @@ For help in using xTIMEcomposer, try the xTIMEcomposer tutorials, which you can 
 Running the Demo
 ++++++++++++++++
 
-   #. Click on the ``Run`` icon (the white arrow in the green circle). A dialog will appear asking which device to connect to. Select ``XMOS XTAG2``. 
+   #. Right click on the project, click "Run As" | "1 xCore Application". The project then builds and runs. Subsequently the white arrow, in the green circle approach can be used.
+   #. A dialogue will appear asking which device to connect to. Select ``XMOS XTAG2``. 
    #. xTIMEcomposer console displays the ip address obtained by the DHCP client (or local link if DHCP server is not accesible). Please note if the DHCP  server is not available on the host PC, it may take a while to obtain the ip address.
    #. Open a web browser on the host PC and type the ip address displayed on the xTIMEcomposer console into the browser's address bar
    #. On hitting the return key, a web page should get loaded and displayed in the browser as shown in the figure below.
