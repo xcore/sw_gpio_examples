@@ -65,12 +65,12 @@ unsigned char rx_buffer[64];
  ---------------------------------------------------------------------------*/
 
 /**
- * Top level main for multi-UART demonstration
+ * Top level main for GPIO demonstration
  */
 //::Main start
 int main()
 {
-  chan c_chanTX, c_chanRX,c_receive,c_process,c_end;
+  chan c_chanTX, c_chanRX,c_process,c_end;
 
 	par
 	{
@@ -99,12 +99,11 @@ void app_manager(chanend c_uartTX,chanend c_uartRX, chanend c_process, chanend c
 	unsigned char i2c_register[1]={0x13};
 	int adc_value;
 	timer t;
-	unsigned char rcvbuffer;
 	unsigned char cmd_rcvbuffer[20];
 	unsigned char data_arr[1]={'K'};
-	unsigned crc_value=0,data=0;
-	unsigned byte,button_value1=0,button_value2=0,time,led_value=0x01;
-	int j=0,skip=1,selection;
+	unsigned data=0;
+	unsigned time,led_value=0x01;
+	int j=0,skip=1;
 	int button, button1_press=0,button2_press=0;
 	unsigned COMMAND_MODE=0;
 	uart_rx_client_state rxState;
@@ -383,8 +382,8 @@ void app_manager(chanend c_uartTX,chanend c_uartRX, chanend c_process, chanend c
  **/
 void process_data(chanend c_process, chanend c_end)
 {
-	int k=0,skip=1,i=0;
-	unsigned data=0,button_value1,button_value2;
+	int skip=1,i=0;
+	unsigned button_value1,button_value2;
 	unsigned char cmd_rcvbuffer[20];
 	int button=1,button1_pressed=0,button2_pressed=0;
 	timer t;

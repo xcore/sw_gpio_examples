@@ -105,8 +105,8 @@ int linear_interpolation(int adc_value)
  **/
 void app_manager()
 {
-	unsigned button_press_1,button_press_2,time,time1;
-	int button =1,index=0,toggle=0;
+	unsigned button_press_1,button_press_2,time;
+	int button =1;
 	timer t;
 	unsigned char data[1]={0x13};
 	unsigned char data1[2];
@@ -163,7 +163,7 @@ void app_manager()
 }
 
 /**
- * Top level main for multi-UART demonstration
+ * Top level main for simple GPIO demonstration
  */
  //::Main start
 int main(void)
