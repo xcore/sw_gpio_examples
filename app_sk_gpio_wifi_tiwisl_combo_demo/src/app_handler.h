@@ -1,8 +1,3 @@
-// Copyright (c) 2011, XMOS Ltd, All rights reserved
-// This software is freely distributable under a derivative of the
-// University of Illinois/NCSA Open Source License posted in
-// LICENSE.txt and at <http://github.xcore.com/>
-
 #ifndef APP_HANDLER_H_
 #define APP_HANDLER_H_
 #include "i2c.h"
@@ -20,17 +15,14 @@ typedef struct gpio_state {
 /** =========================================================================
  * app_handler
  *
- * Implements GPIO button press checks, reads onboard ADC temperature value,
- * handles GPIO web commands to set/reset LEDs, read tempearture and button
+ * Implements GPIO button press checks, reads on-board ADC temperature value,
+ * handles GPIO web commands to set/reset LEDs, read temperature and button
  * statuses
  *
- * \param c_gpio channel to communicate gpio data between app handler and
- * tcp handler
- * \param p_i2c i2c to read adc value from i2c master
+ * \param c_gpio channel to communicate GPIO data between app handler and tcp handler
+ * \param p_i2c i2c to read ADC value from i2c master
  * \param p_led GPIO LED ports
  * \param p_button GPIO button ports
- * tcp handler
- *
  * \return None
  *
  **/
