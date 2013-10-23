@@ -9,7 +9,7 @@ Slicekit Simple GPIO Demo
 Features
 --------
 
-With this general learning application running on the XA-SK-GPIo Slice Card you can:
+With this general learning application running on the XA-SK-GPIO sliceCARD you can:
 
    * flash leds
    * read the room temperature via the ADC
