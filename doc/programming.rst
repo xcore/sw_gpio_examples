@@ -1,9 +1,9 @@
 .. _sec_api:
 
-Programming Guide
+Programming guide
 =================
 
-Simple Demo
+Simple demo
 -----------
 
 Structure
@@ -28,7 +28,7 @@ API
 .. doxygenfunction:: linear_interpolation
 .. doxygenfunction:: read_adc_value
 
-Usage and Implementation
+Usage and implementation
 ++++++++++++++++++++++++
 
 The port declaration for the LEDs, Buttons and I2C are declared as below. LEDs and Buttons use 4 bit ports and I2C uses 1 bit port for SCL(I2c Clock) and SDA (I2C data).
@@ -155,7 +155,7 @@ Process_data thread send instructions to the app_manager thread about the comman
 
 
 
-GPIO Ethernet Combo Demo
+Gpio ethernet combo demo
 ------------------------
 
 Structure
@@ -187,13 +187,13 @@ API
 .. doxygenfunction:: get_web_user_selection
 
 
-Usage and Implementation
+Usage and implementation
 ++++++++++++++++++++++++
 
-The port declaration for Ethernet, LEDs, Buttons and I2C are declared as below:
+The port declaration for ethernet, LEDs, buttons and i2c are declared as below:
    * Ethernet uses ethernet_board_support.h configuration
-   * I2C uses 1 bit port for SCL(I2C Clock) and SDA (I2C data)
-   * LEDs and Buttons uses 4 bit ports
+   * i2c uses 1 bit port for SCL(i2c clock) and SDA (i2c data)
+   * LEDs and buttons uses 4 bit ports
 
 .. literalinclude:: app_sk_gpio_eth_combo_demo/src/main.xc
    :start-after: //::Ports Start
@@ -231,7 +231,7 @@ As a next step, create ``web`` folder in app_sk_gpio_eth_combo_demo
 In order to include any images to be displayed on the web page, create images folder as follows
 app_sk_gpio_eth_combo_demo/web/images
 
-For this application, we have created index.html web page using html script. This page uses XMOS logo from images folder. We have defined desired GPIO controls for LEDs in this web page. 
+For this application, we have created index.html web page using html script. This page uses XMOS logo from images folder. We have defined desired gpio controls for LEDs in this web page. 
 
 APIs that are required to be executed by the demo application should be enclosed between the tags ``{%`` and  ``%}``. These are to be defined in ``web_page_functions.c`` file.
 For example, index.html contains
