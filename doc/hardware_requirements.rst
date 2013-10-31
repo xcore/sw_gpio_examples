@@ -6,7 +6,7 @@ Recommended Hardware
 
 This application may be evaluated using the sliceKIT platform, available from digikey. Required units are:
 
-   * XP-SKC-L2 (sliceKIT L2 core board) plus XA-SK-GPIO plus XA-SK-XTAG2 (sliceKIT XTAG-2 adaptor) plus XTAG-2 (debug adaptor)
+   * XP-SKC-L16 (sliceKIT L16 core board) plus XA-SK-GPIO plus XA-SK-XTAG2 (sliceKIT XTAG-2 adaptor) plus XTAG-2 (debug adaptor)
 
 Example Applications
 --------------------
@@ -17,7 +17,7 @@ app_slicekit_simple_demo
 This application has the following features:
 
    * module_i2c_master from the xSOFTip library is used to access the external ADC, which is equipped with an external linearised thermistor circuit for temperature sensing.
-   * simple code to print the recorded temperature to the XDE debug console on the press of one of the sliceCARD buttons
+   * simple code to print the recorded temperature to the xTIMEcomposer debug console on the press of one of the sliceCARD buttons
    * simple code to cycle through the 4 LEDs each time the other button is pressed.
    * demonstrates use of XC select statements for handling multiple concurrent inputs
    * demonstrates basic usage of XCore ports

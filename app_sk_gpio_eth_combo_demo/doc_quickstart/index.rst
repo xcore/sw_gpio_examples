@@ -11,7 +11,7 @@ This example demonstrates the use of two sliceCARDs, XA-SK-gpio and XA-SK-E100 t
 A webpage served from the sliceKIT and accessed using a browser on a host PC has the following demo functions:
    * Turn XA-SK-gpio sliceCARD LEDS on and off
    * Read the room temperature via the onboard ADC and display on the web page
-   * Display XA-SK-gpio sliceCARD button press status
+   * Display XA-SK-GPIO sliceCARD button press status
 
 Hardware setup
 ++++++++++++++
@@ -20,8 +20,8 @@ The XP-SKC-L2 sliceKIT has four slots with edge conectors: ``SQUARE``, ``CIRCLE`
 
 To setup up the system refer to the figure and instructions below 
 
-   #. Connect the XA-SK-E100 sliceCARD to the XP-SKC-L2 sliceKIT using the connector marked with the ``CIRCLE``.
-   #. Connect the XA-SK-gpio sliceCARD to the XP-SKC-L2 sliceKIT using the connector marked with the ``SQUARE``.
+   #. Connect the XA-SK-E100 sliceCARD to the XP-SKC-L16 sliceKIT using the connector marked with the ``CIRCLE``.
+   #. Connect the XA-SK-GPIO sliceCARD to the XP-SKC-L16 sliceKIT using the connector marked with the ``SQUARE``.
    #. Connect the XTAG-2 sliceCARD to sliceKIT , and connect XTAG-2 to the adapter. 
    #. Connect the XTAG-2 to the host PC. Note that an ethernet cable is not provided with the sliceKIT starter kit.
    #. Connect one end of the ethernet cable to XA-SK-E100 sliceCARD and the other end to the RJ45 jack of your host PC.

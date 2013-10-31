@@ -25,11 +25,11 @@ The following tools should be installed on the host system in order to run this 
 Hardware Setup
 ++++++++++++++
 
-The XP-SKC-L2 sliceKIT Core board has four slots with edge connectors: ``SQUARE``, ``CIRCLE``,``TRIANGLE`` and ``STAR``. 
+The XP-SKC-L16 sliceKIT Core board has four slots with edge connectors: ``SQUARE``, ``CIRCLE``,``TRIANGLE`` and ``STAR``. 
 
 To setup up the system refer to the figure and instructions below 
 
-   #. Connect XA-SK-GPIO sliceCARD to the XP-SKC-L2 sliceKIT Core board using the connector marked with the ``SQUARE``.
+   #. Connect XA-SK-GPIO sliceCARD to the XP-SKC-L16 sliceKIT Core board using the connector marked with the ``SQUARE``.
    #. Connect the XTAG Adapter to sliceKIT Core board, and connect XTAG-2 to the adapter. 
    #. Connect the XTAG-2 to host PC. Note that a USB cable is not provided with the sliceKIT starter kit.
    #. Switch on the power supply to the sliceKIT Core board.
@@ -37,7 +37,7 @@ To setup up the system refer to the figure and instructions below
    #. Connect other end of cable to Host DB-9 connector slot. If the Host does not have an DB-9 Connector slot then use USB-UART cable for the demo. We used the BF-810 USB to Uart adapter (See http://www.bafo.com/products_bf-810_S.asp (Part number : BF-810). Any other usb to uart bridge should do just as well.
    #. Identify the serial (COM) port number provided by the Host or the USB to UART adapter and open a suitable terminal software for the selected serial port (refer to the Hercules or SecureCRT documentation above).
    #. Configure the host terminal console program as follows: 115200 baud, 8 bit character length, even parity, 1 stop bit, no hardware flow control. The Transmit End-of-Line character should be set to `CR` (other options presented will probably be `LF` and `CR\LF`).
-   #. Connect XA-SK-GPIO sliceCARD to the XP-SKC-L2 sliceKIT Core board. 
+   #. Connect XA-SK-GPIO sliceCARD to the XP-SKC-L16 sliceKIT Core board. 
    #. Connect the XTAG Adapter to sliceKIT Core board, XA-SK-XTAG2 connector(XTAG slice) and connect XTAG-2 to the adapter. 
    #. Connect the XTAG-2 to the computer running xTIMEcomposer.
    #. Switch on the power supply to the sliceKIT Core board.

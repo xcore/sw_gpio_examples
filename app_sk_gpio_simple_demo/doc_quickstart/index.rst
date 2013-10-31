@@ -19,7 +19,7 @@ The XP-SKC-L2 sliceKIT Core board has four slots with edge connectors: ``SQUARE`
 
 To setup up the system:
 
-   #. Connect XA-SK-GPIO sliceCARD to the XP-SKC-L2 sliceKIT Core board using the connector marked with the ``SQUARE``.
+   #. Connect XA-SK-GPIO sliceCARD to the XP-SKC-L16 sliceKIT Core board using the connector marked with the ``SQUARE``.
    #. Connect the XTAG Adapter to sliceKIT Core board, and connect XTAG-2 to the adapter. 
    #. Connect the XTAG-2 to host PC. Note that a USB cable is not provided with the sliceKIT starter kit.
    #. Switch on the power supply to the sliceKIT Core board.
