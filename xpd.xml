@@ -3,29 +3,30 @@
     <components>
         <component description = "An example applications that extends app_slicekit_simple_demo to demonstrate usage of the xSOFTip generic Uart RX/TX components and demonstrate extended features of how to handle concurrent events in the XC programming language." type = "demoCode" scope = "Example" path = "app_sk_gpio_com_demo" local = "false" id = "app_sk_gpio_com_demo" name = "Slicekit COM Port GPIO Demo">
             <board>XA-SK-GPIO</board>
-            <componentDependency>module_uart_tx</componentDependency>
-            <componentDependency>module_uart_rx</componentDependency>
-            <componentDependency>module_i2c_master</componentDependency>
+            <componentDependency repo = "git://github.com/xcore/sc_i2c" version = "2.2.1">module_i2c_master</componentDependency>
+            <componentDependency repo = "git://github.com/xcore/sc_uart.git" version = "3.0.0">module_uart_tx</componentDependency>
+            <componentDependency repo = "git://github.com/xcore/sc_uart.git" version = "3.0.0">module_uart_rx</componentDependency>
             <keyword>I2C</keyword>
             <keyword>LED</keyword>
             <keyword>buttons</keyword>
             <keyword>UART</keyword>
         </component>
         <component description = "This application showcases GPIO features which can be accessed and controlled over Ethernet via a webpage on an embedded webserver, using the GPIO and Ethernet Slices" type = "demoCode" scope = "Example" path = "app_sk_gpio_eth_combo_demo" local = "false" id = "app_sk_gpio_eth_combo_demo" name = "Slicekit GPIO and Ethernet Combo Demo">
-            <board>XP-SKC-L2</board>
+            <board>XP-SKC-L16</board>
             <board>XA-SK-GPIO</board>
             <board>XA-SK-E100</board>
-            <componentDependency>module_webserver</componentDependency>
-            <componentDependency>module_i2c_master</componentDependency>
-            <componentDependency>module_otp_board_info</componentDependency>
-            <componentDependency>module_locks</componentDependency>
-            <componentDependency>module_wifi_tiwisl</componentDependency>
-            <componentDependency>module_xtcp</componentDependency>
-            <componentDependency>module_ethernet_board_support</componentDependency>
-            <componentDependency>module_spi_master</componentDependency>
-            <componentDependency>module_mutual_thread_comm</componentDependency>
-            <componentDependency>module_ethernet_smi</componentDependency>
-            <componentDependency>module_ethernet</componentDependency>
+            <componentDependency repo = "git://github.com/xcore/sc_website" version = "1.0.4">module_webserver</componentDependency>
+            <componentDependency repo = "git://github.com/xcore/sc_otp" version = "1.0.0">module_otp_board_info</componentDependency>
+            <componentDependency repo = "git://github.com/xcore/sc_ethernet.git" version = "2.2.7">module_ethernet_smi</componentDependency>
+            <componentDependency repo = "git://github.com/xcore/sc_util" version = "1.0.3">module_mutual_thread_comm</componentDependency>
+            <componentDependency repo = "git://github.com/davelxmos/sc_xtcp" version = "3.1.5">module_xtcp</componentDependency>
+            <componentDependency repo = "git://github.com/xcore/sc_ethernet.git" version = "2.2.7">module_ethernet_board_support</componentDependency>
+            <componentDependency repo = "git://github.com/xcore/sc_ethernet.git" version = "2.2.7">module_ethernet</componentDependency>
+            <componentDependency repo = "git://github.com/xcore/sc_wifi.git" version = "1.1.2">module_wifi_tiwisl</componentDependency>
+            <componentDependency repo = "git://github.com/xcore/sc_util" version = "1.0.3">module_mutual_thread_comm</componentDependency>
+            <componentDependency repo = "git://github.com/xcore/sc_util" version = "1.0.3">module_locks</componentDependency>
+            <componentDependency repo = "git://github.com/xcore/sc_i2c" version = "2.2.1">module_i2c_master</componentDependency>
+            <componentDependency repo = "git://github.com/xcore/sc_spi" version = "1.4.0">module_spi_master</componentDependency>
             <keyword>Ethernet</keyword>
             <keyword>I2C</keyword>
             <keyword>LED</keyword>
@@ -33,26 +34,28 @@
         </component>
         <component description = "An example applications that demonstrate various features of the XA-SK-GPIO Slice Card including the ADC, LEDs and buttons, the I2C master xSOFTip component, as well as various basic features of the xCORE processor." type = "demoCode" scope = "Example" path = "app_sk_gpio_simple_demo" local = "false" id = "app_sk_gpio_simple_demo" name = "Slicekit Simple GPIO Demo">
             <board>XA-SK-GPIO</board>
-            <componentDependency>module_i2c_master</componentDependency>
+            <componentDependency repo = "git://github.com/xcore/sc_i2c" version = "2.2.1">module_i2c_master</componentDependency>
             <keyword>I2C</keyword>
             <keyword>LED</keyword>
             <keyword>buttons</keyword>
         </component>
-        <component description = "An example application to demonstrate the Wifi Slice controlling the LEDS and monitoring thebuttons and temperature sensor on the GPIO Slice." type = "demoCode" scope = "Example" path = "app_sk_gpio_wifi_tiwisl_combo_demo" local = "false" id = "app_sk_gpio_wifi_tiwisl_combo_demo" name = "Slicekit GPIO and Wi-Fi Combo Demo">
-            <board>XP-SKC-L2</board>
+        <component description = "An example application to demonstrate the WI-Fi Slice controlling the LEDS and monitoring the buttons and temperature sensor on the GPIO Slice." type = "demoCode" scope = "Example" path = "app_sk_gpio_wifi_tiwisl_combo_demo" local = "false" id = "app_sk_gpio_wifi_tiwisl_combo_demo" name = "sliceKIT GPIO and Wi-Fi Combo Demo">
+            <board>XP-SKC-L16</board>
             <board>XA-SK-GPIO</board>
-            <board>XA-SK-WIFI-TIWISL</board>
-            <componentDependency>module_webserver</componentDependency>
-            <componentDependency>module_i2c_master</componentDependency>
-            <componentDependency>module_otp_board_info</componentDependency>
-            <componentDependency>module_locks</componentDependency>
-            <componentDependency>module_wifi_tiwisl</componentDependency>
-            <componentDependency>module_ethernet</componentDependency>
-            <componentDependency>module_spi_master</componentDependency>
-            <componentDependency>module_mutual_thread_comm</componentDependency>
-            <componentDependency>module_ethernet_smi</componentDependency>
-            <componentDependency>module_xtcp</componentDependency>
-            <keyword>wifi</keyword>
+            <board>XA-SK-WIFI</board>
+            <componentDependency repo = "git://github.com/davelxmos/sc_xtcp" version = "3.1.5">module_xtcp</componentDependency>
+            <componentDependency repo = "git://github.com/xcore/sc_ethernet.git" version = "2.2.7">module_ethernet_smi</componentDependency>
+            <componentDependency repo = "git://github.com/xcore/sc_util" version = "1.0.3">module_mutual_thread_comm</componentDependency>
+            <componentDependency repo = "git://github.com/xcore/sc_spi" version = "1.4.0">module_spi_master</componentDependency>
+            <componentDependency repo = "git://github.com/xcore/sc_util" version = "1.0.3">module_mutual_thread_comm</componentDependency>
+            <componentDependency repo = "git://github.com/xcore/sc_otp" version = "1.0.0">module_otp_board_info</componentDependency>
+            <componentDependency repo = "git://github.com/xcore/sc_ethernet.git" version = "2.2.7">module_ethernet</componentDependency>
+            <componentDependency repo = "git://github.com/xcore/sc_wifi.git" version = "1.1.2">module_wifi_tiwisl</componentDependency>
+            <componentDependency repo = "git://github.com/xcore/sc_util" version = "1.0.3">module_locks</componentDependency>
+            <componentDependency repo = "git://github.com/xcore/sc_website" version = "1.0.4">module_webserver</componentDependency>
+            <componentDependency repo = "git://github.com/xcore/sc_i2c" version = "2.2.1">module_i2c_master</componentDependency>
+            <componentDependency repo = "git://github.com/xcore/sc_wifi.git" version = "1.1.2">module_wifi_tiwisl</componentDependency>
+            <keyword>Wi-Fi</keyword>
             <keyword>I2C</keyword>
             <keyword>LED</keyword>
             <keyword>buttons</keyword>
@@ -122,6 +125,7 @@
     <release parenthash = "356ff77f63c215c757970b5d5d9892882fd5fe15" version = "1.0.4beta4" githash = "ee4b5814a5cba0995f68f201d1ddab825ac6d7d5"></release>
     <release parenthash = "13b5d3987fa00e58366009abe9f2c0021fb44085" version = "1.0.4beta5" githash = "2aaf923a5a98ae3ac1bac2f1baf88623b7a1f4ed"></release>
     <release parenthash = "2aaf923a5a98ae3ac1bac2f1baf88623b7a1f4ed" version = "1.0.4rc0" githash = "dfaa15ef25954d4865a0a4e7f5940c13ef44170f"></release>
+    <release parenthash = "3f235b8b335a0e739a0af48d6594cd48cf2ff657" version = "1.0.5rc0"></release>
     <subpartnumber>XM-001887-SM</subpartnumber>
     <vendor>XMOS</vendor>
     <version_defines></version_defines>

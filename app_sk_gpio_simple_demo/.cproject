@@ -156,42 +156,11 @@
 								<option id = "com.xmos.xc.compiler.option.include.paths.98185768" name="com.xmos.xc.compiler.option.include.paths" superClass="com.xmos.xc.compiler.option.include.paths" valueType="includePath">
 									<listOptionValue builtIn="false" value="&quot;${XMOS_TOOL_PATH}/target/include&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${XMOS_TOOL_PATH}/target/include/gcc&quot;"/>
-                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_i2c_master/_build/.support/docs_xref/.git/logs}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_i2c_master/_build/.support/docs_xref/.git/logs/refs}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_i2c_master/_build/.support/docs_xref/.git/branches}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_i2c_master/_build/.support/docs_xref/.git/objects/info}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_sk_gpio_simple_demo/.build_Release/fake_inc}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_i2c_master/_build/text}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_sk_gpio_simple_demo/.build_Release/src}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_i2c_master/_build/.support}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_i2c_master/_build}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_i2c_master/_build/xdehtml}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_sk_gpio_simple_demo/bin}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_sk_gpio_simple_demo/.build_Release/m_i2c_master}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_i2c_master/_build/.support/docs_xref/.git/objects}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_i2c_master/_build/.support/docs_xref}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_i2c_master/_build/xdehtml/.doctrees}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_i2c_master/_build/.support/docs_xref/.git/refs/remotes}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_i2c_master/src}&quot;' />
+                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_sk_gpio_simple_demo/.settings}&quot;' />
 <listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_sk_gpio_simple_demo/src}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_i2c_master/_build/.support/docs_xref/.git/logs/refs/heads}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_i2c_master}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_i2c_master/_build/.support/docs_xref/.git/refs/tags}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_i2c_master/_build/xdehtml/_static/images}&quot;' />
 <listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_sk_gpio_simple_demo}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_sk_gpio_simple_demo/.settings}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_i2c_master/_build/xdehtml/_static}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_sk_gpio_simple_demo/.build_Release/m_i2c_master/src}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_i2c_master/_build/.support/docs_xref/.git/objects/pack}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_i2c_master/_build/.support/docs_xref/.git}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_i2c_master/_build/.support/docs_xref/.git/refs}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_i2c_master/_build/.support/docs_xref/.git/refs/heads}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_sk_gpio_simple_demo/.build_Release}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_i2c_master/_build/.support/docs_xref/.git/info}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_sk_gpio_simple_demo/bin/Release}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_i2c_master/_build/text/.doctrees}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_i2c_master/_build/.support/docs_xref/.git/hooks}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_i2c_master/_build/.support/docs_xref/.git/refs/remotes/origin}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_i2c_master/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_i2c_master}&quot;' />
 
 								</option>
 								<inputType id = "com.xmos.cdt.xc.compiler.input.42896362" name="XC" superClass="com.xmos.cdt.xc.compiler.input"/>
@@ -303,42 +272,11 @@
 								<option id = "com.xmos.c.compiler.option.include.paths.65745807" name="com.xmos.c.compiler.option.include.paths" superClass="com.xmos.c.compiler.option.include.paths" valueType="includePath">
 									<listOptionValue builtIn="false" value="&quot;${XMOS_TOOL_PATH}/target/include&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${XMOS_TOOL_PATH}/target/include/gcc&quot;"/>
-                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_i2c_master/_build/.support/docs_xref/.git/logs}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_i2c_master/_build/.support/docs_xref/.git/logs/refs}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_i2c_master/_build/.support/docs_xref/.git/branches}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_i2c_master/_build/.support/docs_xref/.git/objects/info}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_sk_gpio_simple_demo/.build_Release/fake_inc}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_i2c_master/_build/text}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_sk_gpio_simple_demo/.build_Release/src}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_i2c_master/_build/.support}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_i2c_master/_build}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_i2c_master/_build/xdehtml}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_sk_gpio_simple_demo/bin}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_sk_gpio_simple_demo/.build_Release/m_i2c_master}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_i2c_master/_build/.support/docs_xref/.git/objects}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_i2c_master/_build/.support/docs_xref}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_i2c_master/_build/xdehtml/.doctrees}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_i2c_master/_build/.support/docs_xref/.git/refs/remotes}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_i2c_master/src}&quot;' />
+                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_sk_gpio_simple_demo/.settings}&quot;' />
 <listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_sk_gpio_simple_demo/src}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_i2c_master/_build/.support/docs_xref/.git/logs/refs/heads}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_i2c_master}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_i2c_master/_build/.support/docs_xref/.git/refs/tags}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_i2c_master/_build/xdehtml/_static/images}&quot;' />
 <listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_sk_gpio_simple_demo}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_sk_gpio_simple_demo/.settings}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_i2c_master/_build/xdehtml/_static}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_sk_gpio_simple_demo/.build_Release/m_i2c_master/src}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_i2c_master/_build/.support/docs_xref/.git/objects/pack}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_i2c_master/_build/.support/docs_xref/.git}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_i2c_master/_build/.support/docs_xref/.git/refs}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_i2c_master/_build/.support/docs_xref/.git/refs/heads}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_sk_gpio_simple_demo/.build_Release}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_i2c_master/_build/.support/docs_xref/.git/info}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_sk_gpio_simple_demo/bin/Release}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_i2c_master/_build/text/.doctrees}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_i2c_master/_build/.support/docs_xref/.git/hooks}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_i2c_master/_build/.support/docs_xref/.git/refs/remotes/origin}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_i2c_master/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_i2c_master}&quot;' />
 
 								</option>
 								<inputType id = "com.xmos.cdt.c.compiler.input.c.76157354" name="C" superClass="com.xmos.cdt.c.compiler.input.c"/>
@@ -456,42 +394,11 @@
 									<listOptionValue builtIn="false" value="&quot;${XMOS_TOOL_PATH}/target/include/gcc&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${XMOS_TOOL_PATH}/target/include/c++/4.2.1&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${XMOS_TOOL_PATH}/target/include/c++/4.2.1/xcore-xmos-elf&quot;"/>
-                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_i2c_master/_build/.support/docs_xref/.git/logs}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_i2c_master/_build/.support/docs_xref/.git/logs/refs}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_i2c_master/_build/.support/docs_xref/.git/branches}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_i2c_master/_build/.support/docs_xref/.git/objects/info}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_sk_gpio_simple_demo/.build_Release/fake_inc}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_i2c_master/_build/text}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_sk_gpio_simple_demo/.build_Release/src}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_i2c_master/_build/.support}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_i2c_master/_build}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_i2c_master/_build/xdehtml}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_sk_gpio_simple_demo/bin}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_sk_gpio_simple_demo/.build_Release/m_i2c_master}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_i2c_master/_build/.support/docs_xref/.git/objects}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_i2c_master/_build/.support/docs_xref}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_i2c_master/_build/xdehtml/.doctrees}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_i2c_master/_build/.support/docs_xref/.git/refs/remotes}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_i2c_master/src}&quot;' />
+                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_sk_gpio_simple_demo/.settings}&quot;' />
 <listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_sk_gpio_simple_demo/src}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_i2c_master/_build/.support/docs_xref/.git/logs/refs/heads}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_i2c_master}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_i2c_master/_build/.support/docs_xref/.git/refs/tags}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_i2c_master/_build/xdehtml/_static/images}&quot;' />
 <listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_sk_gpio_simple_demo}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_sk_gpio_simple_demo/.settings}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_i2c_master/_build/xdehtml/_static}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_sk_gpio_simple_demo/.build_Release/m_i2c_master/src}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_i2c_master/_build/.support/docs_xref/.git/objects/pack}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_i2c_master/_build/.support/docs_xref/.git}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_i2c_master/_build/.support/docs_xref/.git/refs}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_i2c_master/_build/.support/docs_xref/.git/refs/heads}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_sk_gpio_simple_demo/.build_Release}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_i2c_master/_build/.support/docs_xref/.git/info}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_sk_gpio_simple_demo/bin/Release}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_i2c_master/_build/text/.doctrees}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_i2c_master/_build/.support/docs_xref/.git/hooks}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_i2c_master/_build/.support/docs_xref/.git/refs/remotes/origin}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_i2c_master/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_i2c_master}&quot;' />
 
 								</option>
 								<inputType id = "com.xmos.cdt.cxx.compiler.input.cpp.54460067" name="C++" superClass="com.xmos.cdt.cxx.compiler.input.cpp"/>
@@ -745,42 +652,11 @@
 								<option id = "com.xmos.xc.compiler.option.include.paths.37419289" name="com.xmos.xc.compiler.option.include.paths" superClass="com.xmos.xc.compiler.option.include.paths" valueType="includePath">
 									<listOptionValue builtIn="false" value="&quot;${XMOS_TOOL_PATH}/target/include&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${XMOS_TOOL_PATH}/target/include/gcc&quot;"/>
-                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_i2c_master/_build/.support/docs_xref/.git/logs}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_i2c_master/_build/.support/docs_xref/.git/logs/refs}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_i2c_master/_build/.support/docs_xref/.git/branches}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_i2c_master/_build/.support/docs_xref/.git/objects/info}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_sk_gpio_simple_demo/.build_Release/fake_inc}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_i2c_master/_build/text}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_sk_gpio_simple_demo/.build_Release/src}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_i2c_master/_build/.support}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_i2c_master/_build}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_i2c_master/_build/xdehtml}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_sk_gpio_simple_demo/bin}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_sk_gpio_simple_demo/.build_Release/m_i2c_master}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_i2c_master/_build/.support/docs_xref/.git/objects}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_i2c_master/_build/.support/docs_xref}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_i2c_master/_build/xdehtml/.doctrees}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_i2c_master/_build/.support/docs_xref/.git/refs/remotes}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_i2c_master/src}&quot;' />
+                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_sk_gpio_simple_demo/.settings}&quot;' />
 <listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_sk_gpio_simple_demo/src}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_i2c_master/_build/.support/docs_xref/.git/logs/refs/heads}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_i2c_master}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_i2c_master/_build/.support/docs_xref/.git/refs/tags}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_i2c_master/_build/xdehtml/_static/images}&quot;' />
 <listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_sk_gpio_simple_demo}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_sk_gpio_simple_demo/.settings}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_i2c_master/_build/xdehtml/_static}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_sk_gpio_simple_demo/.build_Release/m_i2c_master/src}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_i2c_master/_build/.support/docs_xref/.git/objects/pack}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_i2c_master/_build/.support/docs_xref/.git}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_i2c_master/_build/.support/docs_xref/.git/refs}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_i2c_master/_build/.support/docs_xref/.git/refs/heads}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_sk_gpio_simple_demo/.build_Release}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_i2c_master/_build/.support/docs_xref/.git/info}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_sk_gpio_simple_demo/bin/Release}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_i2c_master/_build/text/.doctrees}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_i2c_master/_build/.support/docs_xref/.git/hooks}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_i2c_master/_build/.support/docs_xref/.git/refs/remotes/origin}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_i2c_master/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_i2c_master}&quot;' />
 
 								</option>
 								<inputType id = "com.xmos.cdt.xc.compiler.input.2293862" name="XC" superClass="com.xmos.cdt.xc.compiler.input"/>
@@ -892,42 +768,11 @@
 								<option id = "com.xmos.c.compiler.option.include.paths.14313884" name="com.xmos.c.compiler.option.include.paths" superClass="com.xmos.c.compiler.option.include.paths" valueType="includePath">
 									<listOptionValue builtIn="false" value="&quot;${XMOS_TOOL_PATH}/target/include&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${XMOS_TOOL_PATH}/target/include/gcc&quot;"/>
-                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_i2c_master/_build/.support/docs_xref/.git/logs}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_i2c_master/_build/.support/docs_xref/.git/logs/refs}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_i2c_master/_build/.support/docs_xref/.git/branches}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_i2c_master/_build/.support/docs_xref/.git/objects/info}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_sk_gpio_simple_demo/.build_Release/fake_inc}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_i2c_master/_build/text}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_sk_gpio_simple_demo/.build_Release/src}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_i2c_master/_build/.support}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_i2c_master/_build}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_i2c_master/_build/xdehtml}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_sk_gpio_simple_demo/bin}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_sk_gpio_simple_demo/.build_Release/m_i2c_master}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_i2c_master/_build/.support/docs_xref/.git/objects}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_i2c_master/_build/.support/docs_xref}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_i2c_master/_build/xdehtml/.doctrees}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_i2c_master/_build/.support/docs_xref/.git/refs/remotes}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_i2c_master/src}&quot;' />
+                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_sk_gpio_simple_demo/.settings}&quot;' />
 <listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_sk_gpio_simple_demo/src}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_i2c_master/_build/.support/docs_xref/.git/logs/refs/heads}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_i2c_master}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_i2c_master/_build/.support/docs_xref/.git/refs/tags}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_i2c_master/_build/xdehtml/_static/images}&quot;' />
 <listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_sk_gpio_simple_demo}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_sk_gpio_simple_demo/.settings}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_i2c_master/_build/xdehtml/_static}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_sk_gpio_simple_demo/.build_Release/m_i2c_master/src}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_i2c_master/_build/.support/docs_xref/.git/objects/pack}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_i2c_master/_build/.support/docs_xref/.git}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_i2c_master/_build/.support/docs_xref/.git/refs}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_i2c_master/_build/.support/docs_xref/.git/refs/heads}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_sk_gpio_simple_demo/.build_Release}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_i2c_master/_build/.support/docs_xref/.git/info}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_sk_gpio_simple_demo/bin/Release}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_i2c_master/_build/text/.doctrees}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_i2c_master/_build/.support/docs_xref/.git/hooks}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_i2c_master/_build/.support/docs_xref/.git/refs/remotes/origin}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_i2c_master/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_i2c_master}&quot;' />
 
 								</option>
 								<inputType id = "com.xmos.cdt.c.compiler.input.c.8153433" name="C" superClass="com.xmos.cdt.c.compiler.input.c"/>
@@ -1045,42 +890,11 @@
 									<listOptionValue builtIn="false" value="&quot;${XMOS_TOOL_PATH}/target/include/gcc&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${XMOS_TOOL_PATH}/target/include/c++/4.2.1&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${XMOS_TOOL_PATH}/target/include/c++/4.2.1/xcore-xmos-elf&quot;"/>
-                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_i2c_master/_build/.support/docs_xref/.git/logs}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_i2c_master/_build/.support/docs_xref/.git/logs/refs}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_i2c_master/_build/.support/docs_xref/.git/branches}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_i2c_master/_build/.support/docs_xref/.git/objects/info}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_sk_gpio_simple_demo/.build_Release/fake_inc}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_i2c_master/_build/text}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_sk_gpio_simple_demo/.build_Release/src}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_i2c_master/_build/.support}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_i2c_master/_build}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_i2c_master/_build/xdehtml}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_sk_gpio_simple_demo/bin}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_sk_gpio_simple_demo/.build_Release/m_i2c_master}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_i2c_master/_build/.support/docs_xref/.git/objects}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_i2c_master/_build/.support/docs_xref}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_i2c_master/_build/xdehtml/.doctrees}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_i2c_master/_build/.support/docs_xref/.git/refs/remotes}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_i2c_master/src}&quot;' />
+                                    <listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_sk_gpio_simple_demo/.settings}&quot;' />
 <listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_sk_gpio_simple_demo/src}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_i2c_master/_build/.support/docs_xref/.git/logs/refs/heads}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_i2c_master}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_i2c_master/_build/.support/docs_xref/.git/refs/tags}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_i2c_master/_build/xdehtml/_static/images}&quot;' />
 <listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_sk_gpio_simple_demo}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_sk_gpio_simple_demo/.settings}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_i2c_master/_build/xdehtml/_static}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_sk_gpio_simple_demo/.build_Release/m_i2c_master/src}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_i2c_master/_build/.support/docs_xref/.git/objects/pack}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_i2c_master/_build/.support/docs_xref/.git}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_i2c_master/_build/.support/docs_xref/.git/refs}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_i2c_master/_build/.support/docs_xref/.git/refs/heads}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_sk_gpio_simple_demo/.build_Release}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_i2c_master/_build/.support/docs_xref/.git/info}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/app_sk_gpio_simple_demo/bin/Release}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_i2c_master/_build/text/.doctrees}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_i2c_master/_build/.support/docs_xref/.git/hooks}&quot;' />
-<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_i2c_master/_build/.support/docs_xref/.git/refs/remotes/origin}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_i2c_master/src}&quot;' />
+<listOptionValue builtIn="false" value='&quot;${workspace_loc:/module_i2c_master}&quot;' />
 
 								</option>
 								<inputType id = "com.xmos.cdt.cxx.compiler.input.cpp.39997785" name="C++" superClass="com.xmos.cdt.cxx.compiler.input.cpp"/>

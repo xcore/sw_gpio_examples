@@ -62,7 +62,7 @@ void tcp_handler(chanend c_xtcp, chanend c_gpio) {
   xtcp_wifi_on(c_xtcp);
   // Connect to an access point
   xtcp_connect(c_xtcp, ap_config);
-  
+
   web_server_init(c_xtcp, null, null);
   init_web_state(c_gpio);
   while (1) {

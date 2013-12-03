@@ -63,7 +63,7 @@ int TEMPERATURE_LUT[][2]= //Temperature Look up table
 /*---------------------------------------------------------------------------
  implementation
  ---------------------------------------------------------------------------*/
- 
+
 /** =========================================================================
  * linear interpolation
  *
@@ -147,7 +147,7 @@ void app_manager()
 				if(button_press_1 == BUTTON_PRESS_VALUE-1) //Button 2 is pressed
 				{
 					data1[0]=0;data1[1]=0;
-					i2c_master_rx(0x28, data1, 2, i2cOne); //Read ADC value using I2C read 
+					i2c_master_rx(0x28, data1, 2, i2cOne); //Read ADC value using I2C read
 					printstrln("Reading Temperature value....");
 					data1[0]=data1[0]&0x0F;
 					adc_value=(data1[0]<<6)|(data1[1]>>2);

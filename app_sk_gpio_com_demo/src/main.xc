@@ -206,7 +206,7 @@ void app_manager(chanend c_uartTX,chanend c_uartRX, chanend c_process, chanend c
 					skip=1;
 					while(skip == 1)
 					{
-//::Send to process start					
+//::Send to process start
 						select
 						{
 							case uart_rx_get_byte_byref(c_uartRX, rxState, buffer):
