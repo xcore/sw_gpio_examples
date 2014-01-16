@@ -2,7 +2,7 @@ Slicekit Simple GPIO Demo
 =========================
 
 :scope: Example
-:description: An example applications that demonstrate various features of the XA-SK-GPIO Slice Card including the ADC, LEDs and buttons, the I2C master xSOFTip component, as well as various basic features of the xCORE processor.
+:description: An example applications that demonstrate various features of the XA-SK-GPIO sliceCARD including the ADC, LEDs and buttons, the I2C master xSOFTip component, as well as various basic features of the xCORE processor.
 :keywords: I2C, LED, buttons
 :boards: XA-SK-GPIO
 

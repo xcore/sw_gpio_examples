@@ -133,11 +133,11 @@ After the command mode is active the applicaion receives all the input commands 
    :start-after: //::Send to process start
    :end-before: //::Send
 
-The process_data thread checks if any button is pressed or checks if there is any command from app_manager thread. If there is button press then the thread sends instructions to the app_manager thread about the button or if command is received, then  it send instructions about teh command received. 
+The process_data thread checks if any button is pressed or checks if there is any command from app_manager thread. If there is button press then the thread sends instructions to the app_manager thread about the button or if command is received, then  it send instructions about the command received. 
 The details in the process_data thread is as shown below.
 
 .. literalinclude:: app_sk_gpio_com_demo/src/main.xc
-   :start-after: //::Select in process start
+   :start-after: //::Select in process data
    :end-before: //::Select
    
 Process_data thread send instructions to the app_manager thread about the command received. The app_manager thread then implementys the state machine according to the instructions received from the process_data thread. The state machine of app_manager thread is as below.

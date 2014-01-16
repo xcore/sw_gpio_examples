@@ -1,4 +1,4 @@
-SliceKit GPIO Example Applications
+sliceKIT GPIO Example Applications
 ==================================
 
 .. toctree::

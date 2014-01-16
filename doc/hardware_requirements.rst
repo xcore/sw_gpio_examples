@@ -20,9 +20,9 @@ This application has the following features:
    * simple code to print the recorded temperature to the xTIMEcomposer debug console on the press of one of the sliceCARD buttons
    * simple code to cycle through the 4 LEDs each time the other button is pressed.
    * demonstrates use of XC select statements for handling multiple concurrent inputs
-   * demonstrates basic usage of XCore ports
+   * demonstrates basic usage of xCORE ports
 
-.. image:: images/hardware_setup.png
+.. figure:: images/hardware_setup.png
     :align: center
 
     Hardware setup for simple demo
@@ -40,7 +40,7 @@ This application extends the simple demo to provide the following functionality 
    * Cycles through LEDs on button Press
    * Displays temperature value and button press events on the terminal console of a host PC via the UART
 
-.. image:: images/hardware_setup.png
+.. figure:: images/hardware_setup.png
     :align: left
 
     Hardware setup for com port uart demo
@@ -56,7 +56,7 @@ This application extends the gpio com port demo to utilize ethernet and xtcp com
    * Display GPIO sliceCARD button press status
    * Read the room temperature via the onboard ADC and display on the web page
 
-.. image:: images/gpio_eth_combo_hardware_setup.*
+.. figure:: images/gpio_eth_combo_hardware_setup.*
     :align: left
 
     Hardware setup for gpio ethernet combo demo
@@ -72,7 +72,7 @@ This application extends the gpio com port demo to utilize Wi-Fi component in or
    * Display GPIO sliceCARD button press status
    * Read the room temperature via the on-board ADC and display on the web page
 
-.. image:: images/gpio_wifi_tiwisl_combo_hardware_setup.png
+.. figure:: images/gpio_wifi_tiwisl_combo_hardware_setup.png
     :align: left
 
     Hardware setup for gpio wi-fi combo demo

@@ -27,16 +27,16 @@
 
 #define I2C_NO_REGISTER_ADDRESS 1
 #define debounce_time XS1_TIMER_HZ/50
-#define CORE_NUM 1
+#define TILE_NUM 1
 #define BUTTON_PRESS_VALUE 2
 
 /*---------------------------------------------------------------------------
  ports and clocks
  ---------------------------------------------------------------------------*/
  //::Port configuration
-on stdcore[CORE_NUM]: out port p_led=XS1_PORT_4A;
-on stdcore[CORE_NUM]: port p_PORT_BUT_1=XS1_PORT_4C;
-on stdcore[CORE_NUM]: struct r_i2c i2cOne = {
+on tile[TILE_NUM]: out port p_led=XS1_PORT_4A;
+on tile[TILE_NUM]: port p_PORT_BUT_1=XS1_PORT_4C;
+on tile[TILE_NUM]: struct r_i2c i2cOne = {
 		XS1_PORT_1F,
 		XS1_PORT_1B,
 		1000
@@ -52,8 +52,8 @@ on stdcore[CORE_NUM]: struct r_i2c i2cOne = {
 //::LUT start
 int TEMPERATURE_LUT[][2]= //Temperature Look up table
 {
-		{-10,850},{-5,800},{0,750},{5,700},{10,650},{15,600},{20,550},{25,500},{30,450},{35,400},
-		{40,350},{45,300},{50,250},{55,230},{60,210}
+  {-10,850},{-5,800},{0,750},{5,700},{10,650},{15,600},{20,550},{25,500},{30,450},{35,400},
+    {40,350},{45,300},{50,250},{55,230},{60,210}
 };
 //::LUT
 /*---------------------------------------------------------------------------
@@ -77,20 +77,20 @@ int TEMPERATURE_LUT[][2]= //Temperature Look up table
 //::Linear Interpolation
 int linear_interpolation(int adc_value)
 {
-	int i=0,x1,y1,x2,y2,temper;
-	while(adc_value<TEMPERATURE_LUT[i][1])
-	{
-		i++;
-	}
+  int i=0,x1,y1,x2,y2,temper;
+  while(adc_value<TEMPERATURE_LUT[i][1])
+  {
+    i++;
+  }
 //::Formula start
-	//Calculating Linear interpolation using the formula y=y1+(x-x1)*(y2-y1)/(x2-x1)
+  //Calculating Linear interpolation using the formula y=y1+(x-x1)*(y2-y1)/(x2-x1)
 //::Formula
-	x1=TEMPERATURE_LUT[i-1][1];
-	y1=TEMPERATURE_LUT[i-1][0];
-	x2=TEMPERATURE_LUT[i][1];
-	y2=TEMPERATURE_LUT[i][0];
-	temper=y1+(((adc_value-x1)*(y2-y1))/(x2-x1));
-	return temper;//Return Temperature value
+  x1=TEMPERATURE_LUT[i-1][1];
+  y1=TEMPERATURE_LUT[i-1][0];
+  x2=TEMPERATURE_LUT[i][1];
+  y2=TEMPERATURE_LUT[i][0];
+  temper=y1+(((adc_value-x1)*(y2-y1))/(x2-x1));
+  return temper;//Return Temperature value
 }
 //::Linear
 /** =========================================================================
@@ -105,61 +105,61 @@ int linear_interpolation(int adc_value)
  **/
 void app_manager()
 {
-	unsigned button_press_1,button_press_2,time;
-	int button =1;
-	timer t;
-	unsigned char data[1]={0x13};
-	unsigned char data1[2];
-	int adc_value;
-	unsigned led_value=0x0E;
-	p_PORT_BUT_1:> button_press_1;
-	set_port_drive_low(p_PORT_BUT_1);
+  unsigned button_press_1,button_press_2,time;
+  int button =1;
+  timer t;
+  unsigned char data[1]={0x13};
+  unsigned char data1[2];
+  int adc_value;
+  unsigned led_value=0x0E;
+  p_PORT_BUT_1:> button_press_1;
+  set_port_drive_low(p_PORT_BUT_1);
 //::Write config
-	i2c_master_write_reg(0x28, 0x00, data, 1, i2cOne); //Write configuration information to ADC
+  i2c_master_write_reg(0x28, 0x00, data, 1, i2cOne); //Write configuration information to ADC
 //::Config
-	t:>time;
-	printstrln("** WELCOME TO SIMPLE GPIO DEMO **");
-	while(1)
-	{
+  t:>time;
+  printstrln("** WELCOME TO SIMPLE GPIO DEMO **");
+  while(1)
+  {
 //::Select start
-		select
-		{
-			case button => p_PORT_BUT_1 when pinsneq(button_press_1):> button_press_1: //checks if any button is pressed
-				button=0;
-				t:>time;
-				break;
+    select
+    {
+      case button => p_PORT_BUT_1 when pinsneq(button_press_1):> button_press_1: //checks if any button is pressed
+        button=0;
+	t:>time;
+	break;
 
-			case !button => t when timerafter(time+debounce_time):>void: //waits for 20ms and checks if the same button is pressed or not
-				p_PORT_BUT_1:> button_press_2;
-				if(button_press_1==button_press_2)
-				if(button_press_1 == BUTTON_PRESS_VALUE) //Button 1 is pressed
-				{
-					printstrln("Button 1 Pressed");
-					p_led<:(led_value);
-					led_value=led_value<<1;
-					led_value|=0x01;
-					led_value=led_value & 0x0F;
-					if(led_value == 15)
-					{
-						led_value=0x0E;
-					}
-				}
-				if(button_press_1 == BUTTON_PRESS_VALUE-1) //Button 2 is pressed
-				{
-					data1[0]=0;data1[1]=0;
-					i2c_master_rx(0x28, data1, 2, i2cOne); //Read ADC value using I2C read
-					printstrln("Reading Temperature value....");
-					data1[0]=data1[0]&0x0F;
-					adc_value=(data1[0]<<6)|(data1[1]>>2);
-					printstr("Temperature is :");
-					printintln(linear_interpolation(adc_value));
-				}
+      case !button => t when timerafter(time+debounce_time):>void: //waits for 20ms and checks if the same button is pressed or not
+	p_PORT_BUT_1:> button_press_2;
+	if(button_press_1==button_press_2)
+	  if(button_press_1 == BUTTON_PRESS_VALUE) //Button 1 is pressed
+	  {
+	    printstrln("Button 1 Pressed");
+	    p_led<:(led_value);
+	    led_value=led_value<<1;
+	    led_value|=0x01;
+	    led_value=led_value & 0x0F;
+	    if(led_value == 15)
+	    {
+	      led_value=0x0E;
+	    }
+	  }
+	  if(button_press_1 == BUTTON_PRESS_VALUE-1) //Button 2 is pressed
+	  {
+	    data1[0]=0;data1[1]=0;
+	    i2c_master_rx(0x28, data1, 2, i2cOne); //Read ADC value using I2C read
+	    printstrln("Reading Temperature value....");
+	    data1[0]=data1[0]&0x0F;
+	    adc_value=(data1[0]<<6)|(data1[1]>>2);
+	    printstr("Temperature is :");
+	    printintln(linear_interpolation(adc_value));
+	  }
 
-				button=1;
-				break;
-		}
+	  button=1;
+	  break;
+    }
 //::Select
-	}
+  }
 }
 
 /**
@@ -168,11 +168,11 @@ void app_manager()
  //::Main start
 int main(void)
 {
-	par
-	{
-		on stdcore[CORE_NUM]: app_manager();
-	}
-	return 0;
+  par
+  {
+    on tile[TILE_NUM]: app_manager();
+  }
+  return 0;
 }
 
 //::Main
