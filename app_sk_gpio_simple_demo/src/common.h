@@ -41,8 +41,7 @@ prototypes
 ---------------------------------------------------------------------------*/
 /**
 * Polling push button switches and check which switch is pressed
-* @param	None
-* @Return	None
+* @return	None
 */
 void app_manager();
 

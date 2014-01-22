@@ -146,9 +146,9 @@ Process_data thread send instructions to the app_manager thread about the comman
    :start-after: //::State machine start
    :end-before: //::State
  
- The state machine has states as described below. The state details are available in the quick starter guide of the applications.
+The state machine has states as described below. The state details are available in the quick starter guide of the applications.
  
- .. literalinclude:: app_sk_gpio_com_demo/src/common.h
+.. literalinclude:: app_sk_gpio_com_demo/src/common.h
     :start-after: //::States start
     :end-before: //::States
 
